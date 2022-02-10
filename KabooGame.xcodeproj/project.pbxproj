@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E127B54F00003D7170 /* KabooGameApp.swift */; };
-		768BE1E427B54F00003D7170 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E327B54F00003D7170 /* ContentView.swift */; };
 		768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E527B54F02003D7170 /* Assets.xcassets */; };
 		768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E827B54F02003D7170 /* Preview Assets.xcassets */; };
 		768BE1F027B5705F003D7170 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1EF27B5705F003D7170 /* GameScene.swift */; };
 		768BE1F227B57102003D7170 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1F127B57102003D7170 /* GameView.swift */; };
+		CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */; };
+		CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */; };
+		CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE727B5CB340006052B /* CustomColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		768BE1DE27B54F00003D7170 /* KabooGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KabooGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768BE1E127B54F00003D7170 /* KabooGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabooGameApp.swift; sourceTree = "<group>"; };
-		768BE1E327B54F00003D7170 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		768BE1E527B54F02003D7170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		768BE1E827B54F02003D7170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		768BE1EF27B5705F003D7170 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		768BE1F127B57102003D7170 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScreen.swift; sourceTree = "<group>"; };
+		CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGameScreen.swift; sourceTree = "<group>"; };
+		CAA30CE727B5CB340006052B /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				768BE1E127B54F00003D7170 /* KabooGameApp.swift */,
-				768BE1E327B54F00003D7170 /* ContentView.swift */,
+				CAA30CE727B5CB340006052B /* CustomColor.swift */,
+				CAA30CE227B5CB2B0006052B /* Screens */,
 				768BE1EF27B5705F003D7170 /* GameScene.swift */,
 				768BE1F127B57102003D7170 /* GameView.swift */,
 				768BE1E527B54F02003D7170 /* Assets.xcassets */,
@@ -71,6 +76,15 @@
 				768BE1E827B54F02003D7170 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAA30CE227B5CB2B0006052B /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */,
+				CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,9 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */,
+				CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */,
 				768BE1F027B5705F003D7170 /* GameScene.swift in Sources */,
-				768BE1E427B54F00003D7170 /* ContentView.swift in Sources */,
 				768BE1F227B57102003D7170 /* GameView.swift in Sources */,
+				CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */,
 				768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +220,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -259,7 +275,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -283,6 +299,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -312,6 +329,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

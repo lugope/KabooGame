@@ -11,7 +11,7 @@ import SwiftUI
 struct KabooGameApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainMenuScreen()
         }
     }
 }
