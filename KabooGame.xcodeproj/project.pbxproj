@@ -13,6 +13,8 @@
 		768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E827B54F02003D7170 /* Preview Assets.xcassets */; };
 		768BE1F027B5705F003D7170 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1EF27B5705F003D7170 /* GameScene.swift */; };
 		768BE1F227B57102003D7170 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1F127B57102003D7170 /* GameView.swift */; };
+		768BE1F527B6BBE4003D7170 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1F427B6BBE4003D7170 /* Player.swift */; };
+		768BE1F727B6BBF3003D7170 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1F627B6BBF3003D7170 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		768BE1E827B54F02003D7170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		768BE1EF27B5705F003D7170 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		768BE1F127B57102003D7170 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		768BE1F427B6BBE4003D7170 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		768BE1F627B6BBF3003D7170 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 				768BE1E327B54F00003D7170 /* ContentView.swift */,
 				768BE1EF27B5705F003D7170 /* GameScene.swift */,
 				768BE1F127B57102003D7170 /* GameView.swift */,
+				768BE1F327B6BBC5003D7170 /* Model */,
 				768BE1E527B54F02003D7170 /* Assets.xcassets */,
 				768BE1E727B54F02003D7170 /* Preview Content */,
 			);
@@ -71,6 +76,15 @@
 				768BE1E827B54F02003D7170 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		768BE1F327B6BBC5003D7170 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				768BE1F427B6BBE4003D7170 /* Player.swift */,
+				768BE1F627B6BBF3003D7170 /* Card.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +158,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				768BE1F027B5705F003D7170 /* GameScene.swift in Sources */,
+				768BE1F727B6BBF3003D7170 /* Card.swift in Sources */,
 				768BE1E427B54F00003D7170 /* ContentView.swift in Sources */,
 				768BE1F227B57102003D7170 /* GameView.swift in Sources */,
+				768BE1F527B6BBE4003D7170 /* Player.swift in Sources */,
 				768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

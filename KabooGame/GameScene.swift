@@ -9,7 +9,9 @@ import SpriteKit
 
 class GameScene: SKScene {
     override func didMove(to view: SKView) {
-        // Run when scene begins
+        var card = Card(cardId: 2)
+        card.position = CGPoint(x: 200, y: 500)
+        addChild(card)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
