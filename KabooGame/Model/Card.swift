@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 
 let CARD_BACK_TEXTURE = SKTexture(imageNamed: "Card_facedown")
+let CARD_ERROR_TEXTURE = SKTexture(imageNamed: "Card_error")
 
 class Card: SKSpriteNode {
     let type: CardType
@@ -22,7 +23,7 @@ class Card: SKSpriteNode {
     }
     
     convenience init(cardType: Int) {
-        let type: CardType = CardType(rawValue: cardType) ?? CardType.card0
+        let type: CardType = CardType(rawValue: cardType) ?? CardType.error
         self.init(cardType: type)
     }
     
@@ -43,9 +44,13 @@ class Card: SKSpriteNode {
 }
 
 enum CardType: Int {
-    case card0 = 0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, jocker
+    case card0 = 0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, jocker, error
     
     var texture: SKTexture {
+        if self == CardType.error {
+            return CARD_ERROR_TEXTURE
+        }
+        
         let textureName = "Card_" + String(self.rawValue)
         return SKTexture(imageNamed: textureName)
     }
