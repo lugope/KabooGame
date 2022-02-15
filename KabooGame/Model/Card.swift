@@ -11,6 +11,9 @@ import SpriteKit
 class Card: SKSpriteNode {
     let cardId: Int
     let pointsValue: Int
+    let frontTexture: SKTexture
+    let backTexture: SKTexture
+    var faceUp = true
     
     init(cardId: Int) {
         self.cardId = cardId
@@ -21,11 +24,22 @@ class Card: SKSpriteNode {
         }
         
         let textureName = "Card_" + String(cardId)
-        let texture = SKTexture(imageNamed: textureName)
+        frontTexture = SKTexture(imageNamed: textureName)
+        backTexture = SKTexture(imageNamed: "Card_back")
         
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        super.init(texture: frontTexture, color: UIColor.clear, size: frontTexture.size())
         self.name = "Card"
     }
+    
+    func flip() {
+        if faceUp {
+            self.texture = backTexture
+        } else {
+            self.texture = frontTexture
+        }
+        faceUp = !faceUp
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
