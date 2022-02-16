@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 enum CardLevel :CGFloat {
     case board = 10
@@ -14,9 +15,11 @@ enum CardLevel :CGFloat {
 }
 
 class GameScene: SKScene {
-    let gameController = GameController()
+    
+    var gameController = GameController()
     
     override func didMove(to view: SKView) {
+        //MARK: Game setup
         gameController.gameScene = self
         gameController.discardPile.pile.append(gameController.deck.draw())
         gameController.discardPile.update()
@@ -92,6 +95,72 @@ class GameScene: SKScene {
                 card.run(SKAction.scale(to: 1.0, duration: 0.25), withKey: "drop")
                 card.removeFromParent()
                 addChild(card)
+            }
+        }
+    }
+    
+    func positionCardsOnTable() {
+        for player in self.gameController.players {
+            positionCards(fromPlayer: player)
+        }
+    }
+    
+    func positionCards(fromPlayer player: Player) {
+        let gap = CGFloat(10)
+        
+        switch player.id {
+        case PlayerId.player1:
+            var pointer = CGPoint(
+                x: frame.midX - (CARD_SIZE_WIDTH * 1.5) - (gap * 1.5),
+                y: frame.minY + (CARD_SIZE_HEIGHT * 0.9)
+            )
+            
+            for card in player.cards {
+                card.position = pointer
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x + CARD_SIZE_WIDTH + gap, y: pointer.y)
+            }
+        
+        case PlayerId.player2:
+            var pointer = CGPoint(
+                x: frame.minX,
+                y: frame.midY - CARD_SIZE_WIDTH * 1.5 - (gap * 1.5)
+            )
+
+            for card in player.cards {
+                card.position = pointer
+                card.zRotation = -CGFloat.pi / 2
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x, y: pointer.y + CARD_SIZE_WIDTH + gap)
+            }
+            
+        case PlayerId.player3:
+            var pointer = CGPoint(
+                x: frame.midX - CARD_SIZE_WIDTH * 1.5 - (gap * 1.5),
+                y: frame.maxY - CARD_SIZE_HEIGHT * 0.9
+            )
+            
+            for card in player.cards {
+                card.position = pointer
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x + CARD_SIZE_WIDTH + gap, y: pointer.y)
+            }
+            
+        default:
+            var pointer = CGPoint(
+                x: frame.maxX,
+                y: frame.midY + CARD_SIZE_WIDTH * 1.5 + (gap * 1.5)
+            )
+
+            for card in player.cards {
+                card.position = pointer
+                card.zRotation = CGFloat.pi / 2
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x, y: pointer.y - CARD_SIZE_WIDTH - gap)
             }
         }
     }
