@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C8F604227BBFA390057E38A /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F604127BBFA390057E38A /* Deck.swift */; };
+		3C8F604427BC06570057E38A /* DiscardPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F604327BC06570057E38A /* DiscardPile.swift */; };
 		768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E127B54F00003D7170 /* KabooGameApp.swift */; };
 		768BE1E427B54F00003D7170 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E327B54F00003D7170 /* ContentView.swift */; };
 		768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E527B54F02003D7170 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C8F604127BBFA390057E38A /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		3C8F604327BC06570057E38A /* DiscardPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardPile.swift; sourceTree = "<group>"; };
 		768BE1DE27B54F00003D7170 /* KabooGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KabooGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768BE1E127B54F00003D7170 /* KabooGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabooGameApp.swift; sourceTree = "<group>"; };
 		768BE1E327B54F00003D7170 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			children = (
 				768BE1F427B6BBE4003D7170 /* Player.swift */,
 				768BE1F627B6BBF3003D7170 /* Card.swift */,
+				3C8F604127BBFA390057E38A /* Deck.swift */,
+				3C8F604327BC06570057E38A /* DiscardPile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,6 +163,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8F604427BC06570057E38A /* DiscardPile.swift in Sources */,
+				3C8F604227BBFA390057E38A /* Deck.swift in Sources */,
 				768BE1F027B5705F003D7170 /* GameScene.swift in Sources */,
 				768BE1F727B6BBF3003D7170 /* Card.swift in Sources */,
 				768BE1E427B54F00003D7170 /* ContentView.swift in Sources */,

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+
+
 class Player {
     let id: Int
-    var cards: [Card] = []
+    var hand: [Card] = []
     
     init(id: Int) {
         self.id = id

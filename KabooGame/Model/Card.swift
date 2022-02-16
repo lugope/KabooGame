@@ -13,7 +13,7 @@ class Card: SKSpriteNode {
     let pointsValue: Int
     let frontTexture: SKTexture
     let backTexture: SKTexture
-    var faceUp = true
+    var faceUp = false
     
     init(cardId: Int) {
         self.cardId = cardId
@@ -27,7 +27,7 @@ class Card: SKSpriteNode {
         frontTexture = SKTexture(imageNamed: textureName)
         backTexture = SKTexture(imageNamed: "Card_back")
         
-        super.init(texture: frontTexture, color: UIColor.clear, size: frontTexture.size())
+        super.init(texture: backTexture, color: UIColor.clear, size: backTexture.size())
         self.name = "Card"
     }
     
