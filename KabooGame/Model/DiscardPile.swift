@@ -9,14 +9,14 @@ import Foundation
 import SpriteKit
 
 class DiscardPile: SKSpriteNode {
-    var backTexture: SKTexture
-    
+    var currentTexture: SKTexture
+
     var pile: [Card] = []
     
     init() {
-        backTexture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].type.value))")
+        currentTexture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].type.rawValue))")
         
-        super.init(texture: backTexture, color: UIColor.clear, size: backTexture.size())
+        super.init(texture: currentTexture, color: UIColor.clear, size: currentTexture.size())
         self.name = "Deck"
     }
     
@@ -27,7 +27,7 @@ class DiscardPile: SKSpriteNode {
     }
     
     func update() {
-        self.texture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].type.value))")
+        self.texture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].type.rawValue))")
     }
     
     func printPile() {
