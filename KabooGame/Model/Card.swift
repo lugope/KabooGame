@@ -8,14 +8,15 @@
 import Foundation
 import SpriteKit
 
-let CARD_BACK_TEXTURE = SKTexture(imageNamed: "Card_facedown")
+let CARD_BACK_TEXTURE = SKTexture(imageNamed: "Card_back")
 let CARD_PLACEHOLDER_TEXTURE = SKTexture(imageNamed: "Card_placeholder")
 let CARD_SIZE_WIDTH: CGFloat = 72
 let CARD_SIZE_HEIGHT: CGFloat = 108
 
 class Card: SKSpriteNode {
+    
     let type: CardType
-    var faceUp: Bool = true
+    var faceUp: Bool = false
     
     init(cardType: CardType) {
         self.type = cardType
@@ -25,6 +26,7 @@ class Card: SKSpriteNode {
             color: UIColor.clear,
             size: CGSize(width: CARD_SIZE_WIDTH, height: CARD_SIZE_HEIGHT)
         )
+        
         self.name = "Card"
     }
     
@@ -55,18 +57,22 @@ enum CardType: Int {
     var texture: SKTexture {
         if self == CardType.placeholder {
             return CARD_PLACEHOLDER_TEXTURE
+            
+        } else {
+            let textureName = "Card_" + String(self.rawValue)
+            return SKTexture(imageNamed: textureName)
         }
-        
-        let textureName = "Card_" + String(self.rawValue)
-        return SKTexture(imageNamed: textureName)
     }
     
     var value: Int {
         if self.rawValue <= 13 {
             return self.rawValue
             
-        } else {
+        } else if self == .jocker  {
             return -1
+            
+        } else {
+            return 0
         }
     }
 }

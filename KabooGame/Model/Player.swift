@@ -10,6 +10,8 @@ enum PlayerId {
 }
 
 import Foundation
+
+
 class Player {
     let id: PlayerId
     let isDeviceHolder: Bool
