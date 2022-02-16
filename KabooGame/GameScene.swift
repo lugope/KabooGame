@@ -23,15 +23,36 @@ class GameScene: SKScene {
         gameController.gameScene = self
         gameController.discardPile.pile.append(gameController.deck.draw())
         gameController.discardPile.update()
-        
-        gameController.deck.printDeck()
-        
         gameController.deck.position = CGPoint(x: frame.midX - CARD_SIZE_WIDTH * 0.75, y: frame.midY)
         gameController.discardPile.position = CGPoint(x: frame.midX + CARD_SIZE_WIDTH * 0.75, y: frame.midY)
     
+        
+        
+        let playerList = [
+            Player(id: .player1, isDeviceHolder: true),
+            Player(id: .player2, isDeviceHolder: false),
+            Player(id: .player3, isDeviceHolder: false),
+            Player(id: .player4, isDeviceHolder: false),
+            Player(id: .player4, isDeviceHolder: false)]
+        
+        for player in playerList {
+            gameController.players.append(player)
+        }
+        
+        
+        for player in gameController.players {
+            for _ in 0...3 {
+                player.cards.append(gameController.deck.draw())
+            }
+        }
+                
+//        for _ in 0...3 {
+//            gameController.players[2].cards.append(gameController.deck.draw())
+//            gameController.players[3].cards.append(gameController.deck.draw())
+//        }
+        
         addChild(gameController.deck)
         addChild(gameController.discardPile)
-        
         positionCardsOnTable()
     }
     
