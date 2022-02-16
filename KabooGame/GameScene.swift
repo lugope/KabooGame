@@ -13,7 +13,6 @@ enum CardLevel :CGFloat {
     case enlarged = 150
 }
 
-
 class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
@@ -23,11 +22,10 @@ class GameScene: SKScene {
         discardPile.pile.append(deck.draw())
         discardPile.update()
         
-        let card1 = Card(cardId: 2)
-        let card2 = Card(cardId: 11)
-        let card3 = Card(cardId: 8)
-        let card4 = Card(cardId: 14)
-
+        let card1 = Card(cardType: .card2)
+        let card2 = Card(cardType: .card8)
+        let card3 = Card(cardType: .jocker)
+        let card4 = Card(cardType: .card12)
         
         deck.position = CGPoint(x: frame.midX - 40, y: frame.midY)
         discardPile.position = CGPoint(x: frame.midX + 40, y: frame.midY)
@@ -39,7 +37,6 @@ class GameScene: SKScene {
         
         addChild(deck)
         addChild(discardPile)
-        
         
         addChild(card1)
         addChild(card2)

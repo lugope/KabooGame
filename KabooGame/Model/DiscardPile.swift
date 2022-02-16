@@ -14,7 +14,7 @@ class DiscardPile: SKSpriteNode {
     var pile: [Card] = []
     
     init() {
-        backTexture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].cardId))")
+        backTexture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].type.value))")
         
         super.init(texture: backTexture, color: UIColor.clear, size: backTexture.size())
         self.name = "Deck"
@@ -27,13 +27,12 @@ class DiscardPile: SKSpriteNode {
     }
     
     func update() {
-        self.texture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].cardId))")
-        print("Card_\(pile.isEmpty ? "empty" : String(pile[0].cardId))")
+        self.texture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].type.value))")
     }
     
     func printPile() {
         for card in pile {
-            print(card.pointsValue)
+            print(card.type.value)
         }
     }
     

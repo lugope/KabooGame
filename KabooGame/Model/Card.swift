@@ -8,11 +8,11 @@
 import Foundation
 import SpriteKit
 
-let CARD_BACK_TEXTURE = SKTexture(imageNamed: "Card_facedown")
+let CARD_BACK_TEXTURE = SKTexture(imageNamed: "Card_back")
 
 class Card: SKSpriteNode {
     let type: CardType
-    var faceUp: Bool = true
+    var faceUp: Bool = false
     
     init(cardType: CardType) {
         self.type = cardType
@@ -43,7 +43,7 @@ class Card: SKSpriteNode {
 }
 
 enum CardType: Int {
-    case card0 = 0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, jocker
+    case card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, jocker
     
     var texture: SKTexture {
         let textureName = "Card_" + String(self.rawValue)
@@ -53,7 +53,6 @@ enum CardType: Int {
     var value: Int {
         if self.rawValue <= 13 {
             return self.rawValue
-            
         } else {
             return -1
         }

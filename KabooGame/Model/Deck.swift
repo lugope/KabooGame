@@ -10,26 +10,26 @@ import SpriteKit
 
 class Deck: SKSpriteNode {
     let backTexture: SKTexture
-    var cards: [Card] = [Card(cardId: 0),
-                         Card(cardId: 1),
-                         Card(cardId: 2),
-                         Card(cardId: 3),
-                         Card(cardId: 4),
-                         Card(cardId: 5),
-                         Card(cardId: 6),
-                         Card(cardId: 7),
-                         Card(cardId: 8),
-                         Card(cardId: 9),
-                         Card(cardId: 10),
-                         Card(cardId: 11),
-                         Card(cardId: 12),
-                         Card(cardId: 13),
-                         Card(cardId: 14)]
+    var cards: [Card] = [Card(cardType: .card0),
+                         Card(cardType: .card1),
+                         Card(cardType: .card2),
+                         Card(cardType: .card3),
+                         Card(cardType: .card4),
+                         Card(cardType: .card5),
+                         Card(cardType: .card6),
+                         Card(cardType: .card7),
+                         Card(cardType: .card8),
+                         Card(cardType: .card9),
+                         Card(cardType: .card10),
+                         Card(cardType: .card11),
+                         Card(cardType: .card12),
+                         Card(cardType: .card13),
+                         Card(cardType: .jocker),]
     var deck: [Card] = []
     
     init() {
         for card in cards {
-            if card.cardId > 0 && card.cardId < 13 {
+            if card.type.value > 0 && card.type.value < 13 {
                 for _ in 1...4 {
                     deck.append(card)
                 }
@@ -56,7 +56,7 @@ class Deck: SKSpriteNode {
     
     func printDeck() {
         for card in deck {
-            print(card.pointsValue)
+            print(card.type.value)
         }
     }
     
