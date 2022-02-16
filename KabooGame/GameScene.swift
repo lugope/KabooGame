@@ -26,26 +26,13 @@ class GameScene: SKScene {
         
         gameController.deck.printDeck()
         
-        let card1 = Card(cardType: .card2)
-        let card2 = Card(cardType: .card8)
-        let card3 = Card(cardType: .jocker)
-        let card4 = Card(cardType: .card12)
-        
-        gameController.deck.position = CGPoint(x: frame.midX - 40, y: frame.midY)
-        gameController.discardPile.position = CGPoint(x: frame.midX + 40, y: frame.midY)
-        
-        card1.position = CGPoint(x: frame.midX - 120, y: frame.minY + 100)
-        card2.position = CGPoint(x: frame.midX - 40, y: frame.minY + 100)
-        card3.position = CGPoint(x: frame.midX + 40, y: frame.minY + 100)
-        card4.position = CGPoint(x: frame.midX + 120, y: frame.minY + 100)
-        
+        gameController.deck.position = CGPoint(x: frame.midX - CARD_SIZE_WIDTH * 0.75, y: frame.midY)
+        gameController.discardPile.position = CGPoint(x: frame.midX + CARD_SIZE_WIDTH * 0.75, y: frame.midY)
+    
         addChild(gameController.deck)
         addChild(gameController.discardPile)
         
-        addChild(card1)
-        addChild(card2)
-        addChild(card3)
-        addChild(card4)
+        positionCardsOnTable()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -22,7 +22,7 @@ class GameController {
     
     func drawCardFromDeck() {
         drawnCard = deck.draw()
-        drawnCard!.position = CGPoint(x: gameScene!.frame.midX - 40, y: gameScene!.frame.midY)
+        drawnCard!.position = CGPoint(x: gameScene!.frame.midX - CARD_SIZE_WIDTH * 0.75, y: gameScene!.frame.midY)
         gameScene?.addChild(drawnCard!)
     }
     
