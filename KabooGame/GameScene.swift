@@ -14,31 +14,30 @@ enum CardLevel :CGFloat {
 }
 
 class GameScene: SKScene {
-    let deck = Deck()
-    let discardPile = DiscardPile()
-    var drawnCard = Card(cardType: .card0)
+    let gameController = GameController()
     
     override func didMove(to view: SKView) {
-        discardPile.pile.append(deck.draw())
-        discardPile.update()
+        gameController.gameScene = self
+        gameController.discardPile.pile.append(gameController.deck.draw())
+        gameController.discardPile.update()
         
-        deck.printDeck()
+        gameController.deck.printDeck()
         
         let card1 = Card(cardType: .card2)
         let card2 = Card(cardType: .card8)
         let card3 = Card(cardType: .jocker)
         let card4 = Card(cardType: .card12)
         
-        deck.position = CGPoint(x: frame.midX - 40, y: frame.midY)
-        discardPile.position = CGPoint(x: frame.midX + 40, y: frame.midY)
+        gameController.deck.position = CGPoint(x: frame.midX - 40, y: frame.midY)
+        gameController.discardPile.position = CGPoint(x: frame.midX + 40, y: frame.midY)
         
         card1.position = CGPoint(x: frame.midX - 120, y: frame.minY + 100)
         card2.position = CGPoint(x: frame.midX - 40, y: frame.minY + 100)
         card3.position = CGPoint(x: frame.midX + 40, y: frame.minY + 100)
         card4.position = CGPoint(x: frame.midX + 120, y: frame.minY + 100)
         
-        addChild(deck)
-        addChild(discardPile)
+        addChild(gameController.deck)
+        addChild(gameController.discardPile)
         
         addChild(card1)
         addChild(card2)
@@ -59,22 +58,17 @@ class GameScene: SKScene {
                 }
             }
             
-            if let deck = atPoint(location) as? Deck {
+            if atPoint(location) is Deck {
                 if touch.tapCount > 1 {
-                    drawnCard = deck.draw()
-                    drawnCard.position = CGPoint(x: frame.midX - 40, y: frame.midY)
-                    self.scene?.addChild(drawnCard)
+                    gameController.drawCardFromDeck()
                 }
             }
             
-            if let discardPile = atPoint(location) as? DiscardPile {
+            if atPoint(location) is DiscardPile {
                 if touch.tapCount > 1 {
-                    discardPile.pile.insert(drawnCard, at: 0)
-                    discardPile.update()
-                    print("pile:")
-                    discardPile.printPile()
-                    drawnCard.removeFromParent()
-                    print("drawn card: " + String(drawnCard.type.value))
+                    if gameController.drawnCard != nil {
+                        gameController.discardDrawnCard()
+                    }
                 }
             }
         }
