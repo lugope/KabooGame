@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 enum CardLevel :CGFloat {
     case board = 10
@@ -14,36 +15,52 @@ enum CardLevel :CGFloat {
 }
 
 class GameScene: SKScene {
-    let deck = Deck()
-    let discardPile = DiscardPile()
-    var drawnCard = Card(cardType: .card0)
+    
+    var gameController = GameController()
     
     override func didMove(to view: SKView) {
-        discardPile.pile.append(deck.draw())
-        discardPile.update()
+        //MARK: Game setup
+        gameController.gameScene = self
+        gameController.players = defineDummyPlayers()
         
-        deck.printDeck()
+        positionCardsOnTable()
+    }
+    
+    //Temporary function to delete!!!
+    func defineDummyPlayers() -> [Player] {
+        let player1 = Player(id: PlayerId.player1, isDeviceHolder: true)
+        player1.cards = [
+            Card(cardType: 1),
+            Card(cardType: 2),
+            Card(cardType: 3),
+            Card(cardType: 4)
+        ]
         
-        let card1 = Card(cardType: .card2)
-        let card2 = Card(cardType: .card8)
-        let card3 = Card(cardType: .jocker)
-        let card4 = Card(cardType: .card12)
+        let player2 = Player(id: .player2, isDeviceHolder: false)
+        player2.cards = [
+            Card(cardType: 9),
+            Card(cardType: 10),
+            Card(cardType: 11),
+            Card(cardType: 12)
+        ]
         
-        deck.position = CGPoint(x: frame.midX - 40, y: frame.midY)
-        discardPile.position = CGPoint(x: frame.midX + 40, y: frame.midY)
+        let player3 = Player(id: .player3, isDeviceHolder: false)
+        player3.cards = [
+            Card(cardType: 5),
+            Card(cardType: 6),
+            Card(cardType: 7),
+            Card(cardType: 8)
+        ]
         
-        card1.position = CGPoint(x: frame.midX - 120, y: frame.minY + 100)
-        card2.position = CGPoint(x: frame.midX - 40, y: frame.minY + 100)
-        card3.position = CGPoint(x: frame.midX + 40, y: frame.minY + 100)
-        card4.position = CGPoint(x: frame.midX + 120, y: frame.minY + 100)
+        let player4 = Player(id: .player4, isDeviceHolder: false)
+        player4.cards = [
+            Card(cardType: 5),
+            Card(cardType: 6),
+            Card(cardType: 7),
+            Card(cardType: 8)
+        ]
         
-        addChild(deck)
-        addChild(discardPile)
-        
-        addChild(card1)
-        addChild(card2)
-        addChild(card3)
-        addChild(card4)
+        return [player1, player2, player3, player4]
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -56,25 +73,6 @@ class GameScene: SKScene {
                 card.run(SKAction.scale(to: 1.3, duration: 0.25), withKey: "pickup")
                 if touch.tapCount > 1 {
                     card.flip()
-                }
-            }
-            
-            if let deck = atPoint(location) as? Deck {
-                if touch.tapCount > 1 {
-                    drawnCard = deck.draw()
-                    drawnCard.position = CGPoint(x: frame.midX - 40, y: frame.midY)
-                    self.scene?.addChild(drawnCard)
-                }
-            }
-            
-            if let discardPile = atPoint(location) as? DiscardPile {
-                if touch.tapCount > 1 {
-                    discardPile.pile.insert(drawnCard, at: 0)
-                    discardPile.update()
-                    print("pile:")
-                    discardPile.printPile()
-                    drawnCard.removeFromParent()
-                    print("drawn card: " + String(drawnCard.type.value))
                 }
             }
         }
@@ -98,6 +96,72 @@ class GameScene: SKScene {
                 card.run(SKAction.scale(to: 1.0, duration: 0.25), withKey: "drop")
                 card.removeFromParent()
                 addChild(card)
+            }
+        }
+    }
+    
+    func positionCardsOnTable() {
+        for player in self.gameController.players {
+            positionCards(fromPlayer: player)
+        }
+    }
+    
+    func positionCards(fromPlayer player: Player) {
+        let gap = CGFloat(10)
+        
+        switch player.id {
+        case PlayerId.player1:
+            var pointer = CGPoint(
+                x: frame.midX - (CARD_SIZE_WIDTH * 1.5) - (gap * 1.5),
+                y: frame.minY + (CARD_SIZE_HEIGHT * 0.9)
+            )
+            
+            for card in player.cards {
+                card.position = pointer
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x + CARD_SIZE_WIDTH + gap, y: pointer.y)
+            }
+        
+        case PlayerId.player2:
+            var pointer = CGPoint(
+                x: frame.minX,
+                y: frame.midY - CARD_SIZE_WIDTH * 1.5 - (gap * 1.5)
+            )
+
+            for card in player.cards {
+                card.position = pointer
+                card.zRotation = -CGFloat.pi / 2
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x, y: pointer.y + CARD_SIZE_WIDTH + gap)
+            }
+            
+        case PlayerId.player3:
+            var pointer = CGPoint(
+                x: frame.midX - CARD_SIZE_WIDTH * 1.5 - (gap * 1.5),
+                y: frame.maxY - CARD_SIZE_HEIGHT * 0.9
+            )
+            
+            for card in player.cards {
+                card.position = pointer
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x + CARD_SIZE_WIDTH + gap, y: pointer.y)
+            }
+            
+        default:
+            var pointer = CGPoint(
+                x: frame.maxX,
+                y: frame.midY + CARD_SIZE_WIDTH * 1.5 + (gap * 1.5)
+            )
+
+            for card in player.cards {
+                card.position = pointer
+                card.zRotation = CGFloat.pi / 2
+                addChild(card)
+                //Move pointer
+                pointer = CGPoint(x: pointer.x, y: pointer.y - CARD_SIZE_WIDTH - gap)
             }
         }
     }
