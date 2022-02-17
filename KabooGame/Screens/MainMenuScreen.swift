@@ -10,15 +10,9 @@ import SwiftUI
 struct MainMenuScreen: View {
     @State private var selection: String?
     
-    init() {
-        UINavigationBar.appearance().isTranslucent = false
-//        UINavigationBar.appearance().backItem?.backBarButtonItem?.title = ""
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {
-                
                 CustomColor.background
                     .ignoresSafeArea()
                 
@@ -43,9 +37,7 @@ struct MainMenuScreen: View {
                             .padding(.bottom, 24)
                     }
                     
-                    Button(action: {
-                        print("Learn how to play")
-                    }) {
+                    NavigationLink(destination: TutorialView()) {
                         Text("HOW TO PLAY")
                             .foregroundColor(.white)
                             .font(.system(size: 18))
@@ -56,9 +48,7 @@ struct MainMenuScreen: View {
                             .padding(.bottom, 24)
                     }
                     
-                    Button(action: {
-                        print("Change settings")
-                    }) {
+                    NavigationLink(destination: SettingsView()) {
                         Text("SETTINGS")
                             .foregroundColor(.white)
                             .font(.system(size: 18))
@@ -69,7 +59,6 @@ struct MainMenuScreen: View {
                     }
                 }
             }
-            .navigationBarHidden(true)
         }
     }
 }
