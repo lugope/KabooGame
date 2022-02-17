@@ -13,9 +13,15 @@ class Deck: SKSpriteNode {
     var deckList: [Card] = []
     
     init() {
-        for i in 1...13 {
-            for _ in 1...4 {
-                deckList.append(Card(cardType: i))
+        for i in 0...14 {
+            if i > 0 && i < 13 {
+                for _ in 1...4 {
+                    deckList.append(Card(cardType: i))
+                }
+            } else {
+                for _ in 1...2 {
+                    deckList.append(Card(cardType: i))
+                }
             }
         }
         
@@ -31,6 +37,10 @@ class Deck: SKSpriteNode {
         deckList.remove(at: 0)
         
         return card
+    }
+    
+    func update() {
+        self.texture = SKTexture(imageNamed: "Card_\(deckList.isEmpty ? "placeholder" : "back")")
     }
     
     func printDeck() {

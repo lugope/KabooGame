@@ -30,6 +30,8 @@ class GameScene: SKScene {
         gameController.deck.position = CGPoint(x: frame.midX - CARD_SIZE_WIDTH * 0.6, y: frame.midY)
         gameController.discardPile.position = CGPoint(x: frame.midX + CARD_SIZE_WIDTH * 0.6, y: frame.midY)
         
+        addChild(gameController.deck)
+        addChild(gameController.discardPile)
         
         
         let playerList = [
@@ -47,7 +49,6 @@ class GameScene: SKScene {
                 player.cards.append(gameController.deck.draw())
             }
         }
-        
         for player in gameController.players {
             print(player.id)
             for card in player.cards {
@@ -55,8 +56,8 @@ class GameScene: SKScene {
             }
         }
         
-        addChild(gameController.deck)
-        addChild(gameController.discardPile)
+        print("Deck:")
+        gameController.deck.printDeck()
         positionCardsOnTable()
     }
     
@@ -74,8 +75,11 @@ class GameScene: SKScene {
             }
             
             if atPoint(location) is Deck {
-                if touch.tapCount > 1 {
+                if touch.tapCount > 1 && !gameController.deck.deckList.isEmpty {
                     gameController.drawCardFromDeck()
+                    if gameController.deck.deckList.isEmpty {
+                        gameController.deck.update()
+                    }
                 }
             }
             
