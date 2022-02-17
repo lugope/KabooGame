@@ -8,17 +8,28 @@
 import SwiftUI
 
 struct ChooseGameScreen: View {
+    @State private var isJoinGameActive = false
+    @State private var isCreateGameActive = false
+    @Binding var isPrevScreenActive: Bool
+    
     var body: some View {
-        
-        NavigationView {
-            ZStack {
-                
+        ZStack {
                 CustomColor.background
                     .ignoresSafeArea()
                 
                 VStack(alignment: .center, spacing: 0) {
                     
                     HStack(alignment: .center, spacing: 0) {
+                        Button(action: {
+                            isPrevScreenActive = false
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .frame(width: 40, alignment: .leading)
+                                .padding(.top, 14)
+                                .padding(.bottom, 10)
+                                .padding(.leading, 10)
+                        }
+                        
                         Spacer()
                         
                         Text("Play")
@@ -26,6 +37,7 @@ struct ChooseGameScreen: View {
                             .fontWeight(.bold)
                             .padding(.top, 14)
                             .padding(.bottom, 10)
+                            .padding(.trailing, 50)
                         
                         Spacer()
                     }
@@ -36,15 +48,14 @@ struct ChooseGameScreen: View {
                     Text("Kaboo")
                         .font(.system(size: 48))
                     
+                    
                     Image("logo")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 92, height: 149)
                         .padding(.bottom, 57)
                     
-                    Button(action: {
-                        print("Join a game")
-                    }) {
+                    NavigationLink(destination: JoinGameScreen(isPrevScreenActive: $isJoinGameActive), isActive: $isJoinGameActive) {
                         VStack(alignment: .center, spacing: 0) {
                             Text("JOIN")
                                 .foregroundColor(.white)
@@ -61,10 +72,9 @@ struct ChooseGameScreen: View {
                         .cornerRadius(8)
                         .padding(.bottom, 18)
                     }
+                    .isDetailLink(false)
                     
-                    Button(action: {
-                        print("Create a game")
-                    }) {
+                    NavigationLink(destination: CreateGameScreen(isPrevScreenActive: $isCreateGameActive), isActive: $isCreateGameActive) {
                         VStack(alignment: .center, spacing: 0) {
                             Text("CREATE")
                                 .foregroundColor(.white)
@@ -77,21 +87,15 @@ struct ChooseGameScreen: View {
                                 .font(.system(size: 12))
                         }
                         .frame(width: 256, height: 128)
-                        .background(CustomColor.darkGrey)
+                        .background(CustomColor.darkGrey.opacity(0.9))
                         .cornerRadius(8)
                         .padding(.bottom, 18)
                     }
+                    .isDetailLink(false)
                     
                     Spacer()
                 }
-            }
-            .navigationBarHidden(true)
         }
-    }
-}
-
-struct ChooseGameScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ChooseGameScreen()
+        .navigationBarHidden(true)
     }
 }
