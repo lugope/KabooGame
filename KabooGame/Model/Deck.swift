@@ -10,34 +10,12 @@ import SpriteKit
 
 class Deck: SKSpriteNode {
     var currentTexture: SKTexture
-    var cards: [Card] = [Card(cardType: .card0),
-                         Card(cardType: .card1),
-                         Card(cardType: .card2),
-                         Card(cardType: .card3),
-                         Card(cardType: .card4),
-                         Card(cardType: .card5),
-                         Card(cardType: .card6),
-                         Card(cardType: .card7),
-                         Card(cardType: .card8),
-                         Card(cardType: .card9),
-                         Card(cardType: .card10),
-                         Card(cardType: .card11),
-                         Card(cardType: .card12),
-                         Card(cardType: .card13),
-                         Card(cardType: .jocker)]
-    
     var deckList: [Card] = []
     
     init() {
-        for card in cards {
-            if card.type.value > 0 && card.type.value < 13 {
-                for _ in 1...4 {
-                    deckList.append(card)
-                }
-            } else {
-                for _ in 1...2 {
-                    deckList.append(card)
-                }
+        for i in 1...13 {
+            for _ in 1...4 {
+                deckList.append(Card(cardType: i))
             }
         }
         

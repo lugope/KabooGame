@@ -27,7 +27,7 @@ class DiscardPile: SKSpriteNode {
     }
     
     func update() {
-        self.texture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "empty" : String(pile[0].type.rawValue))")
+        self.texture = SKTexture(imageNamed: "Card_\(pile.isEmpty ? "placeholder" : String(pile[0].type.rawValue))")
     }
     
     func printPile() {

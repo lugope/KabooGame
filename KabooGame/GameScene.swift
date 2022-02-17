@@ -17,39 +17,43 @@ enum CardLevel :CGFloat {
 class GameScene: SKScene {
     
     var gameController = GameController()
+    let gap = CGFloat(10)
+
     
     override func didMove(to view: SKView) {
         //MARK: Game setup
         gameController.gameScene = self
+        
         gameController.discardPile.pile.append(gameController.deck.draw())
         gameController.discardPile.update()
-        gameController.deck.position = CGPoint(x: frame.midX - CARD_SIZE_WIDTH * 0.75, y: frame.midY)
-        gameController.discardPile.position = CGPoint(x: frame.midX + CARD_SIZE_WIDTH * 0.75, y: frame.midY)
-    
+        
+        gameController.deck.position = CGPoint(x: frame.midX - CARD_SIZE_WIDTH * 0.6, y: frame.midY)
+        gameController.discardPile.position = CGPoint(x: frame.midX + CARD_SIZE_WIDTH * 0.6, y: frame.midY)
+        
         
         
         let playerList = [
             Player(id: .player1, isDeviceHolder: true),
             Player(id: .player2, isDeviceHolder: false),
             Player(id: .player3, isDeviceHolder: false),
-            Player(id: .player4, isDeviceHolder: false),
             Player(id: .player4, isDeviceHolder: false)]
         
         for player in playerList {
             gameController.players.append(player)
         }
         
-        
         for player in gameController.players {
             for _ in 0...3 {
                 player.cards.append(gameController.deck.draw())
             }
         }
-                
-//        for _ in 0...3 {
-//            gameController.players[2].cards.append(gameController.deck.draw())
-//            gameController.players[3].cards.append(gameController.deck.draw())
-//        }
+        
+        for player in gameController.players {
+            print(player.id)
+            for card in player.cards {
+                print(card.type.value)
+            }
+        }
         
         addChild(gameController.deck)
         addChild(gameController.discardPile)
@@ -162,7 +166,7 @@ class GameScene: SKScene {
                 x: frame.maxX,
                 y: frame.midY + CARD_SIZE_WIDTH * 1.5 + (gap * 1.5)
             )
-
+            
             for card in player.cards {
                 card.position = pointer
                 card.zRotation = CGFloat.pi / 2
