@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MainMenuScreen: View {
-    @State private var selection: String?
-    
+    @State private var isActive = false
+  
     var body: some View {
         NavigationView {
             ZStack {
@@ -26,7 +26,7 @@ struct MainMenuScreen: View {
                         .frame(width: 92, height: 149)
                         .padding(.bottom, 88)
                     
-                    NavigationLink(destination: ChooseGameScreen()) {
+                    NavigationLink(destination: ChooseGameScreen(isPrevScreenActive: $isActive), isActive: $isActive) {
                         Text("PLAY")
                             .foregroundColor(.white)
                             .font(.system(size: 18))
@@ -36,6 +36,7 @@ struct MainMenuScreen: View {
                             .cornerRadius(12)
                             .padding(.bottom, 24)
                     }
+                    .isDetailLink(false)
                     
                     NavigationLink(destination: TutorialView()) {
                         Text("HOW TO PLAY")
@@ -43,7 +44,7 @@ struct MainMenuScreen: View {
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                             .frame(width: 256, height: 64)
-                            .background(CustomColor.darkGrey)
+                            .background(CustomColor.darkGrey.opacity(0.9))
                             .cornerRadius(12)
                             .padding(.bottom, 24)
                     }
@@ -54,7 +55,7 @@ struct MainMenuScreen: View {
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                             .frame(width: 256, height: 64)
-                            .background(CustomColor.darkGrey)
+                            .background(CustomColor.darkGrey.opacity(0.9))
                             .cornerRadius(12)
                     }
                 }

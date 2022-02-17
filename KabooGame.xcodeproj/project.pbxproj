@@ -17,6 +17,8 @@
 		CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */; };
 		CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */; };
 		CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE727B5CB340006052B /* CustomColor.swift */; };
+		CAAA002527BE9C140063D63F /* JoinGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA002427BE9C140063D63F /* JoinGameScreen.swift */; };
+		CAAA002727BE9C260063D63F /* CreateGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAA002627BE9C260063D63F /* CreateGameScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScreen.swift; sourceTree = "<group>"; };
 		CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGameScreen.swift; sourceTree = "<group>"; };
 		CAA30CE727B5CB340006052B /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CAAA002427BE9C140063D63F /* JoinGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGameScreen.swift; sourceTree = "<group>"; };
+		CAAA002627BE9C260063D63F /* CreateGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 				CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */,
 				0594F29627BBF4C4000EDD3E /* TutorialView.swift */,
 				0594F29827BD537F000EDD3E /* SettingsView.swift */,
+				CAAA002427BE9C140063D63F /* JoinGameScreen.swift */,
+				CAAA002627BE9C260063D63F /* CreateGameScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -168,9 +174,11 @@
 				CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */,
 				CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */,
 				768BE1F027B5705F003D7170 /* GameScene.swift in Sources */,
+				CAAA002527BE9C140063D63F /* JoinGameScreen.swift in Sources */,
 				768BE1F227B57102003D7170 /* GameView.swift in Sources */,
 				CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */,
 				768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */,
+				CAAA002727BE9C260063D63F /* CreateGameScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
