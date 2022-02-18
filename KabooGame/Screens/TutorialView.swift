@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct TutorialView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image(systemName: "arrow.left")
+        }
+    }
+    }
+    
     var body: some View {
         Form {
             Section {
@@ -89,6 +100,8 @@ struct TutorialView: View {
         }
         .navigationTitle("How to play")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

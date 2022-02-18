@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct JoinGameScreen: View {
+    @State private var isActive = false
     @Binding var isPrevScreenActive: Bool
     @State var code: String = ""
     
@@ -65,9 +66,7 @@ struct JoinGameScreen: View {
                 Spacer()
                 Spacer()
                 
-                Button(action: {
-                    print("Entered code: \(code)")
-                }) {
+                NavigationLink(destination: WaitingStartScreen(isPrevScreenActive: $isActive, code: code, names: ["Bunny", "Dude", "Killer", "Hagrid"], avatars: ["profile.blue", "profile.red", "profile.blue", "profile.green"]), isActive: $isActive) {
                     Text("Join")
                         .foregroundColor(.white)
                         .font(.system(size: 14))

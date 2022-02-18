@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image(systemName: "arrow.left")
+        }
+    }
+    }
+    
     @State private var username: String = "Dude"
     @State private var isMusicOn: Bool = true
     @State private var isSFXOn: Bool = true
@@ -156,6 +167,8 @@ struct SettingsView: View {
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

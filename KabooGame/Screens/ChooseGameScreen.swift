@@ -38,12 +38,8 @@ struct ChooseGameScreen: View {
                             .padding(.top, 14)
                             .padding(.bottom, 10)
                             .padding(.trailing, 50)
-                        
-                        Text("Use a code to join a friend's game")
-                            .foregroundColor(.white)
-                            .font(.system(size: 12))
+                        Spacer()
                     }
-
                     .background(Color.white)
                     
                     Spacer()

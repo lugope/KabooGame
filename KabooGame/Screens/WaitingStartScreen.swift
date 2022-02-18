@@ -1,28 +1,17 @@
 //
-//  CreateGameScreen.swift
-//  Kaboo
+//  WaitingStartScreen.swift
+//  KabooGame
 //
-//  Created by Aleksei Bochkov on 10/02/22.
+//  Created by Aleksei Bochkov on 18/02/22.
 //
 
 import SwiftUI
 
-struct CreateGameScreen: View {
+struct WaitingStartScreen: View {
     @Binding var isPrevScreenActive: Bool
-    @State var code: String = "123"
-    @State var names: [String?] = ["Dude", "Lebowski", nil, nil]
-    @State var avatars: [String?] = ["profile.green", "profile.blue", nil, nil]
-    
-    func addOpponent(avatar: String, name: String) {
-        guard names.filter({$0 != nil}).count < 4, let index = names.firstIndex(of: nil) else { return }
-        names[index] = name
-        avatars[index] = avatar
-    }
-    
-    func deleteOpponent(index: Int) {
-        names[index] = nil
-        avatars[index] = nil
-    }
+    @State var code: String
+    @State var names: [String]
+    @State var avatars: [String]
     
     var body: some View {
         ZStack {
@@ -43,7 +32,7 @@ struct CreateGameScreen: View {
                     
                     Spacer()
                     
-                    Text("Create")
+                    Text("Join")
                         .font(.system(size: 16))
                         .fontWeight(.bold)
                         .padding(.top, 14)
@@ -54,22 +43,15 @@ struct CreateGameScreen: View {
                 }
                 .background(Color.white)
                 
-                ForEach(names.indices, id: \.self) {index in
+                ForEach(names.indices, id: \.self) { index in
                     HStack(alignment: .center, spacing: 0) {
-                        if let avatar = avatars[index] {
-                            Image(avatar)
+                            Image(avatars[index])
                                 .resizable()
                                 .frame(width: 42, height: 42, alignment: .center)
                                 .clipShape(Circle())
                                 .padding(.leading, 10)
-                        } else {
-                            Circle()
-                                .frame(width: 42, height: 42)
-                                .foregroundColor(.white)
-                                .padding(.leading, 10)
-                        }
                         
-                        Text(names[index] ?? "Joining...")
+                        Text(names[index])
                             .font(.system(size: 24))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -77,21 +59,6 @@ struct CreateGameScreen: View {
                             .padding(.leading, 19)
                         
                         Spacer()
-                        
-                        if index != 0, avatars[index] != nil, names[index] != nil {
-                            Button(action: {
-                                if index == 1 {
-                                    addOpponent(avatar: "profile.red", name: "Danil")
-                                } else {
-                                    deleteOpponent(index: index)
-                                }
-                            }) {
-                                Image(systemName: "xmark")
-                                    .frame(width: 24, height: 24)
-                                    .padding(.trailing, 10)
-                                    .foregroundColor(.white)
-                            }
-                        }
                     }
                     .frame(width: UIScreen.main.bounds.width - 30, height: 72)
                     .background(CustomColor.darkGrey.opacity(0.25))
@@ -130,18 +97,16 @@ struct CreateGameScreen: View {
                 .cornerRadius(8)
                 .padding(.bottom, 12)
                 
-                NavigationLink(destination: GameView()) {
-                    Text("Start the game")
-                        .foregroundColor(.white)
-                        .font(.system(size: 14))
-                        .fontWeight(.semibold)
+                    Text("Waiting for the host to start the game")
+                        .font(.system(size: 12))
+                        .fontWeight(.regular)
                         .frame(width: UIScreen.main.bounds.width - 30, height: 42)
-                        .background(CustomColor.blue)
+                        .background(CustomColor.lightGrey)
                         .cornerRadius(8)
                         .padding(.bottom, 15)
-                }
             }
         }
         .navigationBarHidden(true)
     }
 }
+
