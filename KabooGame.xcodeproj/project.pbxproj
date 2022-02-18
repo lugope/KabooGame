@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29627BBF4C4000EDD3E /* TutorialView.swift */; };
 		0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29827BD537F000EDD3E /* SettingsView.swift */; };
-		05F247F027BFDA160025254B /* WaitingStartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247EE27BFDA160025254B /* WaitingStartScreen.swift */; };
-		05F247F227BFDA4E0025254B /* JoinGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F127BFDA4E0025254B /* JoinGameScreen.swift */; };
-		05F247F427BFDB030025254B /* CreateGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F327BFDB030025254B /* CreateGameScreen.swift */; };
+		05F247F027BFDA160025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		05F247F227BFDA4E0025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		05F247F427BFDB030025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		05F247F627BFF3240025254B /* JoinGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F527BFF3240025254B /* JoinGameScreen.swift */; };
+		05F247F927BFF33E0025254B /* CreateGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F727BFF33E0025254B /* CreateGameScreen.swift */; };
+		05F247FA27BFF33E0025254B /* WaitingStartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F827BFF33E0025254B /* WaitingStartScreen.swift */; };
 		768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E127B54F00003D7170 /* KabooGameApp.swift */; };
 		768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E527B54F02003D7170 /* Assets.xcassets */; };
 		768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E827B54F02003D7170 /* Preview Assets.xcassets */; };
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		0594F29627BBF4C4000EDD3E /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		0594F29827BD537F000EDD3E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		05F247F527BFF3240025254B /* JoinGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameScreen.swift; sourceTree = "<group>"; };
+		05F247F727BFF33E0025254B /* CreateGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameScreen.swift; sourceTree = "<group>"; };
+		05F247F827BFF33E0025254B /* WaitingStartScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingStartScreen.swift; sourceTree = "<group>"; };
 		768BE1DE27B54F00003D7170 /* Kaboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768BE1E127B54F00003D7170 /* KabooGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabooGameApp.swift; sourceTree = "<group>"; };
 		768BE1E527B54F02003D7170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,13 +94,13 @@
 		CAA30CE227B5CB2B0006052B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				05F247F527BFF3240025254B /* JoinGameScreen.swift */,
 				CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */,
 				CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */,
-				05F247F327BFDB030025254B /* CreateGameScreen.swift */,
 				0594F29627BBF4C4000EDD3E /* TutorialView.swift */,
 				0594F29827BD537F000EDD3E /* SettingsView.swift */,
-				05F247EE27BFDA160025254B /* WaitingStartScreen.swift */,
-				05F247F127BFDA4E0025254B /* JoinGameScreen.swift */,
+				05F247F727BFF33E0025254B /* CreateGameScreen.swift */,
+				05F247F827BFF33E0025254B /* WaitingStartScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -169,17 +175,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F247FA27BFF33E0025254B /* WaitingStartScreen.swift in Sources */,
+				05F247F927BFF33E0025254B /* CreateGameScreen.swift in Sources */,
 				0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */,
+				05F247F627BFF3240025254B /* JoinGameScreen.swift in Sources */,
 				0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */,
 				CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */,
 				CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */,
 				768BE1F027B5705F003D7170 /* GameScene.swift in Sources */,
 				768BE1F227B57102003D7170 /* GameView.swift in Sources */,
 				CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */,
-				05F247F027BFDA160025254B /* WaitingStartScreen.swift in Sources */,
+				05F247F027BFDA160025254B /* (null) in Sources */,
 				768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */,
-				05F247F427BFDB030025254B /* CreateGameScreen.swift in Sources */,
-				05F247F227BFDA4E0025254B /* JoinGameScreen.swift in Sources */,
+				05F247F427BFDB030025254B /* (null) in Sources */,
+				05F247F227BFDA4E0025254B /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
