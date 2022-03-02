@@ -15,7 +15,7 @@ class GameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = UIColor(red: 255/244, green: 255/244, blue: 255/244, alpha: 1) //Change to a CustomColor when merge to main
+        self.backgroundColor = UIColor(CustomColor.background)
         gameController.setUpGame(scene: self)
         
         positionCardsOnTable()
