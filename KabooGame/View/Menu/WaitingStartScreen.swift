@@ -8,50 +8,36 @@
 import SwiftUI
 
 struct WaitingStartScreen: View {
-    @Binding var isPrevScreenActive: Bool
-    @State var code: String
-    @State var names: [String]
-    @State var avatars: [String]
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image(systemName: "arrow.left")
+        }
+    }
+    }
+    
+    @State private var code: String = "123"
+    @State private var names: [String?] = ["Dude", "Lebowski", nil, nil]
+    @State private var avatars: [String?] = ["profile.green", "profile.blue", nil, nil]
     
     var body: some View {
         ZStack {
             CustomColor.background
                 .ignoresSafeArea()
             
-            VStack(alignment: .center, spacing: 0) {
-                HStack(alignment: .center, spacing: 0) {
-                    Button(action: {
-                        isPrevScreenActive = false
-                    }) {
-                        Image(systemName: "arrow.left")
-                            .frame(width: 40, alignment: .leading)
-                            .padding(.top, 14)
-                            .padding(.bottom, 10)
-                            .padding(.leading, 10)
-                    }
-                    
-                    Spacer()
-                    
-                    Text("Join")
-                        .font(.system(size: 16))
-                        .fontWeight(.bold)
-                        .padding(.top, 14)
-                        .padding(.bottom, 10)
-                        .padding(.trailing, 50)
-                    
-                    Spacer()
-                }
-                .background(Color.white)
-                
+            VStack(alignment: .center, spacing: 0) {                
                 ForEach(names.indices, id: \.self) { index in
                     HStack(alignment: .center, spacing: 0) {
-                            Image(avatars[index])
-                                .resizable()
-                                .frame(width: 42, height: 42, alignment: .center)
-                                .clipShape(Circle())
-                                .padding(.leading, 10)
+                        Image(avatars[0]!)
+                            .resizable()
+                            .frame(width: 42, height: 42, alignment: .center)
+                            .clipShape(Circle())
+                            .padding(.leading, 10)
                         
-                        Text(names[index])
+                        Text(names[0]!)
                             .font(.system(size: 24))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -97,16 +83,19 @@ struct WaitingStartScreen: View {
                 .cornerRadius(8)
                 .padding(.bottom, 12)
                 
-                    Text("Waiting for the host to start the game")
-                        .font(.system(size: 12))
-                        .fontWeight(.regular)
-                        .frame(width: UIScreen.main.bounds.width - 30, height: 42)
-                        .background(CustomColor.lightGrey)
-                        .cornerRadius(8)
-                        .padding(.bottom, 15)
+                Text("Waiting for the host to start the game")
+                    .font(.system(size: 12))
+                    .fontWeight(.regular)
+                    .frame(width: UIScreen.main.bounds.width - 30, height: 42)
+                    .background(CustomColor.lightGrey)
+                    .cornerRadius(8)
+                    .padding(.bottom, 15)
             }
         }
-        .navigationBarHidden(true)
+        .navigationTitle("Join")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

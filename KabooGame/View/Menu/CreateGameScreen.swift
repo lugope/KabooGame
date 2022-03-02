@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct CreateGameScreen: View {
-    @Binding var isPrevScreenActive: Bool
-    @State var code: String = "123"
-    @State var names: [String?] = ["Dude", "Lebowski", nil, nil]
-    @State var avatars: [String?] = ["profile.green", "profile.blue", nil, nil]
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image(systemName: "arrow.left")
+        }
+    }
+    }
+    
+    @State private var code: String = "123"
+    @State private var names: [String?] = ["Dude", "Lebowski", nil, nil]
+    @State private var avatars: [String?] = ["profile.green", "profile.blue", nil, nil]
     
     func addOpponent(avatar: String, name: String) {
         guard names.filter({$0 != nil}).count < 4, let index = names.firstIndex(of: nil) else { return }
@@ -30,30 +40,6 @@ struct CreateGameScreen: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .center, spacing: 0) {
-                HStack(alignment: .center, spacing: 0) {
-                    Button(action: {
-                        isPrevScreenActive = false
-                    }) {
-                        Image(systemName: "arrow.left")
-                            .frame(width: 40, alignment: .leading)
-                            .padding(.top, 14)
-                            .padding(.bottom, 10)
-                            .padding(.leading, 10)
-                    }
-                    
-                    Spacer()
-                    
-                    Text("Create")
-                        .font(.system(size: 16))
-                        .fontWeight(.bold)
-                        .padding(.top, 14)
-                        .padding(.bottom, 10)
-                        .padding(.trailing, 50)
-                    
-                    Spacer()
-                }
-                .background(Color.white)
-                
                 ForEach(names.indices, id: \.self) {index in
                     HStack(alignment: .center, spacing: 0) {
                         if let avatar = avatars[index] {
@@ -142,6 +128,9 @@ struct CreateGameScreen: View {
                 }
             }
         }
-        .navigationBarHidden(true)
+        .navigationTitle("Create a game")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }

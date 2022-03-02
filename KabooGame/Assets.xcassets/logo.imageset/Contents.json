@@ -3,6 +3,16 @@
     {
       "filename" : "Title.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "logo.dark.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

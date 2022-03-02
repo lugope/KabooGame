@@ -53,6 +53,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05B742AC27C92BB20006F604 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */,
+				CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */,
+				05F247F727BFF33E0025254B /* CreateGameScreen.swift */,
+				05F247F527BFF3240025254B /* JoinGameScreen.swift */,
+				05F247F827BFF33E0025254B /* WaitingStartScreen.swift */,
+				0594F29627BBF4C4000EDD3E /* TutorialView.swift */,
+				0594F29827BD537F000EDD3E /* SettingsView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		768BE1D527B54F00003D7170 = {
 			isa = PBXGroup;
 			children = (
@@ -74,7 +88,7 @@
 			children = (
 				768BE1E127B54F00003D7170 /* KabooGameApp.swift */,
 				CAA30CE727B5CB340006052B /* CustomColor.swift */,
-				CAA30CE227B5CB2B0006052B /* Screens */,
+				CAA30CE227B5CB2B0006052B /* View */,
 				768BE1EF27B5705F003D7170 /* GameScene.swift */,
 				768BE1F127B57102003D7170 /* GameView.swift */,
 				768BE1E527B54F02003D7170 /* Assets.xcassets */,
@@ -91,18 +105,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CAA30CE227B5CB2B0006052B /* Screens */ = {
+		CAA30CE227B5CB2B0006052B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				05F247F527BFF3240025254B /* JoinGameScreen.swift */,
-				CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */,
-				CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */,
-				0594F29627BBF4C4000EDD3E /* TutorialView.swift */,
-				0594F29827BD537F000EDD3E /* SettingsView.swift */,
-				05F247F727BFF33E0025254B /* CreateGameScreen.swift */,
-				05F247F827BFF33E0025254B /* WaitingStartScreen.swift */,
+				05B742AC27C92BB20006F604 /* Menu */,
 			);
-			path = Screens;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

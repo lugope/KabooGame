@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @AppStorage("username") var savedUsername = "Test"
+    @AppStorage("picture") var savedPicture = "profile.gray"
+    @AppStorage("music") var savedMusic = true
+    @AppStorage("sfx") var savedSfx = true
+    @AppStorage("vibration") var savedVibration = true
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var btnBack : some View { Button(action: {
@@ -19,7 +25,7 @@ struct SettingsView: View {
     }
     }
     
-    @State private var username: String = "Dude"
+    @State private var username: String = "Test"
     @State private var isMusicOn: Bool = true
     @State private var isSFXOn: Bool = true
     @State private var isVibrationOn: Bool = true
@@ -27,13 +33,6 @@ struct SettingsView: View {
     @State private var currentProfilePicture: String = "profile.gray"
     @State private var selectedProfilePicture: String = "profile.gray"
     
-    init() {
-        username = "Dude"
-        isMusicOn = true
-        isSFXOn = false
-        isVibrationOn = true
-        showingProfilePicker = false
-    }
     private var profilePictures: [String] = ["profile.blue", "profile.gray", "profile.green", "profile.lightblue", "profile.orange", "profile.pink", "profile.purple", "profile.red", "profile.yellow"]
     
     @FocusState private var isUsernameFocused: Bool
@@ -58,7 +57,7 @@ struct SettingsView: View {
                 Button(action: {
                     self.showingProfilePicker = true
                 }) {
-                    Image(currentProfilePicture)
+                    Image($savedPicture.wrappedValue)
                         .resizable()
                         .frame(width: 150, height: 150, alignment: .center)
                         .clipShape(Circle())
@@ -70,7 +69,7 @@ struct SettingsView: View {
                 Form {
                     Section {
                         HStack {
-                            TextField("Username", text: $username)
+                            TextField("Username", text: $savedUsername)
                                 .focused($isUsernameFocused)
                                 .multilineTextAlignment(.center)
                             Button {
@@ -81,16 +80,17 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Toggle(isOn: $isMusicOn) {
+                    Toggle(isOn: $savedMusic) {
                         Text("Music")
                     }
-                    Toggle(isOn: $isSFXOn) {
+                    Toggle(isOn: $savedSfx) {
                         Text("SFX")
                     }
-                    Toggle(isOn: $isVibrationOn) {
+                    Toggle(isOn: $savedVibration) {
                         Text("Vibration")
                     }
                 }
+                .background(CustomColor.background)
             }
             
             if $showingProfilePicker.wrappedValue {
@@ -145,6 +145,7 @@ struct SettingsView: View {
                         Button {
                             self.showingProfilePicker = false
                             self.currentProfilePicture = selectedProfilePicture
+                            self.savedPicture = selectedProfilePicture
                         } label: {
                             Text("Save Changes")
                                 .bold()
@@ -172,8 +173,8 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-    }
-}
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView()
+//    }
+//}

@@ -8,7 +8,11 @@
 import SwiftUI
 
 @main
-struct KabooGameApp: App {
+struct KabooGameApp: App {    
+    init(){
+        UITableView.appearance().backgroundColor = .clear
+    }
+    
     var body: some Scene {
         WindowGroup {
             MainMenuScreen()
