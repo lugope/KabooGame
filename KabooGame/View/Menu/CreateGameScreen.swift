@@ -116,7 +116,7 @@ struct CreateGameScreen: View {
                 .cornerRadius(8)
                 .padding(.bottom, 12)
                 
-                NavigationLink(destination: GameView()) {
+                NavigationLink(destination: ContentView()) {
                     Text("Start the game")
                         .foregroundColor(.white)
                         .font(.system(size: 14))

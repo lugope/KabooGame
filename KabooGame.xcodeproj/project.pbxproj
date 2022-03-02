@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05497F2027CFCE790079B39D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1A27CFCE790079B39D /* Card.swift */; };
+		05497F2127CFCE790079B39D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1B27CFCE790079B39D /* Deck.swift */; };
+		05497F2227CFCE790079B39D /* PlayerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1C27CFCE790079B39D /* PlayerLabel.swift */; };
+		05497F2327CFCE790079B39D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1D27CFCE790079B39D /* Player.swift */; };
+		05497F2427CFCE790079B39D /* KabooButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1E27CFCE790079B39D /* KabooButton.swift */; };
+		05497F2527CFCE790079B39D /* DiscardPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1F27CFCE790079B39D /* DiscardPile.swift */; };
+		05497F2827CFCE920079B39D /* GlobalProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2727CFCE920079B39D /* GlobalProperties.swift */; };
+		05497F2B27CFCEA00079B39D /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2A27CFCEA00079B39D /* GameController.swift */; };
+		05497F3027CFCF000079B39D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2D27CFCF000079B39D /* GameView.swift */; };
+		05497F3127CFCF000079B39D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2E27CFCF000079B39D /* GameScene.swift */; };
+		05497F3227CFCF000079B39D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2F27CFCF000079B39D /* ContentView.swift */; };
 		0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29627BBF4C4000EDD3E /* TutorialView.swift */; };
 		0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29827BD537F000EDD3E /* SettingsView.swift */; };
 		05F247F027BFDA160025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -18,14 +29,23 @@
 		768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E127B54F00003D7170 /* KabooGameApp.swift */; };
 		768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E527B54F02003D7170 /* Assets.xcassets */; };
 		768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E827B54F02003D7170 /* Preview Assets.xcassets */; };
-		768BE1F027B5705F003D7170 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1EF27B5705F003D7170 /* GameScene.swift */; };
-		768BE1F227B57102003D7170 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1F127B57102003D7170 /* GameView.swift */; };
 		CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */; };
 		CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */; };
 		CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE727B5CB340006052B /* CustomColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05497F1A27CFCE790079B39D /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		05497F1B27CFCE790079B39D /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		05497F1C27CFCE790079B39D /* PlayerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerLabel.swift; sourceTree = "<group>"; };
+		05497F1D27CFCE790079B39D /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		05497F1E27CFCE790079B39D /* KabooButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KabooButton.swift; sourceTree = "<group>"; };
+		05497F1F27CFCE790079B39D /* DiscardPile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscardPile.swift; sourceTree = "<group>"; };
+		05497F2727CFCE920079B39D /* GlobalProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalProperties.swift; sourceTree = "<group>"; };
+		05497F2A27CFCEA00079B39D /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		05497F2D27CFCF000079B39D /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		05497F2E27CFCF000079B39D /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		05497F2F27CFCF000079B39D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0594F29627BBF4C4000EDD3E /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		0594F29827BD537F000EDD3E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05F247F527BFF3240025254B /* JoinGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameScreen.swift; sourceTree = "<group>"; };
@@ -35,8 +55,6 @@
 		768BE1E127B54F00003D7170 /* KabooGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabooGameApp.swift; sourceTree = "<group>"; };
 		768BE1E527B54F02003D7170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		768BE1E827B54F02003D7170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		768BE1EF27B5705F003D7170 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		768BE1F127B57102003D7170 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScreen.swift; sourceTree = "<group>"; };
 		CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGameScreen.swift; sourceTree = "<group>"; };
 		CAA30CE727B5CB340006052B /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -53,6 +71,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05497F1927CFCE790079B39D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				05497F1A27CFCE790079B39D /* Card.swift */,
+				05497F1B27CFCE790079B39D /* Deck.swift */,
+				05497F1C27CFCE790079B39D /* PlayerLabel.swift */,
+				05497F1D27CFCE790079B39D /* Player.swift */,
+				05497F1E27CFCE790079B39D /* KabooButton.swift */,
+				05497F1F27CFCE790079B39D /* DiscardPile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		05497F2627CFCE920079B39D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				05497F2727CFCE920079B39D /* GlobalProperties.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		05497F2927CFCEA00079B39D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05497F2A27CFCEA00079B39D /* GameController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		05497F2C27CFCEDB0079B39D /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				05497F2F27CFCF000079B39D /* ContentView.swift */,
+				05497F2E27CFCF000079B39D /* GameScene.swift */,
+				05497F2D27CFCF000079B39D /* GameView.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		05B742AC27C92BB20006F604 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,9 +145,10 @@
 			children = (
 				768BE1E127B54F00003D7170 /* KabooGameApp.swift */,
 				CAA30CE727B5CB340006052B /* CustomColor.swift */,
+				05497F1927CFCE790079B39D /* Model */,
+				05497F2927CFCEA00079B39D /* Controller */,
+				05497F2627CFCE920079B39D /* Utils */,
 				CAA30CE227B5CB2B0006052B /* View */,
-				768BE1EF27B5705F003D7170 /* GameScene.swift */,
-				768BE1F127B57102003D7170 /* GameView.swift */,
 				768BE1E527B54F02003D7170 /* Assets.xcassets */,
 				768BE1E727B54F02003D7170 /* Preview Content */,
 			);
@@ -108,6 +166,7 @@
 		CAA30CE227B5CB2B0006052B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				05497F2C27CFCEDB0079B39D /* Game */,
 				05B742AC27C92BB20006F604 /* Menu */,
 			);
 			path = View;
@@ -184,18 +243,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F247FA27BFF33E0025254B /* WaitingStartScreen.swift in Sources */,
+				05497F3227CFCF000079B39D /* ContentView.swift in Sources */,
 				05F247F927BFF33E0025254B /* CreateGameScreen.swift in Sources */,
 				0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */,
 				05F247F627BFF3240025254B /* JoinGameScreen.swift in Sources */,
+				05497F2527CFCE790079B39D /* DiscardPile.swift in Sources */,
 				0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */,
 				CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */,
 				CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */,
-				768BE1F027B5705F003D7170 /* GameScene.swift in Sources */,
-				768BE1F227B57102003D7170 /* GameView.swift in Sources */,
+				05497F2027CFCE790079B39D /* Card.swift in Sources */,
 				CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */,
+				05497F3027CFCF000079B39D /* GameView.swift in Sources */,
+				05497F2227CFCE790079B39D /* PlayerLabel.swift in Sources */,
+				05497F2427CFCE790079B39D /* KabooButton.swift in Sources */,
 				05F247F027BFDA160025254B /* (null) in Sources */,
+				05497F2127CFCE790079B39D /* Deck.swift in Sources */,
 				768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */,
+				05497F3127CFCF000079B39D /* GameScene.swift in Sources */,
+				05497F2827CFCE920079B39D /* GlobalProperties.swift in Sources */,
 				05F247F427BFDB030025254B /* (null) in Sources */,
+				05497F2B27CFCEA00079B39D /* GameController.swift in Sources */,
+				05497F2327CFCE790079B39D /* Player.swift in Sources */,
 				05F247F227BFDA4E0025254B /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
