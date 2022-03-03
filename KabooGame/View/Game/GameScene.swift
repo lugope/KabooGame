@@ -80,7 +80,8 @@ class GameScene: SKScene {
                     }
                 }
                 
-                if atPoint(location) is KabooButton {
+                if let kabooButton = atPoint(location) as? KabooButton {
+                    kabooButton.touch()
                     gameController.callKaboo()
                 }
             }

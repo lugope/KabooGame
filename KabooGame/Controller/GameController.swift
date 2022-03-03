@@ -293,9 +293,9 @@ class GameController {
     }
     
     func callKaboo() {
+        guard playerCalledKaboo == nil else { return }
         playerCalledKaboo = currentTurn
         finishTurn()
-        print("Kaboo called")
     }
     
     func finishTurn() {

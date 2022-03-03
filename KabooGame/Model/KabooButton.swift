@@ -9,24 +9,37 @@ import Foundation
 import SpriteKit
 
 class KabooButton: SKSpriteNode {
-    
-    private let nameLabel = SKLabelNode()
 
     init() {
-        super.init(texture: SKTexture(), color: .green, size: .init(width: 50, height: 25))
-        zPosition = CardLevel.board.rawValue
+        super.init(texture: SKTexture(imageNamed: "kabooButtonUp"), color: .clear, size: .init(width: 72, height: 72))
+        zPosition = -1
         name = "KabooButton"
-        nameLabel.text = "Kaboo"
-        nameLabel.fontColor = .black
-        nameLabel.position = CGPoint(
-            x: frame.midX,
-            y: frame.midY
-        )
-        addChild(nameLabel)
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var flippingTimerCount = 0
+    var flippingTimer: Timer?
+    
+    func touch() {
+        guard flippingTimerCount == 0 else { return }
+        let flippingDuration: CGFloat = 2
+        self.run(SKAction.scaleX(to: 0, duration: flippingDuration / 2))
+        flippingTimer = Timer.scheduledTimer(withTimeInterval: flippingDuration / 2, repeats: true) { _ in
+            if self.flippingTimerCount == 1 {
+                self.texture = SKTexture(imageNamed: "kabooButtonDown")
+                self.run(SKAction.scaleX(to: 1, duration: flippingDuration / 2))
+            } else if self.flippingTimerCount == 2 {
+                self.flippingTimerCount = 0
+                self.flippingTimer?.invalidate()
+                self.flippingTimer = nil
+                return
+            }
+            self.flippingTimerCount += 1
+        }
+        
+        self.flippingTimer?.fire()
     }
 }
