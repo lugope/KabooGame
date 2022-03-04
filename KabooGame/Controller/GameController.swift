@@ -123,11 +123,11 @@ class GameController {
         //        discardPile.printPile()
     }
     
-    //MARK: Managing Swipe Action
+    //MARK: Managing Swap Action
     func selectCardOrPerformAction(cardTapped: Card) {
         if cardTapped.place == .deck || cardTapped.place == .pile {
             cardSelected = cardTapped
-            print("Card Selected: \(cardSelected?.type.rawValue)")
+            print("Card Selected: \(cardSelected!.type.rawValue)")
             
         }
         if cardSelected != nil && isCurrentTurnPlayersCard(cardTapped) {
@@ -143,7 +143,7 @@ class GameController {
     }
     
     func swapCardSelectedToPlayersCard(_ card: Card) {
-        if let cardPositionIndex = positionInCurrentPlayerHand(card: card) {
+        if let cardPositionIndex = positionInCurrentPlayerHand(ofCard: card) {
             if let cardToAdd = cardSelected {
                 
                 for player in players {
@@ -154,7 +154,6 @@ class GameController {
                         
                         // Put card selected in players hand
                         cardToAdd.move(to: tempCard.position)
-                        //                        cardToAdd.position = tempCard.position
                         cardToAdd.zRotation = tempCard.zRotation
                         cardToAdd.place = tempCard.place
                         if cardToAdd.faceUp {
@@ -180,7 +179,6 @@ class GameController {
                         //Put changed card to the top of the pile
                         topPileCard = tempCard
                         topPileCard?.move(to: discardPile.position)
-                        //                        topPileCard?.position = discardPile.position
                         topPileCard?.zRotation = discardPile.zRotation
                         topPileCard?.runDropAction()
                         if !tempCard.faceUp {
@@ -200,8 +198,13 @@ class GameController {
         }
     }
     
+    func selectCard(_ card: Card) {
+        self.cardSelected = card
+        print("Card Selected: \(cardSelected!.type.rawValue)")
+    }
+    
     func snapCard(card: Card) {
-        if let cardPositionIndex = positionInCurrentPlayerHand(card: card) {
+        if let cardPositionIndex = positionInCurrentPlayerHand(ofCard: card) {
             for player in players {
                 if player.id == currentTurn {
                     // Put card selected in players hand
@@ -228,6 +231,7 @@ class GameController {
         }
     }
     
+    //MARK: Peek and Spy
     var actionTimer: Timer?
     var actionTimerCount = 0
     
@@ -270,10 +274,50 @@ class GameController {
         }
     }
     
-    func blindSwap(card: Card) {
-        print("Blind Swap")
-        blindSwapPhase = false
-        finishTurn()
+    //MARK: Managing Blind Swap
+    func selectCardOrPerformBlindSwap(withCard card: Card) {
+        print("Blind Swap:")
+        if card.place.rawValue == currentTurn.rawValue {
+            selectCard(card)
+            
+            
+        } else if card.place != .deck && card.place != .pile {
+            if cardSelected != nil {
+                print("performed from \(cardSelected!.type) to \(card.type)")
+                
+                blindSwap(by: card)
+                blindSwapPhase = false
+                finishTurn()
+            }
+        }
+    }
+    
+    func blindSwap(by otherPlayerCard:Card) {
+        let currentPlayer = players.filter{ $0.id == currentTurn }.first
+        let otherPlayer = players.filter { $0.id.rawValue == otherPlayerCard.place.rawValue }.first
+        
+        if let cardSelected = cardSelected {
+            if let currentPlayerCardPositionIndex = positionInCurrentPlayerHand(ofCard: cardSelected){
+                if let otherPlayerCardPositionIndex = positionInPlayerHand(ofCard: otherPlayerCard) {
+                    
+                    let tempCardPosition = cardSelected.position
+                    let tempCardzRotation = cardSelected.zRotation
+                    let tempCardPlace = cardSelected.place
+                    
+                    //Move card selected from current player to other player's hand
+                    cardSelected.move(to: otherPlayerCard.position, withZRotation: otherPlayerCard.zRotation)
+                    cardSelected.place = otherPlayerCard.place
+                    otherPlayer?.cards[otherPlayerCardPositionIndex] = cardSelected
+                    
+                    //Move other player's card to current player hand
+                    otherPlayerCard.move(to: tempCardPosition, withZRotation: tempCardzRotation)
+                    otherPlayerCard.place = tempCardPlace
+                    currentPlayer?.cards[currentPlayerCardPositionIndex] = otherPlayerCard
+                }
+            }
+        }
+        
+        cardSelected = nil
     }
     
     func spyAndSwap(card: Card) {
@@ -282,9 +326,19 @@ class GameController {
         finishTurn()
     }
     
-    func positionInCurrentPlayerHand(card: Card) -> Int? {
+    func positionInCurrentPlayerHand(ofCard card: Card) -> Int? {
         for player in players {
             if player.id == currentTurn {
+                return player.cards.firstIndex(of: card)
+            }
+        }
+        
+        return nil
+    }
+    
+    func positionInPlayerHand(ofCard card:Card) -> Int? {
+        for player in players {
+            if player.id.rawValue == card.place.rawValue {
                 return player.cards.firstIndex(of: card)
             }
         }
@@ -300,8 +354,14 @@ class GameController {
     
     func finishTurn() {
         currentTurn = currentTurn.next()
+        print("Now it's \(currentTurn) turn!!!")
+        
         if currentTurn == playerCalledKaboo {
             print("finish a game")
         }
     }
+}
+
+enum Phase {
+    case peekPhase, spyPhase, blindSwapPhase, spyAndSwapPhase
 }

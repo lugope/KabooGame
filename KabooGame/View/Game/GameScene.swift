@@ -35,7 +35,7 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             
             if let card = atPoint(location) as? Card {
-                //print("---\nCard Tapped: \(card.type.rawValue)")
+                //                print("---\nCard Tapped: \(card.type.rawValue)")
                 
                 if gameController.peekPhase {
                     if touch.tapCount == 1 {
@@ -47,7 +47,7 @@ class GameScene: SKScene {
                     }
                 } else if gameController.blindSwapPhase {
                     if touch.tapCount == 1 {
-                        gameController.blindSwap(card: card)
+                        gameController.selectCardOrPerformBlindSwap(withCard: card)
                     }
                 } else if gameController.spyAndSwapPhase {
                     if touch.tapCount == 1 {
@@ -87,14 +87,14 @@ class GameScene: SKScene {
         }
     }
     
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            let location = touch.location(in: self)
-//            if let card = atPoint(location) as? Card {
-//                card.position = location
-//            }
-//        }
-//    }
+    //    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        for touch in touches {
+    //            let location = touch.location(in: self)
+    //            if let card = atPoint(location) as? Card {
+    //                card.position = location
+    //            }
+    //        }
+    //    }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for child in children {
@@ -102,12 +102,12 @@ class GameScene: SKScene {
                 card.runDropAction()
             }
         }
-//        for touch in touches {
-//            let location = touch.location(in: self)
-//            if let card = atPoint(location) as? Card {
-//                card.runDropAction()
-//            }
-//        }
+        //        for touch in touches {
+        //            let location = touch.location(in: self)
+        //            if let card = atPoint(location) as? Card {
+        //                card.runDropAction()
+        //            }
+        //        }
     }
     
     func positionCardsOnTable() {
@@ -177,46 +177,46 @@ class GameScene: SKScene {
     }
     
     func positionPlayerLabels() {
-            for player in gameController.players {
-                addLabel(fromPlayer: player)
-            }
+        for player in gameController.players {
+            addLabel(fromPlayer: player)
         }
-
-        func addLabel(fromPlayer player:Player) {
-            let gap = CGFloat(15)
-            var pointer: CGPoint?
-
-            switch player.id {
-            case .player1:
-                pointer = CGPoint(
-                    x: frame.midX + player.label.frame.width/2,
-                    y: player.cards[0].frame.maxY + player.label.rect.frame.height/2 + gap
-                )
-
-            case .player2:
-                pointer = CGPoint(
-                    x: frame.minX + player.label.rect.frame.width/2 + gap,
-                    y: player.cards[3].position.y + player.cards[3].frame.width/2 + gap
-                )
-
-            case .player3:
-                pointer = CGPoint(
-                    x: frame.midX + player.label.frame.width/2,
-                    y: player.cards[0].frame.minY - player.label.rect.frame.height/2 - gap
-                )
-
-            default:
-                pointer = CGPoint(
-                    x: frame.maxX - player.label.rect.frame.width/2 - gap,
-                    y: player.cards[0].position.y + player.cards[0].frame.width/2 + gap
-                )
-            }
-
-            if let pointer = pointer {
-                player.label.position = pointer
-                addChild(player.label)
-            }
+    }
+    
+    func addLabel(fromPlayer player:Player) {
+        let gap = CGFloat(15)
+        var pointer: CGPoint?
+        
+        switch player.id {
+        case .player1:
+            pointer = CGPoint(
+                x: frame.midX + player.label.frame.width/2,
+                y: player.cards[0].frame.maxY + player.label.rect.frame.height/2 + gap
+            )
+            
+        case .player2:
+            pointer = CGPoint(
+                x: frame.minX + player.label.rect.frame.width/2 + gap,
+                y: player.cards[3].position.y + player.cards[3].frame.width/2 + gap
+            )
+            
+        case .player3:
+            pointer = CGPoint(
+                x: frame.midX + player.label.frame.width/2,
+                y: player.cards[0].frame.minY - player.label.rect.frame.height/2 - gap
+            )
+            
+        default:
+            pointer = CGPoint(
+                x: frame.maxX - player.label.rect.frame.width/2 - gap,
+                y: player.cards[0].position.y + player.cards[0].frame.width/2 + gap
+            )
         }
+        
+        if let pointer = pointer {
+            player.label.position = pointer
+            addChild(player.label)
+        }
+    }
     
     func positionKabooButton() {
         let button = KabooButton()

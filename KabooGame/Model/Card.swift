@@ -37,6 +37,7 @@ class Card: SKSpriteNode {
     
     func flip() {
         guard flippingTimerCount == 0 else { return }
+        
         let flippingDuration: CGFloat = 2
         self.run(SKAction.scaleX(to: 0, duration: flippingDuration / 2))
         flippingTimer = Timer.scheduledTimer(withTimeInterval: flippingDuration / 2, repeats: true) { _ in
@@ -64,7 +65,7 @@ class Card: SKSpriteNode {
     func move(to newLocation: CGPoint, withZRotation zRotation: CGFloat? = nil) {
         self.run(SKAction.move(to: newLocation, duration: 1.5))
         if let zRotation = zRotation {
-            self.run(SKAction.rotate(byAngle: zRotation, duration: 1.5))
+            self.run(SKAction.rotate(toAngle: zRotation, duration: 1.5))
         }
     }
     
