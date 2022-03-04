@@ -87,6 +87,7 @@
 		05497F2627CFCE920079B39D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CAA30CE727B5CB340006052B /* CustomColor.swift */,
 				05497F2727CFCE920079B39D /* GlobalProperties.swift */,
 			);
 			path = Utils;
@@ -104,8 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				05497F2F27CFCF000079B39D /* ContentView.swift */,
-				05497F2E27CFCF000079B39D /* GameScene.swift */,
 				05497F2D27CFCF000079B39D /* GameView.swift */,
+				05497F2E27CFCF000079B39D /* GameScene.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -144,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				768BE1E127B54F00003D7170 /* KabooGameApp.swift */,
-				CAA30CE727B5CB340006052B /* CustomColor.swift */,
 				05497F1927CFCE790079B39D /* Model */,
 				05497F2927CFCEA00079B39D /* Controller */,
 				05497F2627CFCE920079B39D /* Utils */,
