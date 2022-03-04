@@ -372,7 +372,7 @@ class GameController {
         print("Now it's \(currentTurn) turn!!!")
         
         if currentTurn == playerCalledKaboo {
-            print("finish a game")
+            gameScene?.gameViewDelegate?.finishGame(players: players)
         }
     }
 }

@@ -17,7 +17,7 @@
 		05497F2B27CFCEA00079B39D /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2A27CFCEA00079B39D /* GameController.swift */; };
 		05497F3027CFCF000079B39D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2D27CFCF000079B39D /* GameView.swift */; };
 		05497F3127CFCF000079B39D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2E27CFCF000079B39D /* GameScene.swift */; };
-		05497F3227CFCF000079B39D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2F27CFCF000079B39D /* ContentView.swift */; };
+		05497F3227CFCF000079B39D /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2F27CFCF000079B39D /* GameScreen.swift */; };
 		0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29627BBF4C4000EDD3E /* TutorialView.swift */; };
 		0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29827BD537F000EDD3E /* SettingsView.swift */; };
 		05F247F027BFDA160025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -32,6 +32,7 @@
 		CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */; };
 		CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */; };
 		CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE727B5CB340006052B /* CustomColor.swift */; };
+		CAE1122327D2C1DA008C20E0 /* ResultsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE1122227D2C1DA008C20E0 /* ResultsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +46,7 @@
 		05497F2A27CFCEA00079B39D /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		05497F2D27CFCF000079B39D /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		05497F2E27CFCF000079B39D /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		05497F2F27CFCF000079B39D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		05497F2F27CFCF000079B39D /* GameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		0594F29627BBF4C4000EDD3E /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		0594F29827BD537F000EDD3E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05F247F527BFF3240025254B /* JoinGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameScreen.swift; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScreen.swift; sourceTree = "<group>"; };
 		CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGameScreen.swift; sourceTree = "<group>"; };
 		CAA30CE727B5CB340006052B /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CAE1122227D2C1DA008C20E0 /* ResultsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,7 @@
 		05497F2C27CFCEDB0079B39D /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				05497F2F27CFCF000079B39D /* ContentView.swift */,
+				05497F2F27CFCF000079B39D /* GameScreen.swift */,
 				05497F2D27CFCF000079B39D /* GameView.swift */,
 				05497F2E27CFCF000079B39D /* GameScene.swift */,
 			);
@@ -121,6 +123,7 @@
 				05F247F827BFF33E0025254B /* WaitingStartScreen.swift */,
 				0594F29627BBF4C4000EDD3E /* TutorialView.swift */,
 				0594F29827BD537F000EDD3E /* SettingsView.swift */,
+				CAE1122227D2C1DA008C20E0 /* ResultsScreen.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -243,7 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F247FA27BFF33E0025254B /* WaitingStartScreen.swift in Sources */,
-				05497F3227CFCF000079B39D /* ContentView.swift in Sources */,
+				05497F3227CFCF000079B39D /* GameScreen.swift in Sources */,
 				05F247F927BFF33E0025254B /* CreateGameScreen.swift in Sources */,
 				0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */,
 				05F247F627BFF3240025254B /* JoinGameScreen.swift in Sources */,
@@ -258,6 +261,7 @@
 				05497F2427CFCE790079B39D /* KabooButton.swift in Sources */,
 				05F247F027BFDA160025254B /* (null) in Sources */,
 				05497F2127CFCE790079B39D /* Deck.swift in Sources */,
+				CAE1122327D2C1DA008C20E0 /* ResultsScreen.swift in Sources */,
 				768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */,
 				05497F3127CFCF000079B39D /* GameScene.swift in Sources */,
 				05497F2827CFCE920079B39D /* GlobalProperties.swift in Sources */,
@@ -395,7 +399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KabooGame/Preview Content\"";
-				DEVELOPMENT_TEAM = D5E8A3898L;
+				DEVELOPMENT_TEAM = S46QW269NC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -425,7 +429,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KabooGame/Preview Content\"";
-				DEVELOPMENT_TEAM = D5E8A3898L;
+				DEVELOPMENT_TEAM = S46QW269NC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

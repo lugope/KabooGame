@@ -12,7 +12,7 @@ class GameScene: SKScene {
     
     var gameController = GameController()
     let gap = CGFloat(10)
-    
+    var gameViewDelegate: GameViewDelegate?
     
     override func didMove(to view: SKView) {
         self.backgroundColor = UIColor(CustomColor.background)
