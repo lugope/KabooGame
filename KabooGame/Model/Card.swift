@@ -42,12 +42,7 @@ class Card: SKSpriteNode {
         self.run(SKAction.scaleX(to: 0, duration: flippingDuration / 2))
         flippingTimer = Timer.scheduledTimer(withTimeInterval: flippingDuration / 2, repeats: true) { _ in
             if self.flippingTimerCount == 1 {
-                if self.faceUp {
-                    self.texture = CARD_BACK_TEXTURE
-                } else {
-                    self.texture = self.type.texture
-                }
-                
+                self.texture = self.faceUp ? CARD_BACK_TEXTURE : self.type.texture
                 self.faceUp.toggle()
                 self.run(SKAction.scaleX(to: 1, duration: flippingDuration / 2))
             } else if self.flippingTimerCount == 2 {
@@ -84,6 +79,18 @@ class Card: SKSpriteNode {
         self.removeAction(forKey: "pickup")
         self.run(SKAction.scale(to: 1.0, duration: 0.25), withKey: "drop")
     }
+    
+    func setHighlighting(_ highlightingType: CardHighlighting) {
+        if faceUp {
+            texture = highlightingType == .none ? type.texture : type.highlightedTexture
+        } else {
+            switch highlightingType {
+            case .none: texture = CARD_BACK_TEXTURE
+            case .purple: texture = CARD_BACK_HIGHLIGHTED_PURPLE_TEXTURE
+            case .blue: texture = CARD_BACK_HIGHLIGHTED_BLUE_TEXTURE
+            }
+        }
+    }
 }
 
 enum CardType: Int {
@@ -97,6 +104,10 @@ enum CardType: Int {
             let textureName = "Card_" + String(self.rawValue)
             return SKTexture(imageNamed: textureName)
         }
+    }
+    
+    var highlightedTexture: SKTexture {
+        return SKTexture(imageNamed: "Card_" + String(self.rawValue) + "_highlighted")
     }
     
     var value: Int {
@@ -114,6 +125,12 @@ enum CardType: Int {
 
 enum CardPlace: Int {
     case handPlayer1 = 0, handPlayer2, handPlayer3, handPlayer4, deck, pile, placeholder
+}
+
+enum CardHighlighting {
+    case none
+    case purple
+    case blue
 }
 
 enum CardLevel :CGFloat {
