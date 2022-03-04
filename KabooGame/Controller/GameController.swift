@@ -125,7 +125,17 @@ class GameController {
     
     //MARK: Managing Swipe Action
     func selectCardOrPerformAction(cardTapped: Card) {
-        if cardTapped.place == .deck || cardTapped.place == .pile {
+        if cardTapped.place == .deck || (cardTapped.place == .pile && drawnCard == nil) {
+            for player in players {
+                if player.id == currentTurn {
+                    for card in player.cards {
+                        card.setHighlighting(cardTapped.place == .deck ? .blue : .purple)
+                    }
+                }
+            }
+            if cardTapped.place == .deck {
+                topPileCard?.setHighlighting(.blue)
+            }
             cardSelected = cardTapped
             print("Card Selected: \(cardSelected?.type.rawValue)")
             
@@ -191,7 +201,6 @@ class GameController {
                         cardSelected = nil
                         drawnCard = nil
                         
-                        
                         finishTurn()
                         return
                     }
@@ -219,9 +228,6 @@ class GameController {
                     } else {
                         card.flip()
                         print("Wrong card! Penalty: 5 points")
-                        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-                            card.flip()
-                        }
                     }
                 }
             }
@@ -299,6 +305,15 @@ class GameController {
     }
     
     func finishTurn() {
+        for player in players {
+            if player.id == currentTurn {
+                for card in player.cards {
+                    card.setHighlighting(.none)
+                }
+            }
+        }
+        topPileCard?.setHighlighting(.none)
+        
         currentTurn = currentTurn.next()
         if currentTurn == playerCalledKaboo {
             print("finish a game")
