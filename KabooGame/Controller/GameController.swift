@@ -44,15 +44,16 @@ class GameController {
             y: scene.frame.midY
         )
         
-        let firstPileCard = deck.draw()
-        firstPileCard.place = .pile
-        if !firstPileCard.faceUp { firstPileCard.flip() }
-        discardPile.pile.append(firstPileCard)
-        discardPile.update()
-        
-        topPileCard = firstPileCard
-        topPileCard?.move(to: discardPile.position)
-        //topPileCard?.position = discardPile.position
+        topPileCard = deck.draw()
+        if let topPileCard = topPileCard {
+            topPileCard.place = .pile
+            if !topPileCard.faceUp { topPileCard.flip() }
+            discardPile.pile.append(topPileCard)
+            discardPile.update()
+            
+            topPileCard.position = deck.position
+            topPileCard.move(to: discardPile.position)
+        }
         
         // Temp variable: Delete latter
         let dummyPlayerList = [
@@ -73,6 +74,10 @@ class GameController {
                 
                 player.cards.append(card)
             }
+            
+            if currentTurn == player.id {
+                player.label.isCurrentTurn = true
+            }
         }
     }
     
@@ -80,12 +85,11 @@ class GameController {
     func drawCardFromDeck() {
         if drawnCard == nil {
             drawnCard = deck.draw()
-            drawnCard!.move(to: CGPoint(x: gameScene!.frame.midX - CARD_SIZE_WIDTH * 0.75, y: gameScene!.frame.midY))
-            //drawnCard!.position = CGPoint(x: gameScene!.frame.midX - CARD_SIZE_WIDTH * 0.75, y: gameScene!.frame.midY)
+            drawnCard!.position = deck.position
             drawnCard!.place = .deck
+            
             gameScene?.addChild(drawnCard!)
             drawnCard!.flip()
-            cardSelected = drawnCard!
         }
     }
     
