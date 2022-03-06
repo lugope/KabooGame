@@ -246,47 +246,41 @@ class GameController {
     
     func peek(card: Card) {
         if card.place.rawValue == currentTurn.rawValue {
-            card.flip()
-            actionTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-                if self.actionTimerCount == 1 {
-                    card.flip()
-                } else if self.actionTimerCount == 2 {
-                    self.actionTimer?.invalidate()
-                    self.actionTimer = nil
-                    return
-                }
-                self.actionTimerCount += 1
-            }
-            actionTimer?.fire()
+            temporaryCardFlip(card: card)
+            
             peekPhase = false
             finishTurn()
         }
-        
     }
     
     func spy(card: Card) {
-        if card.place.rawValue != currentTurn.rawValue && card.place != .pile && card.place != .deck && card.place != .placeholder {
-            card.flip()
-            actionTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-                if self.actionTimerCount == 1 {
-                    card.flip()
-                } else if self.actionTimerCount == 2 {
-                    self.actionTimer?.invalidate()
-                    self.actionTimer = nil
-                    return
-                }
-                self.actionTimerCount += 1
-            }
-            actionTimer?.fire()
+        if isOtherPlayerCard(cardPlace: card.place) {
+            temporaryCardFlip(card: card)
+            
             spyPhase = false
             finishTurn()
         }
     }
     
+    func temporaryCardFlip(card: Card) {
+        card.flip()
+        actionTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+            if self.actionTimerCount == 1 {
+                card.flip()
+            } else if self.actionTimerCount == 2 {
+                self.actionTimer?.invalidate()
+                self.actionTimer = nil
+                return
+            }
+            self.actionTimerCount += 1
+        }
+        actionTimer?.fire()
+    }
+    
     //MARK: Managing Blind Swap
-    func selectCardOrPerformBlindSwap(withCard card: Card) {
+    func blindSwap(withCard card: Card) {
         print("Blind Swap:")
-        if card.place != .deck && card.place != .pile && card.place.rawValue != currentTurn.rawValue {
+        if isOtherPlayerCard(cardPlace: card.place) {
             selectCard(card)
             
         } else if card.place.rawValue == currentTurn.rawValue {
@@ -326,11 +320,36 @@ class GameController {
         cardSelected = nil
     }
     
+    func isOtherPlayerCard(cardPlace: CardPlace) -> Bool {
+        if cardPlace != .deck &&
+            cardPlace != .pile &&
+            cardPlace != .placeholder &&
+            cardPlace.rawValue != currentTurn.rawValue {
+            
+            return true
+        }
+        
+        return false
+    }
+    
     //MARK: Managing Spy n Swap
     func spyAndSwap(card: Card) {
-        print("Spy and swap")
-        spyAndSwapPhase = false
-        finishTurn()
+        print("Spy and swap:")
+        
+        if cardSelected != nil {
+            if card.place.rawValue == currentTurn.rawValue {
+                swapOtherPlayerCardSelectedToPlayer(card: card)
+                spyAndSwapPhase = false
+                finishTurn()
+            }
+            
+        } else {
+            if isOtherPlayerCard(cardPlace: card.place){
+                temporaryCardFlip(card: card)
+                cardSelected = card
+                print("Card Selected \(card.type)")
+            }
+        }
     }
     
     func positionInCurrentPlayerHand(ofCard card: Card) -> Int? {
