@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct MainMenuScreen: View {    
+struct MainMenuScreen: View {
+    
+    @State var popToRoot: Bool = false
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -25,12 +28,13 @@ struct MainMenuScreen: View {
                     Spacer()
                     
                     VStack(spacing: 24) {
-                        NavigationLink(destination: ChooseGameScreen()) {
+                        NavigationLink(destination: GameScreen(popToRoot: $popToRoot), isActive: $popToRoot) {
                             Text("Play")
                                 .font(.title2.weight(.semibold))
                                 .frame(maxWidth: .infinity)
                                 .padding(16)
                         }
+                        .isDetailLink(false)
                         .buttonStyle(.borderedProminent)
                         
                         NavigationLink(destination: TutorialView()) {
