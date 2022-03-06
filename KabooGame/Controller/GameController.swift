@@ -44,15 +44,16 @@ class GameController {
             y: scene.frame.midY
         )
         
-        let firstPileCard = deck.draw()
-        firstPileCard.place = .pile
-        if !firstPileCard.faceUp { firstPileCard.flip() }
-        discardPile.pile.append(firstPileCard)
-        discardPile.update()
-        
-        topPileCard = firstPileCard
-        topPileCard?.move(to: discardPile.position)
-        //topPileCard?.position = discardPile.position
+        topPileCard = deck.draw()
+        if let topPileCard = topPileCard {
+            topPileCard.place = .pile
+            if !topPileCard.faceUp { topPileCard.flip() }
+            discardPile.pile.append(topPileCard)
+            discardPile.update()
+            
+            topPileCard.position = deck.position
+            topPileCard.move(to: discardPile.position)
+        }
         
         // Temp variable: Delete latter
         let dummyPlayerList = [
@@ -73,6 +74,10 @@ class GameController {
                 
                 player.cards.append(card)
             }
+            
+            if currentTurn == player.id {
+                player.label.isCurrentTurn = true
+            }
         }
     }
     
@@ -80,12 +85,11 @@ class GameController {
     func drawCardFromDeck() {
         if drawnCard == nil {
             drawnCard = deck.draw()
-            drawnCard!.move(to: CGPoint(x: gameScene!.frame.midX - CARD_SIZE_WIDTH * 0.75, y: gameScene!.frame.midY))
-            //drawnCard!.position = CGPoint(x: gameScene!.frame.midX - CARD_SIZE_WIDTH * 0.75, y: gameScene!.frame.midY)
+            drawnCard!.position = deck.position
             drawnCard!.place = .deck
+            
             gameScene?.addChild(drawnCard!)
             drawnCard!.flip()
-            cardSelected = drawnCard!
         }
     }
     
@@ -163,8 +167,7 @@ class GameController {
                         let cardToAddPlace = cardToAdd.place
                         
                         // Put card selected in players hand
-                        cardToAdd.move(to: tempCard.position)
-                        cardToAdd.zRotation = tempCard.zRotation
+                        cardToAdd.move(to: tempCard.position, withZRotation: tempCard.zRotation)
                         cardToAdd.place = tempCard.place
                         if cardToAdd.faceUp {
                             cardToAdd.flip()
@@ -175,7 +178,8 @@ class GameController {
                         if cardToAddPlace == .deck {
                             //Remove old top pile card from screen
                             topPileCard?.removeFromParent()
-                            // When card come from the pile
+                            
+                        // When card come from the pile
                         } else {
                             //Take old top pile card from pile list
                             discardPile.pop()
@@ -188,8 +192,7 @@ class GameController {
                         tempCard.place = .pile
                         //Put changed card to the top of the pile
                         topPileCard = tempCard
-                        topPileCard?.move(to: discardPile.position)
-                        topPileCard?.zRotation = discardPile.zRotation
+                        topPileCard?.move(to: discardPile.position, withZRotation: discardPile.zRotation)
                         topPileCard?.runDropAction()
                         if !tempCard.faceUp {
                             topPileCard?.flip()
@@ -366,6 +369,8 @@ class GameController {
     func finishTurn() {
         for player in players {
             if player.id == currentTurn {
+                player.label.isCurrentTurn = false
+                
                 for card in player.cards {
                     card.setHighlighting(.none)
                 }
@@ -374,6 +379,9 @@ class GameController {
         topPileCard?.setHighlighting(.none)
         
         currentTurn = currentTurn.next()
+        players.filter {
+            $0.id == currentTurn
+        }.first?.label.isCurrentTurn = true
         print("Now it's \(currentTurn) turn!!!")
         
         if currentTurn == playerCalledKaboo {
