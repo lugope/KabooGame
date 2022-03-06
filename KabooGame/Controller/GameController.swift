@@ -213,7 +213,6 @@ class GameController {
     }
     
     func snapCard(card: Card) {
-        print("snap")
         if let cardPositionIndex = positionInPlayerHand(ofCard: card) {
             for player in players {
                 if player.id.rawValue == card.place.rawValue {
@@ -232,6 +231,8 @@ class GameController {
                     } else {
                         card.flip()
                         print("Wrong card! Penalty: 5 points")
+                        player.points += 5
+                        print(player.points)
                         let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
                             card.flip()
                         }
