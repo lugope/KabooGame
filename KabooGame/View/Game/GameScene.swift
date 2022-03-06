@@ -55,14 +55,14 @@ class GameScene: SKScene {
                     }
                 } else {
                     card.runPickUpAction()
-                    
+
                     if touch.tapCount == 1 {
                         gameController.selectCardOrPerformAction(cardTapped: card)
                     } else if touch.tapCount > 1 {
                         if card.place.rawValue == gameController.currentTurn.rawValue {
                             gameController.snapCard(card: card)
                         }
-                        
+
                         if gameController.drawnCard != nil && card.place == .pile {
                             gameController.discardDrawnCard()
                         }

@@ -286,49 +286,47 @@ class GameController {
     //MARK: Managing Blind Swap
     func selectCardOrPerformBlindSwap(withCard card: Card) {
         print("Blind Swap:")
-        if card.place.rawValue == currentTurn.rawValue {
+        if card.place != .deck && card.place != .pile && card.place.rawValue != currentTurn.rawValue {
             selectCard(card)
             
-            
-        } else if card.place != .deck && card.place != .pile {
+        } else if card.place.rawValue == currentTurn.rawValue {
             if cardSelected != nil {
                 print("performed from \(cardSelected!.type) to \(card.type)")
                 
-                blindSwap(by: card)
+                swapOtherPlayerCardSelectedToPlayer(card: card)
                 blindSwapPhase = false
                 finishTurn()
             }
         }
     }
     
-    func blindSwap(by otherPlayerCard:Card) {
+    func swapOtherPlayerCardSelectedToPlayer(card playerCard: Card) {
         let currentPlayer = players.filter{ $0.id == currentTurn }.first
-        let otherPlayer = players.filter { $0.id.rawValue == otherPlayerCard.place.rawValue }.first
+        let otherPlayer = players.filter { $0.id.rawValue == cardSelected!.place.rawValue }.first
         
-        if let cardSelected = cardSelected {
-            if let currentPlayerCardPositionIndex = positionInCurrentPlayerHand(ofCard: cardSelected){
-                if let otherPlayerCardPositionIndex = positionInPlayerHand(ofCard: otherPlayerCard) {
-                    
-                    let tempCardPosition = cardSelected.position
-                    let tempCardzRotation = cardSelected.zRotation
-                    let tempCardPlace = cardSelected.place
-                    
-                    //Move card selected from current player to other player's hand
-                    cardSelected.move(to: otherPlayerCard.position, withZRotation: otherPlayerCard.zRotation)
-                    cardSelected.place = otherPlayerCard.place
-                    otherPlayer?.cards[otherPlayerCardPositionIndex] = cardSelected
-                    
-                    //Move other player's card to current player hand
-                    otherPlayerCard.move(to: tempCardPosition, withZRotation: tempCardzRotation)
-                    otherPlayerCard.place = tempCardPlace
-                    currentPlayer?.cards[currentPlayerCardPositionIndex] = otherPlayerCard
-                }
+        let tempCardPosition = cardSelected!.position
+        let tempCardzRotation = cardSelected!.zRotation
+        let tempCardPlace = cardSelected!.place
+        
+        if let currentPlayerCardPositionIndex = positionInCurrentPlayerHand(ofCard: playerCard){
+            if let otherPlayerCardPositionIndex = positionInPlayerHand(ofCard: cardSelected!){
+                
+                // Move card selected from other player to current player's hand
+                cardSelected!.move(to: playerCard.position, withZRotation: playerCard.zRotation)
+                cardSelected!.place = playerCard.place
+                currentPlayer!.cards[currentPlayerCardPositionIndex] = cardSelected!
+                
+                // Move card from plyer's hand to other player
+                playerCard.move(to: tempCardPosition, withZRotation: tempCardzRotation)
+                playerCard.place = tempCardPlace
+                otherPlayer!.cards[otherPlayerCardPositionIndex] = playerCard
             }
         }
         
         cardSelected = nil
     }
     
+    //MARK: Managing Spy n Swap
     func spyAndSwap(card: Card) {
         print("Spy and swap")
         spyAndSwapPhase = false
