@@ -21,7 +21,19 @@ struct ResultsScreen: View {
                 Spacer()
                 
                 ForEach(players, id:\.id) { player in
-                    Text(player.userName + " " + String(player.points))
+                    HStack {
+                        Text(player.userName)
+                            .font(.title2.bold())
+                        Text("\(String(player.points)) points ")
+                            .font(.title3)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(CustomColor.lightGrey)
+                    .cornerRadius(20)
+                    .font(.title2.bold())
+                    .padding()
                 }
                 
                 Spacer()
@@ -33,7 +45,8 @@ struct ResultsScreen: View {
                         .padding(16)
                 }
             }
-            .navigationBarHidden(true)
         }
+        .navigationBarTitle("Results")
+        .navigationBarBackButtonHidden(true)
     }
 }
