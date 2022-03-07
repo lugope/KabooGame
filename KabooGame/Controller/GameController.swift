@@ -216,9 +216,9 @@ class GameController {
     }
     
     func snapCard(card: Card) {
-        if let cardPositionIndex = positionInCurrentPlayerHand(ofCard: card) {
+        if let cardPositionIndex = positionInPlayerHand(ofCard: card) {
             for player in players {
-                if player.id == currentTurn {
+                if player.id.rawValue == card.place.rawValue {
                     // Put card selected in players hand
                     let tempCard = player.cards[cardPositionIndex]
                     
@@ -234,6 +234,13 @@ class GameController {
                     } else {
                         card.flip()
                         print("Wrong card! Penalty: 5 points")
+                        player.points += 5
+                        player.label.score = player.points
+                        player.label.updateScoreLabel()
+                        print(player.points)
+                        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+                            card.flip()
+                        }
                     }
                 }
             }
@@ -386,6 +393,11 @@ class GameController {
         print("Now it's \(currentTurn) turn!!!")
         
         if currentTurn == playerCalledKaboo {
+            for player in players {
+                for card in player.cards {
+                    player.points += card.type.value
+                }
+            }
             gameScene?.gameViewDelegate?.finishGame(players: players)
         }
     }
