@@ -24,7 +24,7 @@ class KabooButton: SKSpriteNode {
     
     func touch() {
         guard flippingTimerCount == 0 else { return }
-        let flippingDuration: CGFloat = 2
+        let flippingDuration: CGFloat = 1
         self.run(SKAction.scaleX(to: 0, duration: flippingDuration / 2))
         flippingTimer = Timer.scheduledTimer(withTimeInterval: flippingDuration / 2, repeats: true) { _ in
             if self.flippingTimerCount == 1 {

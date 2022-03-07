@@ -17,6 +17,7 @@ class PlayerLabel: SKNode {
             }
         }
     }
+    
     var isCurrentTurn: Bool = false {
         didSet {
             if isCurrentTurn {
@@ -90,4 +91,9 @@ class PlayerLabel: SKNode {
         addChild(scoreLabel)
         addChild(imageNode)
     }
+    
+    func updateScoreLabel() {
+        scoreLabel.attributedText = NSAttributedString(string: "\(score)", attributes: [.font: UIFont.systemFont(ofSize: fontSize), .foregroundColor: UIColor.red])
+    }
+    
 }
