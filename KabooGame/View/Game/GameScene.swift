@@ -11,10 +11,8 @@ import SwiftUI
 class GameScene: SKScene {
     
     var gameController = GameController()
-    private let gap = CGFloat(10)
+    let gap = CGFloat(10)
     var gameViewDelegate: GameViewDelegate?
-    private var swipingPlayerCard: Card?
-    private var swipingPlayerCardPosition: CGPoint?
     
     override func didMove(to view: SKView) {
         self.backgroundColor = UIColor(CustomColor.background)
@@ -34,47 +32,12 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Run when touch is detected
         for touch in touches {
-            if let card = atPoint(touch.location(in: self)) as? Card,
-                card.place != .deck,
-                card.place != .pile,
-                card.place != .placeholder {
-                swipingPlayerCard = card
-                swipingPlayerCardPosition = card.position
-            }
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let swipingPlayerCard = swipingPlayerCard else { return }
-        for touch in touches {
-//            let location = touch.location(in: self)
-//            if let card = atPoint(location) as? Card, card == swipingPlayerCard {
-//                card.position = location
-//            }
-//            for child in children {
-//                if let card = child as? Card, card == swipingPlayerCard {
-//                    card.position = touch.location(in: self)
-//                }
-//            }
-            swipingPlayerCard.position = touch.location(in: self)
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
             let location = touch.location(in: self)
             
             if let card = atPoint(location) as? Card {
+                //                print("---\nCard Tapped: \(card.type.rawValue)")
                 
-                if let swipedPlayerCard = swipingPlayerCard, let swipedPlayerCardOriginalPosition = swipingPlayerCardPosition {
-                    //if we do move(to: ...) then player can start new moving before finishing called and everything breaks
-                    swipedPlayerCard.position = swipedPlayerCardOriginalPosition
-                }
-                // gameController.discardPile.frame.contains(location),
-                
-                if card.place == .pile, let swipedPlayerCard = swipingPlayerCard {
-                    gameController.snapCard(card: swipedPlayerCard)
-                } else if gameController.peekPhase {
+                if gameController.peekPhase {
                     if touch.tapCount == 1 {
                         gameController.peek(card: card)
                     }
@@ -84,7 +47,7 @@ class GameScene: SKScene {
                     }
                 } else if gameController.blindSwapPhase {
                     if touch.tapCount == 1 {
-                        gameController.selectCardOrPerformBlindSwap(withCard: card)
+                        gameController.blindSwap(withCard: card)
                     }
                 } else if gameController.spyAndSwapPhase {
                     if touch.tapCount == 1 {
@@ -92,17 +55,21 @@ class GameScene: SKScene {
                     }
                 } else {
                     card.runPickUpAction()
-                    
+
                     if touch.tapCount == 1 {
                         gameController.selectCardOrPerformAction(cardTapped: card)
-                    } else if touch.tapCount > 1, gameController.drawnCard != nil && card.place == .pile {
-                        gameController.discardDrawnCard()
+                    } else if touch.tapCount > 1 {
+                        if card.place.rawValue == gameController.currentTurn.rawValue {
+                            gameController.snapCard(card: card)
+                        }
+
+                        if gameController.drawnCard != nil && card.place == .pile {
+                            gameController.discardDrawnCard()
+                        }
                     }
                 }
             }
-            
-            
-            
+
             if !gameController.peekPhase && !gameController.spyPhase && !gameController.blindSwapPhase && !gameController.spyAndSwapPhase {
                 if atPoint(location) is Deck {
                     if touch.tapCount > 1 && !gameController.deck.deckList.isEmpty {
@@ -112,23 +79,30 @@ class GameScene: SKScene {
                         }
                     }
                 }
-                
+
                 if let kabooButton = atPoint(location) as? KabooButton {
                     kabooButton.touch()
                     gameController.callKaboo()
                 }
             }
         }
-        
+    }
+    
+    //    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        for touch in touches {
+    //            let location = touch.location(in: self)
+    //            if let card = atPoint(location) as? Card {
+    //                card.position = location
+    //            }
+    //        }
+    //    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for child in children {
             if let card = child as? Card {
                 card.runDropAction()
             }
         }
-        
-        swipingPlayerCard = nil
-        swipingPlayerCardPosition = nil
-        
         //        for touch in touches {
         //            let location = touch.location(in: self)
         //            if let card = atPoint(location) as? Card {
