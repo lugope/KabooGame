@@ -47,7 +47,7 @@ class GameScene: SKScene {
                     }
                 } else if gameController.blindSwapPhase {
                     if touch.tapCount == 1 {
-                        gameController.selectCardOrPerformBlindSwap(withCard: card)
+                        gameController.blindSwap(withCard: card)
                     }
                 } else if gameController.spyAndSwapPhase {
                     if touch.tapCount == 1 {
@@ -69,7 +69,7 @@ class GameScene: SKScene {
                     }
                 }
             }
-            
+
             if !gameController.peekPhase && !gameController.spyPhase && !gameController.blindSwapPhase && !gameController.spyAndSwapPhase {
                 if atPoint(location) is Deck {
                     if touch.tapCount > 1 && !gameController.deck.deckList.isEmpty {
@@ -79,7 +79,7 @@ class GameScene: SKScene {
                         }
                     }
                 }
-                
+
                 if let kabooButton = atPoint(location) as? KabooButton {
                     kabooButton.touch()
                     gameController.callKaboo()

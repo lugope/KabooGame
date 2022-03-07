@@ -320,16 +320,21 @@ class GameController {
     func spyAndSwap(card: Card) {
         print("Spy and swap:")
         
-        if cardSelected != nil {
+        if let cardSelected = cardSelected {
             if card.place.rawValue == currentTurn.rawValue {
+                cardSelected.flip()
                 swapOtherPlayerCardSelectedToPlayer(card: card)
                 spyAndSwapPhase = false
+                finishTurn()
+                
+            } else if card == cardSelected {
+                cardSelected.flip()
                 finishTurn()
             }
             
         } else {
-            if isOtherPlayerCard(cardPlace: card.place){
-                card.temporaryFlip()
+            if isOtherPlayerCard(cardPlace: card.place) {
+                card.flip()
                 cardSelected = card
                 print("Card Selected \(card.type)")
             }
