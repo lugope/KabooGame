@@ -13,6 +13,7 @@ class KabooButton: SKSpriteNode {
     init() {
         super.init(texture: SKTexture(imageNamed: "kabooButtonUp"), color: .clear, size: .init(width: 72, height: 72))
         name = "KabooButton"
+        zPosition = -1
     }
     
     required init?(coder aDecoder: NSCoder) {
