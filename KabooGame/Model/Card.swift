@@ -32,29 +32,28 @@ class Card: SKSpriteNode {
         self.init(cardType: type, place: place)
     }
     
-    var flippingTimerCount = 0
-    var flippingTimer: Timer?
-    
     func flip() {
-        guard flippingTimerCount == 0 else { return }
-        
         let flippingDuration: CGFloat = 0.5
-        self.run(SKAction.scaleX(to: 0, duration: flippingDuration))
-        flippingTimer = Timer.scheduledTimer(withTimeInterval: flippingDuration, repeats: true) { _ in
-            if self.flippingTimerCount == 1 {
-                self.texture = self.faceUp ? CARD_BACK_TEXTURE : self.type.texture
-                self.faceUp.toggle()
-                self.run(SKAction.scaleX(to: 1, duration: flippingDuration))
-            } else if self.flippingTimerCount == 2 {
-                self.flippingTimerCount = 0
-                self.flippingTimer?.invalidate()
-                self.flippingTimer = nil
-                return
-            }
-            self.flippingTimerCount += 1
-        }
         
-        self.flippingTimer?.fire()
+        let halfTurnEffect = SKAction.scaleX(to: 0, duration: flippingDuration)
+        let changeTexture = SKAction.run {
+            self.faceUp.toggle()
+            self.texture = self.faceUp ? self.type.texture : CARD_BACK_TEXTURE
+        }
+        let turnBackEffect = SKAction.scaleX(to: 1, duration: flippingDuration)
+        let sequence = SKAction.sequence([halfTurnEffect,changeTexture,turnBackEffect])
+        
+        run(sequence)
+    }
+    
+    func temporaryFlip() {
+        let flipCard = SKAction.run {
+            self.flip()
+        }
+        let wait = SKAction.wait(forDuration: 2)
+        let sequence = SKAction.sequence([flipCard, wait, flipCard])
+        
+        run(sequence)
     }
     
     func move(to newLocation: CGPoint, withZRotation zRotation: CGFloat? = nil) {
