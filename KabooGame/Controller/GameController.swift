@@ -246,7 +246,7 @@ class GameController {
     
     func peek(card: Card) {
         if card.place.rawValue == currentTurn.rawValue {
-            temporaryCardFlip(card: card)
+            card.temporaryFlip()
             
             peekPhase = false
             finishTurn()
@@ -255,26 +255,11 @@ class GameController {
     
     func spy(card: Card) {
         if isOtherPlayerCard(cardPlace: card.place) {
-            temporaryCardFlip(card: card)
+            card.temporaryFlip()
             
             spyPhase = false
             finishTurn()
         }
-    }
-    
-    func temporaryCardFlip(card: Card) {
-        card.flip()
-        actionTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-            if self.actionTimerCount == 1 {
-                card.flip()
-            } else if self.actionTimerCount == 2 {
-                self.actionTimer?.invalidate()
-                self.actionTimer = nil
-                return
-            }
-            self.actionTimerCount += 1
-        }
-        actionTimer?.fire()
     }
     
     //MARK: Managing Blind Swap
@@ -328,7 +313,6 @@ class GameController {
             
             return true
         }
-        
         return false
     }
     
@@ -345,7 +329,7 @@ class GameController {
             
         } else {
             if isOtherPlayerCard(cardPlace: card.place){
-                temporaryCardFlip(card: card)
+                card.temporaryFlip()
                 cardSelected = card
                 print("Card Selected \(card.type)")
             }
