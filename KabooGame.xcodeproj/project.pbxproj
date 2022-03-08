@@ -19,7 +19,7 @@
 		05497F3027CFCF000079B39D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2D27CFCF000079B39D /* GameView.swift */; };
 		05497F3127CFCF000079B39D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2E27CFCF000079B39D /* GameScene.swift */; };
 		05497F3227CFCF000079B39D /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2F27CFCF000079B39D /* GameScreen.swift */; };
-		0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29627BBF4C4000EDD3E /* TutorialView.swift */; };
+		0594F29727BBF4C4000EDD3E /* TutorialScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29627BBF4C4000EDD3E /* TutorialScreen.swift */; };
 		0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29827BD537F000EDD3E /* SettingsView.swift */; };
 		05DA8DB727D79CE4001EA259 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 05DA8DB927D79CE4001EA259 /* Localizable.stringsdict */; };
 		05F247F027BFDA160025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -38,6 +38,8 @@
 		768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E127B54F00003D7170 /* KabooGameApp.swift */; };
 		768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E527B54F02003D7170 /* Assets.xcassets */; };
 		768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E827B54F02003D7170 /* Preview Assets.xcassets */; };
+		CA0A772427D66B0F00680344 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A772327D66B0F00680344 /* TutorialScene.swift */; };
+		CA0A772627D66C6900680344 /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A772527D66C6900680344 /* TutorialController.swift */; };
 		768E85D327D66919001D559E /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768E85D227D66919001D559E /* ExitButton.swift */; };
 		CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */; };
 		CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */; };
@@ -59,7 +61,8 @@
 		05497F2E27CFCF000079B39D /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		05497F2F27CFCF000079B39D /* GameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		057F580027D666460062A9FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		0594F29627BBF4C4000EDD3E /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		0594F29627BBF4C4000EDD3E /* TutorialScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScreen.swift; sourceTree = "<group>"; };
+		0594F29627BBF4C4000EDD3E /* TutorialScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScreen.swift; sourceTree = "<group>"; };
 		0594F29827BD537F000EDD3E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05DA8DB327D7948C001EA259 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		05DA8DB427D794B6001EA259 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -81,8 +84,10 @@
 		768BE1DE27B54F00003D7170 /* Kaboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768BE1E127B54F00003D7170 /* KabooGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabooGameApp.swift; sourceTree = "<group>"; };
 		768BE1E527B54F02003D7170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		768BE1E827B54F02003D7170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CA0A772327D66B0F00680344 /* TutorialScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
+		CA0A772527D66C6900680344 /* TutorialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialController.swift; sourceTree = "<group>"; };
 		768E85D227D66919001D559E /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
+		CA0A772527D66C6900680344 /* TutorialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialController.swift; sourceTree = "<group>"; };
 		CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScreen.swift; sourceTree = "<group>"; };
 		CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGameScreen.swift; sourceTree = "<group>"; };
 		CAA30CE727B5CB340006052B /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -129,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				05497F2A27CFCEA00079B39D /* GameController.swift */,
+				CA0A772527D66C6900680344 /* TutorialController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,7 +157,6 @@
 				05F247F727BFF33E0025254B /* CreateGameScreen.swift */,
 				05F247F527BFF3240025254B /* JoinGameScreen.swift */,
 				05F247F827BFF33E0025254B /* WaitingStartScreen.swift */,
-				0594F29627BBF4C4000EDD3E /* TutorialView.swift */,
 				0594F29827BD537F000EDD3E /* SettingsView.swift */,
 				CAE1122227D2C1DA008C20E0 /* ResultsScreen.swift */,
 			);
@@ -212,9 +217,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CA0A772027D65C7300680344 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				0594F29627BBF4C4000EDD3E /* TutorialScreen.swift */,
+				CA0A772327D66B0F00680344 /* TutorialScene.swift */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
 		CAA30CE227B5CB2B0006052B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA0A772027D65C7300680344 /* Tutorial */,
 				05497F2C27CFCEDB0079B39D /* Game */,
 				05B742AC27C92BB20006F604 /* Menu */,
 			);
@@ -305,7 +320,7 @@
 				05F247FA27BFF33E0025254B /* WaitingStartScreen.swift in Sources */,
 				05497F3227CFCF000079B39D /* GameScreen.swift in Sources */,
 				05F247F927BFF33E0025254B /* CreateGameScreen.swift in Sources */,
-				0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */,
+				0594F29727BBF4C4000EDD3E /* TutorialScreen.swift in Sources */,
 				05F247F627BFF3240025254B /* JoinGameScreen.swift in Sources */,
 				05497F2527CFCE790079B39D /* DiscardPile.swift in Sources */,
 				0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */,
@@ -325,9 +340,11 @@
 				05497F3127CFCF000079B39D /* GameScene.swift in Sources */,
 				05497F2827CFCE920079B39D /* GlobalProperties.swift in Sources */,
 				05F247F427BFDB030025254B /* (null) in Sources */,
+				CA0A772427D66B0F00680344 /* TutorialScene.swift in Sources */,
 				05497F2B27CFCEA00079B39D /* GameController.swift in Sources */,
 				05497F2327CFCE790079B39D /* Player.swift in Sources */,
 				05F247F227BFDA4E0025254B /* (null) in Sources */,
+				CA0A772627D66C6900680344 /* TutorialController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,8 +507,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KabooGame/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -520,8 +537,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KabooGame/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
