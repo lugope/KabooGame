@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct MainMenuScreen: View {
     
     @State var popToRoot: Bool = false
-
+    @AppStorage("sfx") var savedSfx = true
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -37,7 +39,11 @@ struct MainMenuScreen: View {
                         .isDetailLink(false)
                         .buttonStyle(.borderedProminent)
                         
-                        NavigationLink(destination: TutorialView()) {
+                        NavigationLink(destination: TutorialView().onAppear() {
+                            if savedSfx {
+                                SoundManager.sharedManager.playSound(sound: "click", type: "mp3")
+                            }
+                        }) {
                             Text("How to play")
                                 .font(.title2.weight(.semibold))
                                 .frame(maxWidth: .infinity)
@@ -46,7 +52,11 @@ struct MainMenuScreen: View {
                         .buttonStyle(.borderedProminent)
                         .tint(CustomColor.darkGrey)
                         
-                        NavigationLink(destination: SettingsView()) {
+                        NavigationLink(destination: SettingsView().onAppear() {
+                            if savedSfx {
+                                SoundManager.sharedManager.playSound(sound: "click", type: "mp3")
+                            }
+                        }) {
                             Text("Settings")
                                 .font(.title2.weight(.semibold))
                                 .frame(maxWidth: .infinity)
