@@ -29,6 +29,7 @@
 		768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E127B54F00003D7170 /* KabooGameApp.swift */; };
 		768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E527B54F02003D7170 /* Assets.xcassets */; };
 		768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E827B54F02003D7170 /* Preview Assets.xcassets */; };
+		768E85D327D66919001D559E /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768E85D227D66919001D559E /* ExitButton.swift */; };
 		CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */; };
 		CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */; };
 		CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA30CE727B5CB340006052B /* CustomColor.swift */; };
@@ -56,6 +57,7 @@
 		768BE1E127B54F00003D7170 /* KabooGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabooGameApp.swift; sourceTree = "<group>"; };
 		768BE1E527B54F02003D7170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		768BE1E827B54F02003D7170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		768E85D227D66919001D559E /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
 		CAA30CE327B5CB2B0006052B /* MainMenuScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScreen.swift; sourceTree = "<group>"; };
 		CAA30CE427B5CB2B0006052B /* ChooseGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGameScreen.swift; sourceTree = "<group>"; };
 		CAA30CE727B5CB340006052B /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -78,10 +80,11 @@
 			children = (
 				05497F1A27CFCE790079B39D /* Card.swift */,
 				05497F1B27CFCE790079B39D /* Deck.swift */,
-				05497F1C27CFCE790079B39D /* PlayerLabel.swift */,
 				05497F1D27CFCE790079B39D /* Player.swift */,
-				05497F1E27CFCE790079B39D /* KabooButton.swift */,
 				05497F1F27CFCE790079B39D /* DiscardPile.swift */,
+				05497F1E27CFCE790079B39D /* KabooButton.swift */,
+				05497F1C27CFCE790079B39D /* PlayerLabel.swift */,
+				768E85D227D66919001D559E /* ExitButton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				CAA30CE627B5CB2B0006052B /* ChooseGameScreen.swift in Sources */,
 				CAA30CE827B5CB340006052B /* CustomColor.swift in Sources */,
 				05497F2027CFCE790079B39D /* Card.swift in Sources */,
+				768E85D327D66919001D559E /* ExitButton.swift in Sources */,
 				CAA30CE527B5CB2B0006052B /* MainMenuScreen.swift in Sources */,
 				05497F3027CFCF000079B39D /* GameView.swift in Sources */,
 				05497F2227CFCE790079B39D /* PlayerLabel.swift in Sources */,

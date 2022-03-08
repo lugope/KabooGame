@@ -10,17 +10,25 @@ import SwiftUI
 
 protocol GameViewDelegate {
     func finishGame(players: [Player])
+    func exitGame()
 }
 
 struct GameView: View, GameViewDelegate {
     
     @State var showResults: Bool? = false
+    @State var goBack: Bool? = false
     @State var players: [Player] = []
     @Binding var popToRoot: Bool
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     func finishGame(players: [Player]) {
         self.players = players
         showResults = true
+    }
+    
+    func exitGame() {
+        self.presentationMode.wrappedValue.dismiss()
     }
     
     var screenWidth: CGFloat {
@@ -39,7 +47,6 @@ struct GameView: View, GameViewDelegate {
     }
     
     var body: some View {
-        //NavigationView {
             ZStack {
             NavigationLink(destination: ResultsScreen(players: players, popToRoot: $popToRoot), tag: true, selection: $showResults) { EmptyView() }
             .isDetailLink(false)
@@ -48,7 +55,6 @@ struct GameView: View, GameViewDelegate {
                 .frame(width: screenWidth, height: screenHeight)
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
-            //}
         }
     }
 }

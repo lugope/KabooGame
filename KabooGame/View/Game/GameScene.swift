@@ -6,7 +6,6 @@
 //
 
 import SpriteKit
-import SwiftUI
 
 class GameScene: SKScene {
     
@@ -29,6 +28,7 @@ class GameScene: SKScene {
         
         positionPlayerLabels()
         positionKabooButton()
+        positionExitButton()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -47,15 +47,6 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let swipingPlayerCard = swipingPlayerCard else { return }
         for touch in touches {
-//            let location = touch.location(in: self)
-//            if let card = atPoint(location) as? Card, card == swipingPlayerCard {
-//                card.position = location
-//            }
-//            for child in children {
-//                if let card = child as? Card, card == swipingPlayerCard {
-//                    card.position = touch.location(in: self)
-//                }
-//            }
             swipingPlayerCard.position = touch.location(in: self)
         }
     }
@@ -118,6 +109,10 @@ class GameScene: SKScene {
                     gameController.callKaboo()
                 }
             }
+            
+            if let exitButton = atPoint(location) as? ExitButton{
+                self.gameViewDelegate?.exitGame()
+            }
         }
         
         for child in children {
@@ -128,13 +123,6 @@ class GameScene: SKScene {
         
         swipingPlayerCard = nil
         swipingPlayerCardPosition = nil
-        
-        //        for touch in touches {
-        //            let location = touch.location(in: self)
-        //            if let card = atPoint(location) as? Card {
-        //                card.runDropAction()
-        //            }
-        //        }
     }
     
     func positionCardsOnTable() {
@@ -249,5 +237,25 @@ class GameScene: SKScene {
         let button = KabooButton()
         button.position = CGPoint(x: frame.midX, y: frame.midY - 108)
         addChild(button)
+    }
+    
+    func positionExitButton() {
+        let button = ExitButton()
+        let labelReference = gameController.players.filter {
+            $0.id == .player1
+        }.first?.label.position
+        let cardReference = gameController.players.filter {
+            $0.id == .player1
+        }.first?.cards[0].position
+        
+        if let labelReference = labelReference {
+            if let cardReference = cardReference {
+                button.position = CGPoint(
+                    x: cardReference.x,
+                    y: labelReference.y
+                )
+                addChild(button)
+            }
+        }
     }
 }
