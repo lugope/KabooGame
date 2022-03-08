@@ -29,7 +29,7 @@ struct ResultsScreen: View {
                         Image(systemName: "\(index + 1).circle.fill")
                         Text(sortedPlayers[index].userName)
                             .font(.title2.bold())
-                        Text("\(String(sortedPlayers[index].points)) points ")
+                        Text("\(sortedPlayers[index].points) points")
                             .font(.title3)
                             .foregroundColor(.secondary)
                     }
@@ -39,7 +39,6 @@ struct ResultsScreen: View {
                     .cornerRadius(20)
                     .font(.title2.bold())
                     .padding()
-                    
                 }
                 
                 Spacer()
