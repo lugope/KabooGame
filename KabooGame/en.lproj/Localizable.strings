@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  KabooGame
+
+  Created by Lorenzo Lins Mazzarotto on 08/03/22.
+  
+*/
+
+"Play" = "Play";
+"How to play" = "How to play";
+"Settings" = "Settings";
+
+"Username" = "Username";
+"Music" = "Music";
+"SFX" = "SFX";
+"Vibration" = "Vibration";
+
+"Select Avatar" = "Select Avatar";
+"Save Changes" = "Save Changes";
+
+"Results" = "Results";
+"Exit" = "Exit";
+
+"%lld points" = "%lld points";

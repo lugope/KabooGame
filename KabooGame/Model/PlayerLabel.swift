@@ -62,6 +62,7 @@ class PlayerLabel: SKNode {
         
         super.init()
         
+        self.zPosition = -1
         positionNodes()
         addNodes()
     }

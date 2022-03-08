@@ -80,15 +80,16 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Toggle(isOn: $savedMusic) {
-                        Text("Music")
+                    Toggle("Music", isOn: $savedMusic).onChange(of: savedMusic) { _savedMusic in
+                        print(savedMusic)
+                        if !savedMusic {
+                            SoundManager.sharedManager.backgroundPlayer?.stop()
+                        } else {
+                            SoundManager.sharedManager.playBackground()
+                        }
                     }
-                    Toggle(isOn: $savedSfx) {
-                        Text("SFX")
-                    }
-                    Toggle(isOn: $savedVibration) {
-                        Text("Vibration")
-                    }
+                    Toggle("SFX", isOn: $savedSfx)
+                    Toggle("Vibration", isOn: $savedVibration)
                 }
                 .background(CustomColor.background)
             }

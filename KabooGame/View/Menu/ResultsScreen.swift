@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ResultsScreen: View {
-    
     var players: [Player]
+    
     @Binding var popToRoot: Bool
     
     var body: some View {
@@ -20,11 +20,16 @@ struct ResultsScreen: View {
             VStack {
                 Spacer()
                 
-                ForEach(players, id:\.id) { player in
+                let sortedPlayers = players.sorted {
+                    $0.points < $1.points
+                }
+                
+                ForEach(sortedPlayers.indices) { index in
                     HStack {
-                        Text(player.userName)
+                        Image(systemName: "\(index + 1).circle.fill")
+                        Text(sortedPlayers[index].userName)
                             .font(.title2.bold())
-                        Text("\(String(player.points)) points ")
+                        Text("\(sortedPlayers[index].points) points")
                             .font(.title3)
                             .foregroundColor(.secondary)
                     }
@@ -38,7 +43,7 @@ struct ResultsScreen: View {
                 
                 Spacer()
                 
-                Button(action: {popToRoot = false}) {
+                Button(action: { popToRoot = false }) {
                     Text("Exit")
                         .font(.title2.weight(.semibold))
                         .frame(maxWidth: .infinity)
