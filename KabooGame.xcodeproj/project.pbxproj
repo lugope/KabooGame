@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05244A6F27D7926B003F5FD1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05244A7127D7926B003F5FD1 /* Localizable.strings */; };
 		05497F2027CFCE790079B39D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1A27CFCE790079B39D /* Card.swift */; };
 		05497F2127CFCE790079B39D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1B27CFCE790079B39D /* Deck.swift */; };
 		05497F2227CFCE790079B39D /* PlayerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F1C27CFCE790079B39D /* PlayerLabel.swift */; };
@@ -20,6 +21,7 @@
 		05497F3227CFCF000079B39D /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05497F2F27CFCF000079B39D /* GameScreen.swift */; };
 		0594F29727BBF4C4000EDD3E /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29627BBF4C4000EDD3E /* TutorialView.swift */; };
 		0594F29927BD537F000EDD3E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594F29827BD537F000EDD3E /* SettingsView.swift */; };
+		05DA8DB727D79CE4001EA259 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 05DA8DB927D79CE4001EA259 /* Localizable.stringsdict */; };
 		05F247F027BFDA160025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		05F247F227BFDA4E0025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		05F247F427BFDB030025254B /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -43,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05244A7027D7926B003F5FD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05497F1A27CFCE790079B39D /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		05497F1B27CFCE790079B39D /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		05497F1C27CFCE790079B39D /* PlayerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerLabel.swift; sourceTree = "<group>"; };
@@ -57,6 +60,11 @@
 		057F580027D666460062A9FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0594F29627BBF4C4000EDD3E /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		0594F29827BD537F000EDD3E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		05DA8DB327D7948C001EA259 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		05DA8DB427D794B6001EA259 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05DA8DB827D79CE4001EA259 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		05DA8DBA27D79CEA001EA259 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "pt-BR"; path = "pt-BR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		05DA8DBB27D79CEB001EA259 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		05F247F527BFF3240025254B /* JoinGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameScreen.swift; sourceTree = "<group>"; };
 		05F247F727BFF33E0025254B /* CreateGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameScreen.swift; sourceTree = "<group>"; };
 		05F247F827BFF33E0025254B /* WaitingStartScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingStartScreen.swift; sourceTree = "<group>"; };
@@ -178,6 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				057F580027D666460062A9FD /* Info.plist */,
+				05DA8DB927D79CE4001EA259 /* Localizable.stringsdict */,
+				05244A7127D7926B003F5FD1 /* Localizable.strings */,
 				768BE1E127B54F00003D7170 /* KabooGameApp.swift */,
 				05497F1927CFCE790079B39D /* Model */,
 				05497F2927CFCEA00079B39D /* Controller */,
@@ -248,6 +258,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
+				ru,
 			);
 			mainGroup = 768BE1D527B54F00003D7170;
 			productRefGroup = 768BE1DF27B54F00003D7170 /* Products */;
@@ -265,8 +277,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */,
-				3CFD865027D79A6500568EEA /* snap.mp3 in Resources */,
-				3CFD864827D7961100568EEA /* coin.mp3 in Resources */,
+				05DA8DB727D79CE4001EA259 /* Localizable.stringsdict in Resources */,
+				05244A6F27D7926B003F5FD1 /* Localizable.strings in Resources */,
 				768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */,
 				3CFD864027D64D8D00568EEA /* background_music.mp3 in Resources */,
 				3CFD865827D79F4800568EEA /* click.mp3 in Resources */,
@@ -312,11 +324,35 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		05244A7127D7926B003F5FD1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05244A7027D7926B003F5FD1 /* en */,
+				05DA8DB327D7948C001EA259 /* pt-BR */,
+				05DA8DB427D794B6001EA259 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		05DA8DB927D79CE4001EA259 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05DA8DB827D79CE4001EA259 /* en */,
+				05DA8DBA27D79CEA001EA259 /* pt-BR */,
+				05DA8DBB27D79CEB001EA259 /* ru */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		768BE1EA27B54F02003D7170 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -378,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
