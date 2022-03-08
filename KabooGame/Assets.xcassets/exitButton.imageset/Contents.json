@@ -12,10 +12,77 @@
     {
       "idiom" : "universal",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "exitButton@2x-1.png",
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "pt-BR",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "exitButton-pt@2x.png",
+      "idiom" : "universal",
+      "locale" : "pt-BR",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "pt-BR",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "ru",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "exitButton-rus@2x.png",
+      "idiom" : "universal",
+      "locale" : "ru",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "ru",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "it",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "exitButton-it@2x.png",
+      "idiom" : "universal",
+      "locale" : "it",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "locale" : "it",
+      "scale" : "3x"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
   }
 }
