@@ -396,6 +396,7 @@ class GameController {
     func callKaboo() {
         if savedSfx {
             SoundManager.sharedManager.playSound(sound: "coin", type: "mp3")
+            print("COIN")
         }
         if savedVibration {
             haptics.notificationOccurred(.success)
