@@ -7,6 +7,7 @@
 
 import SpriteKit
 import Foundation
+import SwiftUI
 
 class GameController {
     var gameScene: GameScene?
@@ -25,6 +26,10 @@ class GameController {
     var spyPhase = false
     var blindSwapPhase = false
     var spyAndSwapPhase = false
+    
+    let haptics = UINotificationFeedbackGenerator()
+    @AppStorage("sfx") var savedSfx = true
+    @AppStorage("vibration") var savedVibration = true
     
     init() {
         self.players = []
@@ -121,6 +126,14 @@ class GameController {
             print("No action")
             finishTurn()
         }
+        
+        if savedSfx {
+            SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
+        }
+        if savedVibration {
+            haptics.notificationOccurred(.success)
+        }
+        
         drawnCard = nil
         cardSelected = nil
         //        print("pile:")
@@ -224,6 +237,12 @@ class GameController {
                     
                     //Add changed card to pile
                     if discardPile.pile[0].type.value == player.cards[cardPositionIndex].type.value {
+                        if savedSfx {
+                            SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
+                        }
+                        if savedVibration {
+                            haptics.notificationOccurred(.success)
+                        }
                         player.cards.remove(at: cardPositionIndex)
                         discardPile.pile.insert(tempCard, at: 0)
                         discardPile.update()
@@ -232,6 +251,12 @@ class GameController {
                         cardSelected = nil
                         drawnCard = nil
                     } else {
+                        if savedSfx {
+                            SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
+                        }
+                        if savedVibration {
+                            haptics.notificationOccurred(.error)
+                        }
                         card.flip()
                         print("Wrong card! Penalty: 5 points")
                         player.points += 5
@@ -369,6 +394,13 @@ class GameController {
     }
     
     func callKaboo() {
+        if savedSfx {
+            SoundManager.sharedManager.playSound(sound: "coin", type: "mp3")
+            print("COIN")
+        }
+        if savedVibration {
+            haptics.notificationOccurred(.success)
+        }
         guard playerCalledKaboo == nil else { return }
         playerCalledKaboo = currentTurn
         finishTurn()

@@ -6,8 +6,11 @@
 //
 
 import SpriteKit
+import SwiftUI
+import AVFoundation
 
 class GameScene: SKScene {
+    @AppStorage("sfx") var savedSfx = true
     
     var gameController = GameController()
     private let gap = CGFloat(10)
@@ -29,6 +32,10 @@ class GameScene: SKScene {
         positionPlayerLabels()
         positionKabooButton()
         positionExitButton()
+        
+        if savedSfx {
+            SoundManager.sharedManager.playSound(sound: "deal", type: "mp3")
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
