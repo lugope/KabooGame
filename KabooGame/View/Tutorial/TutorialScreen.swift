@@ -83,16 +83,15 @@ struct TutorialScreen: View, TutorialScreenDelegate {
                             Text("Rules").tag(false)
                         }
                         .pickerStyle(.segmented)
-                        .frame(height: 20)
                         .padding(.horizontal)
                         
-                        //Spacer()
+                        Spacer()
                         
                         Text(explanation[step])
                             .background(CustomColor.background)
                             .padding(.horizontal)
                         
-                        //Spacer()
+                        Spacer()
                         
                         Button(action: {
                             showExplanationStep = false
