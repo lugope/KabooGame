@@ -35,7 +35,7 @@ class Card: SKSpriteNode {
     }
     
     func flip() {
-        let flippingDuration: CGFloat = 0.5
+        let flippingDuration: CGFloat = 0.3
         
         let halfTurnEffect = SKAction.scaleX(to: 0, duration: flippingDuration)
         let changeTexture = SKAction.run {
@@ -51,12 +51,19 @@ class Card: SKSpriteNode {
     }
     
     func temporaryFlip() {
-        let flipCard = SKAction.run {
-            self.flip()
+        var positionShift: CGFloat = 0
+        if self.place == .handPlayer2 {
+            positionShift = CARD_SIZE_HEIGHT/2
+        } else if self.place == .handPlayer4 {
+            positionShift = -CARD_SIZE_HEIGHT/2
         }
-        let wait = SKAction.wait(forDuration: 2)
-        let sequence = SKAction.sequence([flipCard, wait, flipCard])
         
+        let flipCard = SKAction.run { self.flip() }
+        let wait = SKAction.wait(forDuration: 2)
+        let moveFoward = SKAction.move(by: CGVector(dx: positionShift, dy: 0), duration: 0.3)
+        let moveBack = SKAction.move(by: CGVector(dx: -positionShift, dy: 0), duration: 0.3)
+        
+        let sequence = SKAction.sequence([flipCard, moveFoward, wait, flipCard, moveBack])
         run(sequence)
     }
     
