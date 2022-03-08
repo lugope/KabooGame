@@ -27,7 +27,9 @@ class GameController {
     var blindSwapPhase = false
     var spyAndSwapPhase = false
     
+    let haptics = UINotificationFeedbackGenerator()
     @AppStorage("sfx") var savedSfx = true
+    @AppStorage("vibration") var savedVibration = true
     
     init() {
         self.players = []
@@ -127,6 +129,9 @@ class GameController {
         
         if savedSfx {
             SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
+        }
+        if savedVibration {
+            haptics.notificationOccurred(.success)
         }
         
         drawnCard = nil
@@ -235,6 +240,9 @@ class GameController {
                         if savedSfx {
                             SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
                         }
+                        if savedVibration {
+                            haptics.notificationOccurred(.success)
+                        }
                         player.cards.remove(at: cardPositionIndex)
                         discardPile.pile.insert(tempCard, at: 0)
                         discardPile.update()
@@ -245,6 +253,9 @@ class GameController {
                     } else {
                         if savedSfx {
                             SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
+                        }
+                        if savedVibration {
+                            haptics.notificationOccurred(.error)
                         }
                         card.flip()
                         print("Wrong card! Penalty: 5 points")
@@ -385,6 +396,9 @@ class GameController {
     func callKaboo() {
         if savedSfx {
             SoundManager.sharedManager.playSound(sound: "coin", type: "mp3")
+        }
+        if savedVibration {
+            haptics.notificationOccurred(.success)
         }
         guard playerCalledKaboo == nil else { return }
         playerCalledKaboo = currentTurn
