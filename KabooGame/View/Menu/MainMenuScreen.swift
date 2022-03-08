@@ -37,7 +37,7 @@ struct MainMenuScreen: View {
                         .isDetailLink(false)
                         .buttonStyle(.borderedProminent)
                         
-                        NavigationLink(destination: TutorialView()) {
+                        NavigationLink(destination: TutorialScreen()) {
                             Text("How to play")
                                 .font(.title2.weight(.semibold))
                                 .frame(maxWidth: .infinity)
