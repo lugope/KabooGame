@@ -66,6 +66,8 @@
 		05DA8DB827D79CE4001EA259 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		05DA8DBA27D79CEA001EA259 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "pt-BR"; path = "pt-BR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		05DA8DBB27D79CEB001EA259 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		05DA8DBC27D7B9C2001EA259 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = it; path = it.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		05DA8DBD27D7B9C2001EA259 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05F247F527BFF3240025254B /* JoinGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameScreen.swift; sourceTree = "<group>"; };
 		05F247F727BFF33E0025254B /* CreateGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameScreen.swift; sourceTree = "<group>"; };
 		05F247F827BFF33E0025254B /* WaitingStartScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingStartScreen.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				Base,
 				"pt-BR",
 				ru,
+				it,
 			);
 			mainGroup = 768BE1D527B54F00003D7170;
 			productRefGroup = 768BE1DF27B54F00003D7170 /* Products */;
@@ -337,6 +340,7 @@
 				05244A7027D7926B003F5FD1 /* en */,
 				05DA8DB327D7948C001EA259 /* pt-BR */,
 				05DA8DB427D794B6001EA259 /* ru */,
+				05DA8DBD27D7B9C2001EA259 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -347,6 +351,7 @@
 				05DA8DB827D79CE4001EA259 /* en */,
 				05DA8DBA27D79CEA001EA259 /* pt-BR */,
 				05DA8DBB27D79CEB001EA259 /* ru */,
+				05DA8DBC27D7B9C2001EA259 /* it */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
