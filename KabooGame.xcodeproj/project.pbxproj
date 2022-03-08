@@ -26,6 +26,13 @@
 		05F247F627BFF3240025254B /* JoinGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F527BFF3240025254B /* JoinGameScreen.swift */; };
 		05F247F927BFF33E0025254B /* CreateGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F727BFF33E0025254B /* CreateGameScreen.swift */; };
 		05F247FA27BFF33E0025254B /* WaitingStartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F247F827BFF33E0025254B /* WaitingStartScreen.swift */; };
+		3CFD863D27D64A0600568EEA /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFD863C27D64A0500568EEA /* SoundManager.swift */; };
+		3CFD864027D64D8D00568EEA /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD863F27D64D8D00568EEA /* background_music.mp3 */; };
+		3CFD864827D7961100568EEA /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD864727D7961100568EEA /* coin.mp3 */; };
+		3CFD864C27D7977C00568EEA /* flip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD864B27D7977C00568EEA /* flip.mp3 */; };
+		3CFD865027D79A6500568EEA /* snap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD864F27D79A6500568EEA /* snap.mp3 */; };
+		3CFD865227D79C6C00568EEA /* deal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD865127D79C6C00568EEA /* deal.mp3 */; };
+		3CFD865827D79F4800568EEA /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD865727D79F4800568EEA /* click.mp3 */; };
 		768BE1E227B54F00003D7170 /* KabooGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BE1E127B54F00003D7170 /* KabooGameApp.swift */; };
 		768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E527B54F02003D7170 /* Assets.xcassets */; };
 		768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768BE1E827B54F02003D7170 /* Preview Assets.xcassets */; };
@@ -52,6 +59,13 @@
 		05F247F527BFF3240025254B /* JoinGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameScreen.swift; sourceTree = "<group>"; };
 		05F247F727BFF33E0025254B /* CreateGameScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameScreen.swift; sourceTree = "<group>"; };
 		05F247F827BFF33E0025254B /* WaitingStartScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingStartScreen.swift; sourceTree = "<group>"; };
+		3CFD863C27D64A0500568EEA /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		3CFD863F27D64D8D00568EEA /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
+		3CFD864727D7961100568EEA /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
+		3CFD864B27D7977C00568EEA /* flip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flip.mp3; sourceTree = "<group>"; };
+		3CFD864F27D79A6500568EEA /* snap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snap.mp3; sourceTree = "<group>"; };
+		3CFD865127D79C6C00568EEA /* deal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deal.mp3; sourceTree = "<group>"; };
+		3CFD865727D79F4800568EEA /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
 		768BE1DE27B54F00003D7170 /* Kaboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768BE1E127B54F00003D7170 /* KabooGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabooGameApp.swift; sourceTree = "<group>"; };
 		768BE1E527B54F02003D7170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,8 +103,10 @@
 		05497F2627CFCE920079B39D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3CFD863E27D64D7100568EEA /* soundEffects */,
 				CAA30CE727B5CB340006052B /* CustomColor.swift */,
 				05497F2727CFCE920079B39D /* GlobalProperties.swift */,
+				3CFD863C27D64A0500568EEA /* SoundManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -126,6 +142,19 @@
 				CAE1122227D2C1DA008C20E0 /* ResultsScreen.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		3CFD863E27D64D7100568EEA /* soundEffects */ = {
+			isa = PBXGroup;
+			children = (
+				3CFD865727D79F4800568EEA /* click.mp3 */,
+				3CFD865127D79C6C00568EEA /* deal.mp3 */,
+				3CFD864F27D79A6500568EEA /* snap.mp3 */,
+				3CFD864B27D7977C00568EEA /* flip.mp3 */,
+				3CFD864727D7961100568EEA /* coin.mp3 */,
+				3CFD863F27D64D8D00568EEA /* background_music.mp3 */,
+			);
+			path = soundEffects;
 			sourceTree = "<group>";
 		};
 		768BE1D527B54F00003D7170 = {
@@ -234,7 +263,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				768BE1E927B54F02003D7170 /* Preview Assets.xcassets in Resources */,
+				3CFD865027D79A6500568EEA /* snap.mp3 in Resources */,
+				3CFD864827D7961100568EEA /* coin.mp3 in Resources */,
 				768BE1E627B54F02003D7170 /* Assets.xcassets in Resources */,
+				3CFD864027D64D8D00568EEA /* background_music.mp3 in Resources */,
+				3CFD865827D79F4800568EEA /* click.mp3 in Resources */,
+				3CFD864C27D7977C00568EEA /* flip.mp3 in Resources */,
+				3CFD865227D79C6C00568EEA /* deal.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +294,7 @@
 				05497F3027CFCF000079B39D /* GameView.swift in Sources */,
 				05497F2227CFCE790079B39D /* PlayerLabel.swift in Sources */,
 				05497F2427CFCE790079B39D /* KabooButton.swift in Sources */,
+				3CFD863D27D64A0600568EEA /* SoundManager.swift in Sources */,
 				05F247F027BFDA160025254B /* (null) in Sources */,
 				05497F2127CFCE790079B39D /* Deck.swift in Sources */,
 				CAE1122327D2C1DA008C20E0 /* ResultsScreen.swift in Sources */,

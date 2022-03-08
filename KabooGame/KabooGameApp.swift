@@ -8,9 +8,16 @@
 import SwiftUI
 
 @main
-struct KabooGameApp: App {    
+struct KabooGameApp: App {
+    
+    @AppStorage("music") var savedMusic = true
+    
     init(){
         UITableView.appearance().backgroundColor = .clear
+        print(savedMusic)
+        if savedMusic {
+            SoundManager.sharedManager.playBackground()
+        }
     }
     
     var body: some Scene {

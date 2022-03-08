@@ -7,12 +7,14 @@
 
 import Foundation
 import SpriteKit
+import SwiftUI
 
 class Card: SKSpriteNode {
     
     let type: CardType
     var place: CardPlace
     var faceUp: Bool = false
+    @AppStorage("sfx") var savedSfx = true
     
     init(cardType: CardType, place: CardPlace) {
         self.type = cardType
@@ -42,7 +44,9 @@ class Card: SKSpriteNode {
         }
         let turnBackEffect = SKAction.scaleX(to: 1, duration: flippingDuration)
         let sequence = SKAction.sequence([halfTurnEffect,changeTexture,turnBackEffect])
-        
+        if savedSfx {
+            SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
+        }
         run(sequence)
     }
     
