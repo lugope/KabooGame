@@ -27,11 +27,13 @@ struct ResultsScreen: View {
                 ForEach(sortedPlayers.indices) { index in
                     HStack {
                         Image(systemName: "\(index + 1).circle.fill")
+                        Spacer()
                         Text(sortedPlayers[index].userName)
                             .font(.title2.bold())
                         Text("\(sortedPlayers[index].points) points")
                             .font(.title3)
                             .foregroundColor(.secondary)
+                        Spacer()
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
