@@ -69,6 +69,46 @@ class Card: SKSpriteNode {
         run(sequence)
     }
     
+    func rightSnappingAnimation() {
+        let growCard = SKAction.scale(by: 2, duration: 0)
+        let sizeBack = SKAction.scale(by: 0.5, duration: 0)
+        let actionSeq = SKAction.sequence([growCard, sizeBack])
+        
+        run(actionSeq)
+    }
+    
+    func wrongSnappingAnimation() {
+        let initPosition = self.position
+        let shakeAmplitude:CGFloat = 10
+        let numberOfShakes = 8
+
+        var actionsArray:[SKAction] = []
+        for i in 0...numberOfShakes {
+            var direction:CGFloat = 1
+            if i%2 > 0 {
+                direction = -1
+            }
+
+            var vector = CGVector()
+            if place == .handPlayer1 || place == .handPlayer2 {
+                vector = CGVector(dx: shakeAmplitude*direction, dy: 0)
+            } else {
+                vector = CGVector(dx: 0, dy: shakeAmplitude*direction)
+            }
+
+            let shakeAction = SKAction.moveBy(x: vector.dx, y: vector.dy, duration: 0.1)
+            shakeAction.timingMode = .easeOut
+            actionsArray.append(shakeAction)
+        }
+        
+        actionsArray.append(
+            SKAction.move(to: initPosition, duration: 0)
+        )
+        
+        let actionSeq = SKAction.sequence(actionsArray)
+        run(actionSeq)
+    }
+    
     func move(to newLocation: CGPoint, withZRotation zRotation: CGFloat? = nil) {
         self.run(SKAction.move(to: newLocation, duration: 1.5))
         if let zRotation = zRotation {

@@ -250,6 +250,7 @@ class GameController {
                         tempCard.removeFromParent()
                         cardSelected = nil
                         drawnCard = nil
+                        
                     } else {
                         if savedSfx {
                             SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
@@ -258,6 +259,7 @@ class GameController {
                             haptics.notificationOccurred(.error)
                         }
                         card.flip()
+                        card.wrongSnappingAnimation()
                         print("Wrong card! Penalty: 5 points")
                         player.points += 5
                         player.label.score = player.points
