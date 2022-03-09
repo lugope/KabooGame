@@ -7,9 +7,14 @@
 
 import Foundation
 import SpriteKit
+import SwiftUI
 
 class KabooButton: SKSpriteNode {
-
+    var isKabooActive: Bool = false
+    
+    @AppStorage("sfx") var savedSfx = true
+    @AppStorage("vibration") var savedVibration = true
+    
     init() {
         super.init(texture: SKTexture(imageNamed: "kabooButtonUp"), color: .clear, size: .init(width: 72, height: 72))
         name = "KabooButton"
@@ -20,26 +25,30 @@ class KabooButton: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var flippingTimerCount = 0
-    var flippingTimer: Timer?
-    
     func touch() {
-        guard flippingTimerCount == 0 else { return }
-        let flippingDuration: CGFloat = 1
-        self.run(SKAction.scaleX(to: 0, duration: flippingDuration / 2))
-        flippingTimer = Timer.scheduledTimer(withTimeInterval: flippingDuration / 2, repeats: true) { _ in
-            if self.flippingTimerCount == 1 {
+        let flippingDuration: CGFloat = 0.5
+        
+        if !isKabooActive {
+            let halfTurnEffect = SKAction.scaleX(to: 0, duration: flippingDuration)
+            let changeTexture = SKAction.run {
+                self.isKabooActive.toggle()
                 self.texture = SKTexture(imageNamed: "kabooButtonDown")
-                self.run(SKAction.scaleX(to: 1, duration: flippingDuration / 2))
-            } else if self.flippingTimerCount == 2 {
-                self.flippingTimerCount = 0
-                self.flippingTimer?.invalidate()
-                self.flippingTimer = nil
-                return
             }
-            self.flippingTimerCount += 1
+            let turnBackEffect = SKAction.scaleX(to: 1, duration: flippingDuration)
+            let sequence = SKAction.sequence([halfTurnEffect,changeTexture,turnBackEffect])
+            
+            run(sequence)
+            runEffects()
+        }
+    }
+    
+    func runEffects() {
+        if savedSfx {
+            SoundManager.sharedManager.playSound(sound: "coin", type: "mp3")
         }
         
-        self.flippingTimer?.fire()
+        if savedVibration {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        }
     }
 }
