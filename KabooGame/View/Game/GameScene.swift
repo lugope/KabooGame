@@ -13,8 +13,10 @@ class GameScene: SKScene {
     @AppStorage("sfx") var savedSfx = true
     
     var gameController = GameController()
-    private let gap = CGFloat(10)
     var gameViewDelegate: GameViewDelegate?
+    
+    private let gap = CGFloat(10)
+    
     private var swipingPlayerCard: Card?
     private var swipingPlayerCardPosition: CGPoint?
     
@@ -242,7 +244,14 @@ class GameScene: SKScene {
     
     func positionKabooButton() {
         let button = KabooButton()
-        button.position = CGPoint(x: frame.midX, y: frame.midY - 108)
+        let gap: CGFloat = 15
+        let deckPosition = gameController.deck.position
+        let deckHeight = gameController.deck.size.height
+        
+        button.position = CGPoint(
+            x: frame.midX,
+            y: deckPosition.y + deckHeight/2 + button.size.height/2 + gap
+        )
         addChild(button)
     }
     
