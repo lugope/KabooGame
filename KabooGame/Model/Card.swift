@@ -35,7 +35,7 @@ class Card: SKSpriteNode {
     }
     
     func flip() {
-        let flippingDuration: CGFloat = 0.3
+        let flippingDuration: CGFloat = 0.5
         
         let halfTurnEffect = SKAction.scaleX(to: 0, duration: flippingDuration)
         let changeTexture = SKAction.run {
@@ -44,9 +44,11 @@ class Card: SKSpriteNode {
         }
         let turnBackEffect = SKAction.scaleX(to: 1, duration: flippingDuration)
         let sequence = SKAction.sequence([halfTurnEffect,changeTexture,turnBackEffect])
+        
         if savedSfx {
             SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
         }
+        
         run(sequence)
     }
     

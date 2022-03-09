@@ -13,23 +13,11 @@ class PlayerLabel: SKNode {
     var score: Int = 0 {
         didSet {
             if score > 0 {
-                scoreLabel.attributedText = NSAttributedString(string: "0", attributes: [.font: UIFont.systemFont(ofSize: fontSize), .foregroundColor: UIColor.red])
+                scoreLabel.attributedText = NSAttributedString(string: "0", attributes: [.font: UIFont.boldSystemFont(ofSize: fontSize), .foregroundColor: UIColor.red])
             }
         }
     }
     
-    var isCurrentTurn: Bool = false {
-        didSet {
-            if isCurrentTurn {
-                nameLabel.fontColor = UIColor.white
-                rect.fillColor = UIColor.systemBlue
-                
-            } else {
-                nameLabel.fontColor = UIColor.black
-                rect.fillColor = UIColor.white
-            }
-        }
-    }
     
     let padding: CGFloat = 7
     let sideInset: CGFloat = 7
@@ -40,9 +28,22 @@ class PlayerLabel: SKNode {
     let scoreLabel = SKLabelNode()
     let imageNode = SKShapeNode(circleOfRadius: 8)
     let rect: SKShapeNode
+    let userName: String
+    
+    var isCurrentTurn: Bool = false {
+        didSet {
+            if isCurrentTurn {
+                nameLabel.attributedText = NSAttributedString(string: userName, attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: fontSize)])
+                rect.fillColor = UIColor(CustomColor.blue)
+            } else {
+                nameLabel.attributedText = NSAttributedString(string: userName, attributes: [.foregroundColor: UIColor.black, .font: UIFont.boldSystemFont(ofSize: fontSize)])
+                rect.fillColor = UIColor.white
+            }
+        }
+    }
     
     init(userName: String, image: String, score : Int = 0) {
-
+        self.userName = userName
         self.image = image
         self.score = score
         

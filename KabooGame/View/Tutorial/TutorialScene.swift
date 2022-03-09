@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  TutorialScene.swift
 //  KabooGame
 //
 //  Created by Lucas Pereira on 10/02/22.
@@ -7,41 +7,50 @@
 
 import SpriteKit
 import SwiftUI
-import AVFoundation
 
-class GameScene: SKScene {
-    @AppStorage("sfx") var savedSfx = true
-    
-    var gameController = GameController()
-    var gameViewDelegate: GameViewDelegate?
-    
+class TutorialScene: SKScene {
+    private var tutorialController = TutorialController()
     private let gap = CGFloat(10)
-    
+    private var step = 0
     private var swipingPlayerCard: Card?
     private var swipingPlayerCardPosition: CGPoint?
+    var tutorialScreenDelegate: TutorialScreenDelegate?
+    private var firstConfiguring = true
+    private let tipLabel = TipLabel()
+    private let tips = ["Swap player's card\nwith discard pile", "Draw a card\nfrom the deck\nby double tapping", "Swap a drawn card\nwith one of player's", "Draw a card and\ndiscard it by selecting\nand double taping\non the discard pile", "Try to snap player's\n card by dragging and dropping\nit to the discard pile", "Declare last lap of turns\nby pressing a Kaboo button", "Do last 3 moves"]
     
     override func didMove(to view: SKView) {
-        backgroundColor = UIColor(CustomColor.gameBackground)
-        gameController.setUpGame(scene: self)
+        guard firstConfiguring else { return }
+        tutorialController.tutorialScreenDelegate = tutorialScreenDelegate
+        self.backgroundColor = UIColor(CustomColor.gameBackground)
         
+        tutorialController.setUpGame(scene: self)
         positionCardsOnTable()
-        addChild(gameController.deck)
-        addChild(gameController.discardPile)
-        if let topPileCard = gameController.topPileCard {
+        addChild(tutorialController.deck)
+        addChild(tutorialController.discardPile)
+        if let topPileCard = tutorialController.topPileCard {
             addChild(topPileCard)
         }
         
         positionPlayerLabels()
         positionKabooButton()
-        positionExitButton()
-        
-        if savedSfx {
-            SoundManager.sharedManager.playSound(sound: "deal", type: "mp3")
+        positionTipLabel()
+        firstConfiguring = false
+    }
+    
+    func finishStep() {
+        self.isUserInteractionEnabled = false
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+            self.step += 1
+            self.tipLabel.labelNode.text = self.step <= self.tips.count - 1 ? self.tips[self.step] : ""
+            self.isUserInteractionEnabled = true
+            self.tutorialScreenDelegate?.finishStep(self)
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Run when touch is detected
+        guard step == 4 || step > 5 else { return }
         for touch in touches {
             if let card = atPoint(touch.location(in: self)) as? Card,
                 card.place != .deck,
@@ -54,8 +63,17 @@ class GameScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let swipingPlayerCard = swipingPlayerCard else { return }
+        guard let swipingPlayerCard = swipingPlayerCard, (step == 4 || step > 5) else { return }
         for touch in touches {
+//            let location = touch.location(in: self)
+//            if let card = atPoint(location) as? Card, card == swipingPlayerCard {
+//                card.position = location
+//            }
+//            for child in children {
+//                if let card = child as? Card, card == swipingPlayerCard {
+//                    card.position = touch.location(in: self)
+//                }
+//            }
             swipingPlayerCard.position = touch.location(in: self)
         }
     }
@@ -73,54 +91,67 @@ class GameScene: SKScene {
                 // gameController.discardPile.frame.contains(location),
                 
                 if card.place == .pile, let swipedPlayerCard = swipingPlayerCard {
-                    gameController.snapCard(card: swipedPlayerCard)
-                } else if gameController.peekPhase {
-                    if touch.tapCount == 1 {
-                        gameController.peek(card: card)
+                    tutorialController.snapCard(card: swipedPlayerCard)
+                    if step == 4 {
+                        finishStep()
                     }
-                } else if gameController.spyPhase {
+                } else if tutorialController.peekPhase, step == -1 {
                     if touch.tapCount == 1 {
-                        gameController.spy(card: card)
+                        tutorialController.peek(card: card)
                     }
-                } else if gameController.blindSwapPhase {
+                } else if tutorialController.spyPhase, step == -1 {
                     if touch.tapCount == 1 {
-                        gameController.blindSwap(withCard: card)
+                        tutorialController.spy(card: card)
                     }
-                } else if gameController.spyAndSwapPhase {
+                } else if tutorialController.blindSwapPhase, step == -1 {
                     if touch.tapCount == 1 {
-                        gameController.spyAndSwap(card: card)
+                        tutorialController.blindSwap(withCard: card)
+                    }
+                } else if tutorialController.spyAndSwapPhase, step == -1 {
+                    if touch.tapCount == 1 {
+                        tutorialController.spyAndSwap(card: card)
                     }
                 } else {
                     card.runPickUpAction()
                     
-                    if touch.tapCount == 1 {
-                        gameController.selectCardOrPerformAction(cardTapped: card)
-                    } else if touch.tapCount > 1, gameController.drawnCard != nil && card.place == .pile {
-                        gameController.discardDrawnCard()
+                    if touch.tapCount == 1, (step == 0 || step == 2 || (step == 3 && card.place == .deck) || step > 5) {
+                        if card.place == .handPlayer1, step == 0 {
+                            finishStep()
+                        } else if card.place == .handPlayer2, step == 2 {
+                            finishStep()
+                        }
+                        tutorialController.selectCardOrPerformAction(cardTapped: card, step: step)
+                    } else if touch.tapCount > 1, tutorialController.drawnCard != nil, card.place == .pile, (step == 3 || step > 5) {
+                        if step == 3 {
+                            finishStep()
+                        }
+                        tutorialController.discardDrawnCard()
                     }
                 }
             }
             
             
             
-            if !gameController.peekPhase && !gameController.spyPhase && !gameController.blindSwapPhase && !gameController.spyAndSwapPhase {
+            if !tutorialController.peekPhase && !tutorialController.spyPhase && !tutorialController.blindSwapPhase && !tutorialController.spyAndSwapPhase {
                 if atPoint(location) is Deck {
-                    if touch.tapCount > 1 && !gameController.deck.deckList.isEmpty {
-                        gameController.drawCardFromDeck()
-                        if gameController.deck.deckList.isEmpty {
-                            gameController.deck.update()
+                    if touch.tapCount > 1 && !tutorialController.deck.deckList.isEmpty, (step == 1 || step == 3 || step > 5) {
+                        if step == 1 {
+                            finishStep()
+                        }
+                        tutorialController.drawCardFromDeck()
+                        if tutorialController.deck.deckList.isEmpty {
+                            tutorialController.deck.update()
                         }
                     }
                 }
                 
-                if let kabooButton = atPoint(location) as? KabooButton {
-                    kabooButton.touch()
-                    gameController.callKaboo()
+                if let kabooButton = atPoint(location) as? KabooButton, step >= 5 {
+                    if step == 5 {
+                        finishStep()
+                        kabooButton.touch()
+                        tutorialController.callKaboo()
+                    }
                 }
-            }
-            
-            if let exitButton = atPoint(location) as? ExitButton{
-                self.gameViewDelegate?.exitGame()
             }
         }
         
@@ -132,10 +163,17 @@ class GameScene: SKScene {
         
         swipingPlayerCard = nil
         swipingPlayerCardPosition = nil
+        
+        //        for touch in touches {
+        //            let location = touch.location(in: self)
+        //            if let card = atPoint(location) as? Card {
+        //                card.runDropAction()
+        //            }
+        //        }
     }
     
     func positionCardsOnTable() {
-        for player in self.gameController.players {
+        for player in self.tutorialController.players {
             addCards(fromPlayer: player)
         }
     }
@@ -201,7 +239,7 @@ class GameScene: SKScene {
     }
     
     func positionPlayerLabels() {
-        for player in gameController.players {
+        for player in tutorialController.players {
             addLabel(fromPlayer: player)
         }
     }
@@ -244,34 +282,13 @@ class GameScene: SKScene {
     
     func positionKabooButton() {
         let button = KabooButton()
-        let gap: CGFloat = 15
-        let deckPosition = gameController.deck.position
-        let deckHeight = gameController.deck.size.height
-        
-        button.position = CGPoint(
-            x: frame.midX,
-            y: deckPosition.y + deckHeight/2 + button.size.height/2 + gap
-        )
+        button.position = CGPoint(x: frame.midX, y: frame.midY - 108)
         addChild(button)
     }
     
-    func positionExitButton() {
-        let button = ExitButton()
-        let labelReference = gameController.players.filter {
-            $0.id == .player1
-        }.first?.label.position
-        let cardReference = gameController.players.filter {
-            $0.id == .player1
-        }.first?.cards[0].position
-        
-        if let labelReference = labelReference {
-            if let cardReference = cardReference {
-                button.position = CGPoint(
-                    x: cardReference.x,
-                    y: labelReference.y
-                )
-                addChild(button)
-            }
-        }
+    func positionTipLabel() {
+        tipLabel.labelNode.text = tips[0]
+        tipLabel.position = CGPoint(x: frame.midX, y: frame.midY + 110)
+        addChild(tipLabel)
     }
 }

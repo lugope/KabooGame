@@ -39,7 +39,7 @@ struct MainMenuScreen: View {
                         .isDetailLink(false)
                         .buttonStyle(.borderedProminent)
                         
-                        NavigationLink(destination: TutorialView().onAppear() {
+                        NavigationLink(destination: TutorialScreen().onAppear() {
                             if savedSfx {
                                 SoundManager.sharedManager.playSound(sound: "click", type: "mp3")
                             }

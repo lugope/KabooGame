@@ -1,5 +1,5 @@
 //
-//  GameController.swift
+//  TutorialController.swift
 //  KabooGame
 //
 //  Created by Lucas Pereira on 15/02/22.
@@ -7,10 +7,10 @@
 
 import SpriteKit
 import Foundation
-import SwiftUI
 
-class GameController {
-    var gameScene: GameScene?
+class TutorialController {
+    var tutorialScreenDelegate: TutorialScreenDelegate?
+    var gameScene: TutorialScene?
     var players: [Player]
     var currentTurn: PlayerId = .player1
     var playerCalledKaboo: PlayerId?
@@ -27,17 +27,13 @@ class GameController {
     var blindSwapPhase = false
     var spyAndSwapPhase = false
     
-    let haptics = UINotificationFeedbackGenerator()
-    @AppStorage("sfx") var savedSfx = true
-    @AppStorage("vibration") var savedVibration = true
-    
     init() {
         self.players = []
         self.gameScene = nil
     }
     
     //MARK: Setting Up Game
-    func setUpGame(scene: GameScene) {
+    func setUpGame(scene: TutorialScene) {
         gameScene = scene
         
         deck.position = CGPoint(
@@ -113,27 +109,20 @@ class GameController {
         topPileCard?.zRotation = discardPile.zRotation
         gameScene?.addChild(topPileCard!)
         topPileCard?.runDropAction()
-        switch topPileCard!.type.value {
-        case 7...8:
-            peekPhase = true
-        case 9...10:
-            spyPhase = true
-        case 11...12:
-            blindSwapPhase = true
-        case 13:
-            spyAndSwapPhase = true
-        default:
-            print("No action")
-            finishTurn()
-        }
-        
-        if savedSfx {
-            SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
-        }
-        if savedVibration {
-            haptics.notificationOccurred(.success)
-        }
-        
+//        switch topPileCard!.type.value {
+//        case 7...8:
+//            peekPhase = true
+//        case 9...10:
+//            spyPhase = true
+//        case 11...12:
+//            blindSwapPhase = true
+//        case 13:
+//            spyAndSwapPhase = true
+//        default:
+//            print("No action")
+//            finishTurn()
+//        }
+        finishTurn()
         drawnCard = nil
         cardSelected = nil
         //        print("pile:")
@@ -141,16 +130,18 @@ class GameController {
     }
     
     //MARK: Managing Swap Action
-    func selectCardOrPerformAction(cardTapped: Card) {
+    func selectCardOrPerformAction(cardTapped: Card, step: Int) {
         if cardTapped.place == .deck || (cardTapped.place == .pile && drawnCard == nil) {
             for player in players {
                 if player.id == currentTurn {
                     for card in player.cards {
-                        card.setHighlighting(cardTapped.place == .deck ? .blue : .purple)
+                        if step != 3 {
+                            card.setHighlighting(cardTapped.place == .deck ? .blue : .purple)
+                        }
                     }
                 }
             }
-            if cardTapped.place == .deck {
+            if cardTapped.place == .deck, step != 2 {
                 topPileCard?.setHighlighting(.blue)
             }
             cardSelected = cardTapped
@@ -237,12 +228,6 @@ class GameController {
                     
                     //Add changed card to pile
                     if discardPile.pile[0].type.value == player.cards[cardPositionIndex].type.value {
-                        if savedSfx {
-                            SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
-                        }
-                        if savedVibration {
-                            haptics.notificationOccurred(.success)
-                        }
                         player.cards.remove(at: cardPositionIndex)
                         discardPile.pile.insert(tempCard, at: 0)
                         discardPile.update()
@@ -251,12 +236,6 @@ class GameController {
                         cardSelected = nil
                         drawnCard = nil
                     } else {
-                        if savedSfx {
-                            SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
-                        }
-                        if savedVibration {
-                            haptics.notificationOccurred(.error)
-                        }
                         card.flip()
                         print("Wrong card! Penalty: 5 points")
                         player.points += 5
@@ -396,7 +375,6 @@ class GameController {
     func callKaboo() {
         guard playerCalledKaboo == nil else { return }
         playerCalledKaboo = currentTurn
-        
         finishTurn()
     }
     
@@ -424,11 +402,10 @@ class GameController {
                     player.points += card.type.value
                 }
             }
-            gameScene?.gameViewDelegate?.finishGame(players: players)
+            gameScene?.isUserInteractionEnabled = false
+            let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+                self.tutorialScreenDelegate?.finishGame(players: self.players)
+            }
         }
     }
-}
-
-enum Phase {
-    case peekPhase, spyPhase, blindSwapPhase, spyAndSwapPhase
 }
