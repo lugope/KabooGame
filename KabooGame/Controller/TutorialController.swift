@@ -130,16 +130,18 @@ class TutorialController {
     }
     
     //MARK: Managing Swap Action
-    func selectCardOrPerformAction(cardTapped: Card) {
+    func selectCardOrPerformAction(cardTapped: Card, step: Int) {
         if cardTapped.place == .deck || (cardTapped.place == .pile && drawnCard == nil) {
             for player in players {
                 if player.id == currentTurn {
                     for card in player.cards {
-                        card.setHighlighting(cardTapped.place == .deck ? .blue : .purple)
+                        if step != 3 {
+                            card.setHighlighting(cardTapped.place == .deck ? .blue : .purple)
+                        }
                     }
                 }
             }
-            if cardTapped.place == .deck {
+            if cardTapped.place == .deck, step != 2 {
                 topPileCard?.setHighlighting(.blue)
             }
             cardSelected = cardTapped
