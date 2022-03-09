@@ -37,10 +37,11 @@ struct ResultsScreen: View {
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(CustomColor.lightGrey)
+                    .background(index+1 == 1 ? .yellow : CustomColor.lightGrey)
                     .cornerRadius(20)
                     .font(.title2.bold())
-                    .padding()
+                    .padding(.horizontal, 32)
+                    .padding(.vertical, 4)
                 }
                 
                 Spacer()
