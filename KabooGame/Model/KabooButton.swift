@@ -29,9 +29,9 @@ class KabooButton: SKSpriteNode {
         let flippingDuration: CGFloat = 0.5
         
         if !isKabooActive {
+            self.isKabooActive = false
             let halfTurnEffect = SKAction.scaleX(to: 0, duration: flippingDuration)
             let changeTexture = SKAction.run {
-                self.isKabooActive.toggle()
                 self.texture = SKTexture(imageNamed: "kabooButtonDown")
             }
             let turnBackEffect = SKAction.scaleX(to: 1, duration: flippingDuration)

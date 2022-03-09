@@ -21,7 +21,7 @@ class GameScene: SKScene {
     private var swipingPlayerCardPosition: CGPoint?
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = UIColor(CustomColor.background)
+        backgroundColor = UIColor(CustomColor.gameBackground)
         gameController.setUpGame(scene: self)
         
         positionCardsOnTable()
