@@ -8,8 +8,6 @@
 		<string>background</string>
 		<key>UIImageName</key>
 		<string>logo</string>
-		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
 		<key>UILaunchScreen</key>
 		<dict/>
 	</dict>
