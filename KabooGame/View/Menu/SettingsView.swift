@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("username") var savedUsername = "Test"
+    @AppStorage("username") var savedUsername = "Dude"
     @AppStorage("picture") var savedPicture = "profile.gray"
     @AppStorage("music") var savedMusic = true
     @AppStorage("sfx") var savedSfx = true
@@ -25,15 +25,9 @@ struct SettingsView: View {
     }
     }
     
-    @State private var username: String = "Test"
-    @State private var isMusicOn: Bool = true
-    @State private var isSFXOn: Bool = true
-    @State private var isVibrationOn: Bool = true
     @State private var showingProfilePicker: Bool = false
-    @State private var currentProfilePicture: String = "profile.gray"
-    @State private var selectedProfilePicture: String = "profile.gray"
     
-    private var profilePictures: [String] = ["profile.blue", "profile.gray", "profile.green", "profile.lightblue", "profile.orange", "profile.pink", "profile.purple", "profile.red", "profile.yellow"]
+    private let profilePictures: [String] = ["profile.blue", "profile.gray", "profile.green", "profile.lightblue", "profile.orange", "profile.pink", "profile.purple", "profile.red", "profile.yellow"]
     
     @FocusState private var isUsernameFocused: Bool
     
@@ -55,7 +49,7 @@ struct SettingsView: View {
                 Spacer()
                 
                 Button(action: {
-                    self.showingProfilePicker = true
+                    showingProfilePicker = true
                 }) {
                     Image($savedPicture.wrappedValue)
                         .resizable()
@@ -98,15 +92,15 @@ struct SettingsView: View {
                 VStack(alignment: .center) {
                     ZStack {
                         Text("Select Avatar")
-                            .bold().padding()
+                            .bold()
+                            .padding()
                             .frame(maxWidth: .infinity)
                             .background(CustomColor.darkGrey)
                             .foregroundColor(Color.white)
                         HStack {
                             Spacer()
                             Button {
-                                self.showingProfilePicker = false
-                                selectedProfilePicture = currentProfilePicture
+                                showingProfilePicker = false
                             } label: {
                                 Image(systemName: "xmark.circle.fill")
                                     .imageScale(.large)
@@ -121,9 +115,10 @@ struct SettingsView: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(profilePictures, id: \.self) { item in
                             Button(action: {
-                                self.selectedProfilePicture = item
+                                savedPicture = item
+                                showingProfilePicker = false
                             }) {
-                                if item == selectedProfilePicture {
+                                if item == savedPicture {
                                     Image(item)
                                         .resizable()
                                         .frame(width: 70, height: 70, alignment: .center)
@@ -141,25 +136,6 @@ struct SettingsView: View {
                         }
                     }
                     .padding()
-                    
-                    HStack {
-                        Button {
-                            self.showingProfilePicker = false
-                            self.currentProfilePicture = selectedProfilePicture
-                            self.savedPicture = selectedProfilePicture
-                        } label: {
-                            Text("Save Changes")
-                                .bold()
-                                .padding(6)
-                                .foregroundColor(Color.white)
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(10)
-                    .background(CustomColor.darkGrey)
-                    
-                    
                 }
                 .background(Color.white)
                 .mask(RoundedRectangle(cornerRadius: 20))

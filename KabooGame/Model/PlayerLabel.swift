@@ -5,7 +5,7 @@
 //  Created by Lucas Pereira on 24/02/22.
 //
 
-import Foundation
+import SwiftUI
 import SpriteKit
 
 class PlayerLabel: SKNode {
@@ -30,6 +30,8 @@ class PlayerLabel: SKNode {
     let rect: SKShapeNode
     let userName: String
     
+    @AppStorage("picture") var savedPicture = "profile.gray"
+    
     var isCurrentTurn: Bool = false {
         didSet {
             if isCurrentTurn {
@@ -47,7 +49,6 @@ class PlayerLabel: SKNode {
         self.image = image
         self.score = score
         
-        imageNode.fillColor = UIColor.darkGray
         imageNode.strokeColor = UIColor.clear
         
         nameLabel.fontColor = UIColor.black
@@ -63,6 +64,7 @@ class PlayerLabel: SKNode {
         
         super.init()
         
+        imageNode.fillColor = image == "" ? UIColor.randomPlayerColor() : UIColor.getBySavedPicture(savedPicture)
         self.zPosition = -1
         positionNodes()
         addNodes()
