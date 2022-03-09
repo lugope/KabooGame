@@ -22,7 +22,7 @@ class TutorialScene: SKScene {
     override func didMove(to view: SKView) {
         guard firstConfiguring else { return }
         tutorialController.tutorialScreenDelegate = tutorialScreenDelegate
-        self.backgroundColor = UIColor(CustomColor.background)
+        self.backgroundColor = UIColor(CustomColor.gameBackground)
         
         tutorialController.setUpGame(scene: self)
         positionCardsOnTable()
