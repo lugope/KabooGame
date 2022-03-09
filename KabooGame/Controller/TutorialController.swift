@@ -242,7 +242,7 @@ class TutorialController {
                         player.label.score = player.points
                         player.label.updateScoreLabel()
                         print(player.points)
-                        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+                        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
                             card.flip()
                         }
                     }
@@ -403,7 +403,7 @@ class TutorialController {
                 }
             }
             gameScene?.isUserInteractionEnabled = false
-            let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
                 self.tutorialScreenDelegate?.finishGame(players: self.players)
             }
         }

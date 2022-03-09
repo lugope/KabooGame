@@ -263,7 +263,7 @@ class GameController {
                         player.label.score = player.points
                         player.label.updateScoreLabel()
                         print(player.points)
-                        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+                        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
                             card.flip()
                         }
                     }
