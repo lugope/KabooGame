@@ -89,7 +89,7 @@ struct TutorialScreen: View, TutorialScreenDelegate {
                         
                         Text(explanation[step])
                             .background(CustomColor.background)
-                            .padding(.horizontal)
+                            .padding(.horizontal, 32)
                         
                         Spacer()
                         
@@ -99,7 +99,7 @@ struct TutorialScreen: View, TutorialScreenDelegate {
                             Text("Next")
                                 .font(.title2.weight(.semibold))
                                 .frame(maxWidth: .infinity)
-                                .padding(16)
+                                .padding()
                         }
                         .buttonStyle(.borderedProminent)
                         .frame(height: 30)
