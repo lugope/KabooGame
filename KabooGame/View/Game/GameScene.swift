@@ -65,16 +65,29 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             
             if let card = atPoint(location) as? Card {
-                
                 if let swipedPlayerCard = swipingPlayerCard, let swipedPlayerCardOriginalPosition = swipingPlayerCardPosition {
                     //if we do move(to: ...) then player can start new moving before finishing called and everything breaks
                     swipedPlayerCard.position = swipedPlayerCardOriginalPosition
                 }
                 // gameController.discardPile.frame.contains(location),
                 
-                if card.place == .pile, let swipedPlayerCard = swipingPlayerCard {
-                    gameController.snapCard(card: swipedPlayerCard)
-                } else if gameController.peekPhase {
+                //Handle snapping action
+                if let swipedPlayerCard = swipingPlayerCard {
+                    let allNodes = nodes(at: location)
+                    for node in allNodes {
+                        if let card = node as? Card {
+                            if card.place == .pile {
+                                gameController.snapCard(card: swipedPlayerCard)
+                                break
+                            }
+                        }
+                    }
+                    
+                    self.swipingPlayerCard = nil
+                }
+                  
+                // Handle card effect actions and default card swapping
+                if gameController.peekPhase {
                     if touch.tapCount == 1 {
                         gameController.peek(card: card)
                     }
@@ -101,8 +114,7 @@ class GameScene: SKScene {
                 }
             }
             
-            
-            
+            // Handle drawn from deck and call Kaboo
             if !gameController.peekPhase && !gameController.spyPhase && !gameController.blindSwapPhase && !gameController.spyAndSwapPhase {
                 if atPoint(location) is Deck {
                     if touch.tapCount > 1 && !gameController.deck.deckList.isEmpty {

@@ -35,7 +35,7 @@ class Card: SKSpriteNode {
     }
     
     func flip() {
-        let flippingDuration: CGFloat = 0.5
+        let flippingDuration: CGFloat = 0.4
         
         let halfTurnEffect = SKAction.scaleX(to: 0, duration: flippingDuration)
         let changeTexture = SKAction.run {
@@ -72,7 +72,7 @@ class Card: SKSpriteNode {
     
     func rightSnappingAnimation() {
         let growCard = SKAction.scale(by: 2, duration: 0)
-        let sizeBack = SKAction.scale(by: 0.5, duration: 0)
+        let sizeBack = SKAction.scale(by: 1, duration: 0.5)
         let actionSeq = SKAction.sequence([growCard, sizeBack])
         
         run(actionSeq)
@@ -81,7 +81,7 @@ class Card: SKSpriteNode {
     func wrongSnappingAnimation() {
         let initPosition = self.position
         let shakeAmplitude:CGFloat = 10
-        let shakeDuration = 0.1
+        let shakeDuration = 0.05
         let numberOfShakes = 8
 
         var actionsArray:[SKAction] = []

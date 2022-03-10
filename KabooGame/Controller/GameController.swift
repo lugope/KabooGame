@@ -228,44 +228,47 @@ class GameController {
         print("Card Selected: \(cardSelected!.type.rawValue)")
     }
     
+    //MARK: Managing Snapping
     func snapCard(card: Card) {
         if let cardPositionIndex = positionInPlayerHand(ofCard: card) {
-            for player in players {
-                if player.id.rawValue == card.place.rawValue {
-                    // Put card selected in players hand
-                    let tempCard = player.cards[cardPositionIndex]
-                    
-                    //Add changed card to pile
-                    if discardPile.pile[0].type.value == player.cards[cardPositionIndex].type.value {
-                        if savedSfx {
-                            SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
-                        }
-                        if savedVibration {
-                            haptics.notificationOccurred(.success)
-                        }
-                        player.cards.remove(at: cardPositionIndex)
-                        discardPile.pile.insert(tempCard, at: 0)
-                        discardPile.update()
-                        //Clean old card and selections
-                        tempCard.removeFromParent()
-                        cardSelected = nil
-                        drawnCard = nil
-                        
-                    } else {
-                        if savedSfx {
-                            SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
-                        }
-                        if savedVibration {
-                            haptics.notificationOccurred(.error)
-                        }
-                        print("Wrong card! Penalty: 5 points")
-                        player.points += 5
-                        player.label.score = player.points
-                        player.label.updateScoreLabel()
-                        print(player.points)
-                        
-                        card.wrongSnappingAnimation()
+            if let player = players.filter({ $0.id.rawValue == card.place.rawValue }).first {
+                
+                // Put card selected in players hand
+                let tempCard = player.cards[cardPositionIndex]
+                
+                //Add changed card to pile
+                if discardPile.pile[0].type.value == player.cards[cardPositionIndex].type.value {
+                    if savedSfx {
+                        SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
                     }
+                    if savedVibration {
+                        haptics.notificationOccurred(.success)
+                    }
+                    player.cards.remove(at: cardPositionIndex)
+                    discardPile.pile.insert(tempCard, at: 0)
+                    discardPile.update()
+                    
+                    topPileCard?.rightSnappingAnimation()
+                    
+                    //Clean old card and selections
+                    tempCard.removeFromParent()
+                    cardSelected = nil
+                    drawnCard = nil
+                    
+                } else {
+                    if savedSfx {
+                        SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
+                    }
+                    if savedVibration {
+                        haptics.notificationOccurred(.error)
+                    }
+                    print("Wrong card! Penalty: 5 points")
+                    player.points += 5
+                    player.label.score = player.points
+                    player.label.updateScoreLabel()
+                    print(player.points)
+                    
+                    card.wrongSnappingAnimation()
                 }
             }
         }
