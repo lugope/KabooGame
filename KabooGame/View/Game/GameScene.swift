@@ -119,7 +119,7 @@ class GameScene: SKScene {
                 }
             }
             
-            if let exitButton = atPoint(location) as? ExitButton{
+            if atPoint(location) is ExitButton {
                 self.gameViewDelegate?.exitGame()
             }
         }

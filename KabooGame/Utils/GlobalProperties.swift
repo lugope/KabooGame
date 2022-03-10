@@ -15,3 +15,5 @@ let CARD_BACK_HIGHLIGHTED_BLUE_TEXTURE = SKTexture(imageNamed: "Card_back_highli
 let CARD_PLACEHOLDER_TEXTURE = SKTexture(imageNamed: "Card_placeholder")
 let CARD_SIZE_WIDTH: CGFloat = 72
 let CARD_SIZE_HEIGHT: CGFloat = 108
+let SCREEN_HEIGHT = UIScreen.main.bounds.height
+let SCREEN_WIDTH = UIScreen.main.bounds.width

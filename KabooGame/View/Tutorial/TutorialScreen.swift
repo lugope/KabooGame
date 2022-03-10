@@ -32,13 +32,13 @@ struct TutorialScreen: View, TutorialScreenDelegate {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var showTutorial = true
     @State private var showExplanationStep = true
-    @State private var explanation = ["Let's start our tutorial! Each player has 4 cards. At your turn you can do one of a few things. Let's try to swap a card from a discard pile with one of yours. For that tap on a discard pile (faced up card in the center) and then tap on one of current player's (the player with blue badge) cards.",
-                                      "Nice job! Second thing you can do is to draw a card from deck. For that double tap on the deck (faced down card in the center).",
+    @State private var explanation = ["Let's start our tutorial! Each player has 4 cards. The goal of the game to get as less points as possible.\n\nAt your turn you can do one of a few things. First of them is to swap a card from a discard pile with one of yours.\n\nFor that tap on a discard pile (faced up card in the center) and then tap on one of current player's (the player with blue badge) cards.",
+                                      "Nice job! Second thing you can do is to draw a card from deck.\n\nFor that double tap on the deck (faced down card in the center).",
                                       "Now one of the things you can do with this card - is to swap it with one of yours the same way you did that with discard pile.",
                                       "Another type of move is to draw a card and discard it by double tapping on the discard pile. Try it!",
-                                      "Any time any player can try to snap one of his/her cards. For doing that you need to drag and drop a card to a discard pile. If it has the same value as the top discard pile card you lose your card which is good. If it's different, then you get a penalty 5 points.",
-                                      "And the last option for your turn is to call a Kaboo! For doing that press the Kaboo button and this is the last turn for everyone. Kaboooooo!",
-                                      "Now everyone else do their last move and this is the end of the game! The player with the least points wins. Good luck, have fun :)"]
+                                      "Any time any player can try to snap one of his/her cards. For doing that you need to drag and drop a card to a discard pile.\n\nIf it has the same value as the top discard pile card you lose your card which is good. If it's different, then you get a penalty 5 points.",
+                                      "And the last option for your turn is to call a Kaboo!\n\nFor doing that press the Kaboo button and this is the last turn for everyone. Kaboooooo!",
+                                      "Now everyone else do their last move and this is the end of the game!\n\nThe player with the least points wins. Good luck, have fun :)"]
     @State private var step = 0
     @State private var showResults = false
     @State private var finalPlayers: [Player] = []
@@ -52,17 +52,9 @@ struct TutorialScreen: View, TutorialScreenDelegate {
     }
     }
     
-    var screenWidth: CGFloat {
-        return UIScreen.main.bounds.width
-    }
-    
-    var screenHeight: CGFloat {
-        return UIScreen.main.bounds.height
-    }
-    
     var scene: TutorialScene {
         let scene = TutorialScene()
-        scene.size = CGSize(width: screenWidth, height: screenHeight)
+        scene.size = CGSize(width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
         scene.scaleMode = .fill
         scene.tutorialScreenDelegate = self
         return scene
@@ -90,19 +82,19 @@ struct TutorialScreen: View, TutorialScreenDelegate {
                         Text(explanation[step])
                             .background(CustomColor.background)
                             .padding(.horizontal, 32)
+                            .font(.system(size: SCREEN_HEIGHT <= 736 ? 20 : 25))
                         
                         Spacer()
                         
                         Button(action: {
                             showExplanationStep = false
                         }) {
-                            Text("Next")
+                            Text("Try")
                                 .font(.title2.weight(.semibold))
                                 .frame(maxWidth: .infinity)
                                 .padding()
                         }
                         .buttonStyle(.borderedProminent)
-                        .frame(height: 30)
                         .padding(.bottom)
                         .padding(.horizontal)
                         .navigationTitle("How to play")
@@ -111,7 +103,7 @@ struct TutorialScreen: View, TutorialScreenDelegate {
                         .navigationBarItems(leading: btnBack)
                     } else {
                         SpriteView(scene: myScene ?? scene)
-                            .frame(width: screenWidth, height: screenHeight)
+                            .frame(width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
                             .navigationBarHidden(true)
                             .navigationBarBackButtonHidden(true)
                             .ignoresSafeArea()

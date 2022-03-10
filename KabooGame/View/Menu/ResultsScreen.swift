@@ -24,6 +24,9 @@ struct ResultsScreen: View {
                     $0.points < $1.points
                 }
                 
+                Text("🏆")
+                    .font(.system(size: SCREEN_HEIGHT <= 736 ? 100 : 150))
+                
                 ForEach(sortedPlayers.indices) { index in
                     HStack {
                         Image(systemName: "\(index + 1).circle.fill")
@@ -52,9 +55,14 @@ struct ResultsScreen: View {
                         .frame(maxWidth: .infinity)
                         .padding(16)
                 }
+                .buttonStyle(.borderedProminent)
+                .padding(.bottom)
+                .padding(.horizontal)
+                //.frame(height: 30)
             }
         }
         .navigationBarTitle("Results")
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -34,6 +34,6 @@ class Player {
         self.isDeviceHolder = isDeviceHolder
         self.userName = name
         
-        label = PlayerLabel(userName: userName, image: "")
+        label = PlayerLabel(userName: userName, image: (id.rawValue == 0 ? "savedPicture" : ""))
     }
 }
