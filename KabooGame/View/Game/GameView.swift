@@ -31,17 +31,10 @@ struct GameView: View, GameViewDelegate {
         self.presentationMode.wrappedValue.dismiss()
     }
     
-    var screenWidth: CGFloat {
-        return UIScreen.main.bounds.width
-    }
-    var screenHeight: CGFloat {
-        return UIScreen.main.bounds.height
-    }
-    
     var scene: SKScene {
         let scene = GameScene()
         scene.gameViewDelegate = self
-        scene.size = CGSize(width: screenWidth, height: screenHeight)
+        scene.size = CGSize(width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
         scene.scaleMode = .fill
         return scene
     }
@@ -52,7 +45,7 @@ struct GameView: View, GameViewDelegate {
             .isDetailLink(false)
             
             SpriteView(scene: scene)
-                .frame(width: screenWidth, height: screenHeight)
+                .frame(width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
         }

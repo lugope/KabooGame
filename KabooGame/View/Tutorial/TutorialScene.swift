@@ -16,11 +16,13 @@ class TutorialScene: SKScene {
     private var swipingPlayerCardPosition: CGPoint?
     var tutorialScreenDelegate: TutorialScreenDelegate?
     private var firstConfiguring = true
+    private let tipLabel = TipLabel()
+    private let tips = ["Swap player's card\nwith discard pile", "Draw a card\nfrom the deck\nby double tapping", "Swap a drawn card\nwith one of player's", "Draw a card and\ndiscard it by selecting\nand double taping\non the discard pile", "Try to snap player's\n card by dragging and dropping\nit to the discard pile", "Declare last lap of turns\nby pressing a Kaboo button", "Do last 3 moves"]
     
     override func didMove(to view: SKView) {
         guard firstConfiguring else { return }
         tutorialController.tutorialScreenDelegate = tutorialScreenDelegate
-        self.backgroundColor = UIColor(CustomColor.background)
+        self.backgroundColor = UIColor(CustomColor.gameBackground)
         
         tutorialController.setUpGame(scene: self)
         positionCardsOnTable()
@@ -32,13 +34,15 @@ class TutorialScene: SKScene {
         
         positionPlayerLabels()
         positionKabooButton()
+        positionTipLabel()
         firstConfiguring = false
     }
     
     func finishStep() {
         self.isUserInteractionEnabled = false
-        let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
             self.step += 1
+            self.tipLabel.labelNode.text = self.step <= self.tips.count - 1 ? self.tips[self.step] : ""
             self.isUserInteractionEnabled = true
             self.tutorialScreenDelegate?.finishStep(self)
         }
@@ -116,7 +120,7 @@ class TutorialScene: SKScene {
                         } else if card.place == .handPlayer2, step == 2 {
                             finishStep()
                         }
-                        tutorialController.selectCardOrPerformAction(cardTapped: card)
+                        tutorialController.selectCardOrPerformAction(cardTapped: card, step: step)
                     } else if touch.tapCount > 1, tutorialController.drawnCard != nil, card.place == .pile, (step == 3 || step > 5) {
                         if step == 3 {
                             finishStep()
@@ -280,5 +284,11 @@ class TutorialScene: SKScene {
         let button = KabooButton()
         button.position = CGPoint(x: frame.midX, y: frame.midY - 108)
         addChild(button)
+    }
+    
+    func positionTipLabel() {
+        tipLabel.labelNode.text = tips[0]
+        tipLabel.position = CGPoint(x: frame.midX, y: frame.midY + 110)
+        addChild(tipLabel)
     }
 }

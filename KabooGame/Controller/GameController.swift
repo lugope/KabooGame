@@ -30,6 +30,7 @@ class GameController {
     let haptics = UINotificationFeedbackGenerator()
     @AppStorage("sfx") var savedSfx = true
     @AppStorage("vibration") var savedVibration = true
+    @AppStorage("username") var savedUsername = "Dude"
     
     init() {
         self.players = []
@@ -62,7 +63,7 @@ class GameController {
         
         // Temp variable: Delete latter
         let dummyPlayerList = [
-            Player(id: .player1, isDeviceHolder: true, name: "Dude"),
+            Player(id: .player1, isDeviceHolder: true, name: savedUsername),
             Player(id: .player2, isDeviceHolder: false, name: "Kate"),
             Player(id: .player3, isDeviceHolder: false, name: "Carl"),
             Player(id: .player4, isDeviceHolder: false, name: "Peter")]

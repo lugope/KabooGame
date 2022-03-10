@@ -6,7 +6,7 @@
 //
 
 import SpriteKit
-import Foundation
+import SwiftUI
 
 class TutorialController {
     var tutorialScreenDelegate: TutorialScreenDelegate?
@@ -26,6 +26,11 @@ class TutorialController {
     var spyPhase = false
     var blindSwapPhase = false
     var spyAndSwapPhase = false
+    
+    let haptics = UINotificationFeedbackGenerator()
+    @AppStorage("sfx") var savedSfx = true
+    @AppStorage("vibration") var savedVibration = true
+    @AppStorage("username") var savedUsername = "Dude"
     
     init() {
         self.players = []
@@ -58,7 +63,7 @@ class TutorialController {
         
         // Temp variable: Delete latter
         let dummyPlayerList = [
-            Player(id: .player1, isDeviceHolder: true, name: "Dude"),
+            Player(id: .player1, isDeviceHolder: true, name: savedUsername),
             Player(id: .player2, isDeviceHolder: false, name: "Kate"),
             Player(id: .player3, isDeviceHolder: false, name: "Carl"),
             Player(id: .player4, isDeviceHolder: false, name: "Peter")]
@@ -122,6 +127,14 @@ class TutorialController {
 //            print("No action")
 //            finishTurn()
 //        }
+        
+        if savedSfx {
+            SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
+        }
+        if savedVibration {
+            haptics.notificationOccurred(.success)
+        }
+        
         finishTurn()
         drawnCard = nil
         cardSelected = nil
@@ -130,16 +143,18 @@ class TutorialController {
     }
     
     //MARK: Managing Swap Action
-    func selectCardOrPerformAction(cardTapped: Card) {
+    func selectCardOrPerformAction(cardTapped: Card, step: Int) {
         if cardTapped.place == .deck || (cardTapped.place == .pile && drawnCard == nil) {
             for player in players {
                 if player.id == currentTurn {
                     for card in player.cards {
-                        card.setHighlighting(cardTapped.place == .deck ? .blue : .purple)
+                        if step != 3 {
+                            card.setHighlighting(cardTapped.place == .deck ? .blue : .purple)
+                        }
                     }
                 }
             }
-            if cardTapped.place == .deck {
+            if cardTapped.place == .deck, step != 2 {
                 topPileCard?.setHighlighting(.blue)
             }
             cardSelected = cardTapped
@@ -226,6 +241,12 @@ class TutorialController {
                     
                     //Add changed card to pile
                     if discardPile.pile[0].type.value == player.cards[cardPositionIndex].type.value {
+                        if savedSfx {
+                            SoundManager.sharedManager.playSound(sound: "snap", type: "mp3")
+                        }
+                        if savedVibration {
+                            haptics.notificationOccurred(.success)
+                        }
                         player.cards.remove(at: cardPositionIndex)
                         discardPile.pile.insert(tempCard, at: 0)
                         discardPile.update()
@@ -234,13 +255,19 @@ class TutorialController {
                         cardSelected = nil
                         drawnCard = nil
                     } else {
+                        if savedSfx {
+                            SoundManager.sharedManager.playSound(sound: "flip", type: "mp3")
+                        }
+                        if savedVibration {
+                            haptics.notificationOccurred(.error)
+                        }
                         card.flip()
                         print("Wrong card! Penalty: 5 points")
                         player.points += 5
                         player.label.score = player.points
                         player.label.updateScoreLabel()
                         print(player.points)
-                        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+                        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
                             card.flip()
                         }
                     }
@@ -401,7 +428,7 @@ class TutorialController {
                 }
             }
             gameScene?.isUserInteractionEnabled = false
-            let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
                 self.tutorialScreenDelegate?.finishGame(players: self.players)
             }
         }
