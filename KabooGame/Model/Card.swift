@@ -53,6 +53,7 @@ class Card: SKSpriteNode {
     }
     
     func temporaryFlip() {
+        let initPosition = self.position
         var positionShift: CGFloat = 0
         if self.place == .handPlayer2 {
             positionShift = CARD_SIZE_HEIGHT/2
@@ -63,7 +64,7 @@ class Card: SKSpriteNode {
         let flipCard = SKAction.run { self.flip() }
         let wait = SKAction.wait(forDuration: 2)
         let moveFoward = SKAction.move(by: CGVector(dx: positionShift, dy: 0), duration: 0.3)
-        let moveBack = SKAction.move(by: CGVector(dx: -positionShift, dy: 0), duration: 0.3)
+        let moveBack = SKAction.move(to: initPosition, duration: 0.3)
         
         let sequence = SKAction.sequence([flipCard, moveFoward, wait, flipCard, moveBack])
         run(sequence)
@@ -80,6 +81,7 @@ class Card: SKSpriteNode {
     func wrongSnappingAnimation() {
         let initPosition = self.position
         let shakeAmplitude:CGFloat = 10
+        let shakeDuration = 0.1
         let numberOfShakes = 8
 
         var actionsArray:[SKAction] = []
@@ -90,13 +92,13 @@ class Card: SKSpriteNode {
             }
 
             var vector = CGVector()
-            if place == .handPlayer1 || place == .handPlayer2 {
+            if place == .handPlayer1 || place == .handPlayer3 {
                 vector = CGVector(dx: shakeAmplitude*direction, dy: 0)
             } else {
                 vector = CGVector(dx: 0, dy: shakeAmplitude*direction)
             }
 
-            let shakeAction = SKAction.moveBy(x: vector.dx, y: vector.dy, duration: 0.1)
+            let shakeAction = SKAction.moveBy(x: vector.dx, y: vector.dy, duration: shakeDuration)
             shakeAction.timingMode = .easeOut
             actionsArray.append(shakeAction)
         }
@@ -104,6 +106,12 @@ class Card: SKSpriteNode {
         actionsArray.append(
             SKAction.move(to: initPosition, duration: 0)
         )
+        
+        //Adding temporary flip animation after
+        let wait = SKAction.wait(forDuration: shakeDuration*Double(numberOfShakes))
+        let tempFlip = SKAction.run { self.temporaryFlip() }
+        actionsArray.append(wait)
+        actionsArray.append(tempFlip)
         
         let actionSeq = SKAction.sequence(actionsArray)
         run(actionSeq)

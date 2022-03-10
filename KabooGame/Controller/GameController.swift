@@ -258,16 +258,13 @@ class GameController {
                         if savedVibration {
                             haptics.notificationOccurred(.error)
                         }
-                        card.flip()
-                        card.wrongSnappingAnimation()
                         print("Wrong card! Penalty: 5 points")
                         player.points += 5
                         player.label.score = player.points
                         player.label.updateScoreLabel()
                         print(player.points)
-                        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-                            card.flip()
-                        }
+                        
+                        card.wrongSnappingAnimation()
                     }
                 }
             }
